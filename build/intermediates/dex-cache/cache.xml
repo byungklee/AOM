@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/mike/AndroidStudioProjects/AgeOfMythology/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/mike/AndroidStudioProjects/AgeOfMythology/app/build/intermediates/pre-dexed/debug/classes-956d1e6b4a609a9ddeed988b88f3a274b11fba47.jar" />
+    </item>
+    <item
+        jar="/Users/mike/AndroidStudioProjects/AgeOfMythology/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/mike/AndroidStudioProjects/AgeOfMythology/app/build/intermediates/pre-dexed/debug/classes-1968e72b528289c6c1439272c35ef2037533c06c.jar" />
+    </item>
+    <item
+        jar="/Users/mike/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/mike/AndroidStudioProjects/AgeOfMythology/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-5317ee55a34a8bfa76abe91e39a80d14d4cecf03.jar" />
+    </item>
+    <item
+        jar="/Users/mike/AndroidStudioProjects/AgeOfMythology/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/mike/AndroidStudioProjects/AgeOfMythology/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-40fd90690fa07d0fd2f367658c68e5d31e187f1b.jar" />
+    </item>
+
+</items>
