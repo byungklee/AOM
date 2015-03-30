@@ -1,0 +1,41 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff313131"
+    tools:context="com.anycomp.android.ageofmythology.CultureSelectionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<TextView android:layout_width="match_parent" android:layout_height="match_parent"-->
+        <!--android:text="@string/hello_blank_fragment" />-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        >
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="Greek"
+            android:onClick="selectCulture"
+            />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="Norse"
+            android:onClick="selectCulture"
+            />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="Egypt"
+            android:onClick="selectCulture"
+            />
+        </LinearLayout>
+
+
+
+</RelativeLayout>
