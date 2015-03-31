@@ -12,5 +12,9 @@ public class SiegeEngineWorkshopBuilding extends Building {
     public SiegeEngineWorkshopBuilding() {
         this.setBuildingName("SiegeEngineWorkshop");
         this.setImagePath(R.drawable.siegework);
+        setWoodCost(3);
+        setFoodCost(0);
+        setGoldCost(2);
+        setFavorCost(0);
     }
 }

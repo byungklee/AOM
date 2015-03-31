@@ -11,6 +11,9 @@ public class GoldMintBuilding extends Building{
     public GoldMintBuilding() {
         this.setBuildingName("GoldMint");
         this.setImagePath(R.drawable.goldmint);
-
+        setWoodCost(2);
+        setFoodCost(3);
+        setGoldCost(0);
+        setFavorCost(0);
     }
 }

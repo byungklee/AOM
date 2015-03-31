@@ -53,6 +53,10 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if(id == R.id.pick_card) {
+            openPickCardDialog();
+        } else if(id == R.id.play_card) {
+            openPlayCardDialog();
         }
 
 
@@ -101,6 +105,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
 
     public void openTileSelectionPopup(int maxPick) {
         TileSelectionDialogFragment tsd =  new TileSelectionDialogFragment();
+        TileManager.getInstance().setNumberOfCardsToRefresh(18);
         tsd.setTileSelectionController(new TileSelectionController(mPlayerController,maxPick));
         tsd.show(getFragmentManager(), "Tile Selection Dialog");
     }
@@ -109,4 +114,20 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
     public void onTileClick() {
         Log.d(TAG,"TILE CLICKED");
     }
+
+    public void openPickCardDialog() {
+        PickCardDialogFragment pcdf = new PickCardDialogFragment();
+
+        pcdf.setPlayer(mPlayerController.getHumanPlayer());
+        pcdf.show(getFragmentManager(), "Pick Card Dialog");
+    }
+
+    public void openPlayCardDialog() {
+        PlayCardDialogFragment pcdf = new PlayCardDialogFragment();
+        pcdf.setPlayer(mPlayerController.getHumanPlayer());
+        pcdf.setPlayerController(mPlayerController);
+        pcdf.show(getFragmentManager(), "Play Card Dialog");
+    }
+
+
 }

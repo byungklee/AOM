@@ -11,5 +11,9 @@ public class GreatTempleBuilding extends Building {
     public GreatTempleBuilding() {
         this.setBuildingName("GreatTemple");
         this.setImagePath(R.drawable.greattemple);
+        setWoodCost(4);
+        setFoodCost(4);
+        setGoldCost(4);
+        setFavorCost(4);
     }
 }

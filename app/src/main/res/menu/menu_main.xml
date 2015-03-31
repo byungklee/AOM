@@ -6,4 +6,17 @@
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+    <item android:id="@+id/pick_card"
+            android:title="Pick Card"
+            android:orderInCategory="101"
+            app:showAsAction="never"/>
+    <item android:id="@+id/play_card"
+        android:title="Play Card"
+        android:orderInCategory="101"
+        app:showAsAction="never"/>
+    <item android:id="@+id/bank"
+        android:title="Bank"
+        android:orderInCategory="101"
+        app:showAsAction="never"/>
+
 </menu>

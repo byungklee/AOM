@@ -14,5 +14,9 @@ public class WallBuilding extends Building {
     public WallBuilding() {
         this.setBuildingName("Wall");
         this.setImagePath(R.drawable.wall);
+        setWoodCost(3);
+        setFoodCost(0);
+        setGoldCost(3);
+        setFavorCost(0);
     }
 }

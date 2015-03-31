@@ -9,7 +9,7 @@ public class Greek extends Culture {
         this.setPermanentRecruitCardImage(R.drawable.card_perm_greek_recruit);
         this.setPermanentTradeCardImage(R.drawable.card_perm_greek_trade);
         this.setPermanentNextCardImage(R.drawable.card_perm_greek_age);
-        this.setPermanentGatherCardImage(R.drawable.card_perm_egypt_gather);
+        this.setPermanentGatherCardImage(R.drawable.card_perm_greek_gather);
         this.setPermanentExploreCardImage(R.drawable.card_perm_greek_explore);
         this.setPermanentBuildCardImage(R.drawable.card_perm_greek_build);
 		this.setName("Greek");

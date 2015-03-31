@@ -10,5 +10,9 @@ public class StoreHouseBuilding extends Building {
     public StoreHouseBuilding() {
         this.setBuildingName("StoreHouse");
         this.setImagePath(R.drawable.storehouse);
+        setWoodCost(2);
+        setFoodCost(2);
+        setGoldCost(2);
+        setFavorCost(2);
     }
 }

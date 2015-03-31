@@ -48,7 +48,7 @@ public class CityArea extends Area {
                 break;
             }
         }
-
+        notifyObservers();
     }
 
 }

@@ -14,6 +14,7 @@ public class TileManager implements Observable {
 	//Total Tile Deck;
 	private LinkedList<Tile> tileDeck;
 	private ArrayList<Observer> observers;
+    private int numberOfCardsToRefresh;
 	
 	public static TileManager getInstance() {
 		if(tileManager == null) {
@@ -28,6 +29,7 @@ public class TileManager implements Observable {
 		observers = new ArrayList<Observer>();
 		generateResourceTiles();
 		shuffleResourceTiles();
+
 	}
 	
 	public void resetDeck() {
@@ -44,7 +46,7 @@ public class TileManager implements Observable {
 	}
 	
 	private void setTileSelectionDeck() {
-		for(int i=0;i<18;i++) {
+		for(int i=0;i<numberOfCardsToRefresh;i++) {
 			tileSelectionDeck.add(tileDeck.removeFirst());
 		}
 	}
@@ -203,4 +205,12 @@ public class TileManager implements Observable {
 		}
 		return null;
 	}
+
+    public int getNumberOfCardsToRefresh() {
+        return numberOfCardsToRefresh;
+    }
+
+    public void setNumberOfCardsToRefresh(int numberOfCardsToRefresh) {
+        this.numberOfCardsToRefresh = numberOfCardsToRefresh;
+    }
 }

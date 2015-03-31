@@ -11,5 +11,9 @@ public class MonumentBuilding extends Building{
     public MonumentBuilding() {
         this.setBuildingName("Monument");
         this.setImagePath(R.drawable.monument);
+        setWoodCost(0);
+        setFoodCost(3);
+        setGoldCost(2);
+        setFavorCost(0);
     }
 }

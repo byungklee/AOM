@@ -3,10 +3,10 @@ package com.anycomp.android.ageofmythology.model.resource;
 public class Cube {
 	private int color;
 	private int value;
-	int getValue() {
+	public int getValue() {
 		return value;
 	}
-	void setValue(int value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 	int getColor() {

@@ -7,34 +7,30 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 import com.anycomp.android.ageofmythology.model.tile.Tile;
 
 import java.util.ArrayList;
 
 /**
- * Created by byung on 3/29/15.
+ * Created by byung on 3/31/15.
  */
-public class TileImageAdapter extends BaseAdapter implements Observer {
-    private Context mContext;
-    ArrayList<Tile> tiles;
-    public TileImageAdapter(Context c) {
-        mContext = c;
-
-
-        TileManager tm = TileManager.getInstance();
-        tm.refreshTileSelectionDeck();
-        tiles = tm.getTileSelectionDeck();
-
-
+public class BuildingImageAdapter extends BaseAdapter implements Observer {
+    private ArrayList<Tile> al;
+    private Context c;
+    public BuildingImageAdapter(Context c, ArrayList<Tile> al) {
+        this.al = al;
+        this.c =c ;
     }
+
     @Override
     public int getCount() {
-        return tiles.size();
+        return al.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return tiles.get(position);
+        return al.get(position);
     }
 
     @Override
@@ -47,20 +43,22 @@ public class TileImageAdapter extends BaseAdapter implements Observer {
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(130, 130));
+            imageView = new ImageView(c);
+            imageView.setLayoutParams(new GridView.LayoutParams(250, 170));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
-
-        imageView.setImageResource(tiles.get(position).getImagePath());
+        BuildingTile bt = (BuildingTile) al.get(position);
+        imageView.setImageResource(bt.getImagePath());
         return imageView;
     }
 
     @Override
     public void update(Object object) {
+        System.out.println("Updating City Area View");
+        this.notifyDataSetChanged();
 
     }
 }

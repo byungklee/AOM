@@ -1,6 +1,11 @@
 package com.anycomp.android.ageofmythology.model.card;
 
+import android.app.FragmentManager;
+import android.content.Context;
+
+import com.anycomp.android.ageofmythology.PlayerController;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
+import com.anycomp.android.ageofmythology.model.player.Player;
 
 public abstract class Card {
 	private String mName;
@@ -9,13 +14,13 @@ public abstract class Card {
         private int value;
 	public Card() {}
         
-        abstract public void play();
+    abstract public void play(FragmentManager ctx, PlayerController player);
         
 	public int getImagePath() {
             return mImagePath;
         }
         
-        public void setImagePath(int path) {
+    public void setImagePath(int path) {
             this.mImagePath = path;
         }
 

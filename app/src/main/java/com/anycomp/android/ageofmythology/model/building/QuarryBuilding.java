@@ -12,5 +12,9 @@ public class QuarryBuilding extends Building {
  public QuarryBuilding() {
      this.setBuildingName("Quarry");
         this.setImagePath(R.drawable.quarry);
+     setWoodCost(0);
+     setFoodCost(4);
+     setGoldCost(1);
+     setFavorCost(0);
  }
 }

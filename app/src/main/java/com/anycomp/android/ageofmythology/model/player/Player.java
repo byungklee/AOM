@@ -35,6 +35,8 @@ public class Player implements Observable {
 		this.setCulture(culture);
 		this.name = name;
 		playerBoard = board;
+
+        //TO DO: After bank implementation...
 		goldCube = new GoldCube(20);
 		favorCube = new FavorCube(20);
 		woodCube = new WoodCube(20);

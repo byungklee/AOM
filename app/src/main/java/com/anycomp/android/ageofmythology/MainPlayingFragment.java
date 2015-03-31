@@ -33,6 +33,7 @@ public class MainPlayingFragment extends Fragment {
     private GridView resourceView;
     private GridView buildingView;
     private AreaImageAdapter resourceTileImageAdapter;
+    private BuildingImageAdapter buildingTileAdapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -91,6 +92,12 @@ public class MainPlayingFragment extends Fragment {
             }
         });
 
+        buildingView = (GridView) v.findViewById(R.id.building_tile_grid);
+        buildingTileAdapter = new BuildingImageAdapter(getActivity().getApplicationContext(),
+                mPlayer.getPlayerBoard().getCityArea().getTiles());
+        buildingView.setAdapter(buildingTileAdapter);
+
+
         return v;
     }
 
@@ -99,12 +106,14 @@ public class MainPlayingFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mPlayer.getPlayerBoard().getProductionArea().attachObserver(resourceTileImageAdapter);
+        mPlayer.getPlayerBoard().getCityArea().attachObserver(buildingTileAdapter);
     }
 
     @Override
     public void onStop() {
         super.onStop();
         mPlayer.getPlayerBoard().getProductionArea().detachObserver(resourceTileImageAdapter);
+        mPlayer.getPlayerBoard().getCityArea().detachObserver(buildingTileAdapter);
 
     }
 }

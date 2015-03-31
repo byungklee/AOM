@@ -13,5 +13,9 @@ public class TheWonderBuilding extends Building {
     public TheWonderBuilding() {
         this.setBuildingName("TheWonder");
         this.setImagePath(R.drawable.wonder);
+        setWoodCost(10);
+        setFoodCost(10);
+        setGoldCost(10);
+        setFavorCost(10);
     }
 }

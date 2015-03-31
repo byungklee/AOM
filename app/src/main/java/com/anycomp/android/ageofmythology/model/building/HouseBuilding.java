@@ -15,6 +15,10 @@ public class HouseBuilding extends Building {
         this.setBuildingName("House");
         this.setImagePath(R.drawable.house);
         quantity = 0;
+        setWoodCost(2);
+        setFoodCost(2);
+        setGoldCost(0);
+        setFavorCost(0);
     }
 
 

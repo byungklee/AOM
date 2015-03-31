@@ -7,34 +7,30 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.anycomp.android.ageofmythology.model.tile.Tile;
+import com.anycomp.android.ageofmythology.model.building.Building;
 
 import java.util.ArrayList;
 
 /**
- * Created by byung on 3/29/15.
+ * Created by byung on 3/30/15.
  */
-public class TileImageAdapter extends BaseAdapter implements Observer {
-    private Context mContext;
-    ArrayList<Tile> tiles;
-    public TileImageAdapter(Context c) {
-        mContext = c;
+public class BuildingSelectionAdapter extends BaseAdapter {
 
-
-        TileManager tm = TileManager.getInstance();
-        tm.refreshTileSelectionDeck();
-        tiles = tm.getTileSelectionDeck();
-
-
+    private ArrayList<Building> list;
+    private Context context;
+    public BuildingSelectionAdapter(Context context, ArrayList al) {
+        this.context = context;
+        list = al;
     }
+
     @Override
     public int getCount() {
-        return tiles.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return tiles.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -47,20 +43,16 @@ public class TileImageAdapter extends BaseAdapter implements Observer {
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(130, 130));
+            imageView = new ImageView(context);
+            imageView.setLayoutParams(new GridView.LayoutParams(80,80));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(tiles.get(position).getImagePath());
+        imageView.setImageResource(list.get(position).getImagePath());
+
         return imageView;
-    }
-
-    @Override
-    public void update(Object object) {
-
     }
 }

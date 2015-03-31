@@ -15,4 +15,12 @@ public class BuildingTile extends Tile {
     public void setBuilding(Building building) {
         this.building = building;
     }
+    public int getImagePath() {
+        if(building == null) {
+            return 0;
+        }
+        return building.getImagePath();
+    }
+
+
 }

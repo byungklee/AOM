@@ -9,5 +9,9 @@ public class MarketBuilding extends Building {
     public MarketBuilding() {
         this.setBuildingName("Market");
         this.setImagePath(R.drawable.market);
+        setWoodCost(0);
+        setFoodCost(0);
+        setGoldCost(3);
+        setFavorCost(2);
     }
 }

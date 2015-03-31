@@ -13,5 +13,9 @@ public class TowerBuilding extends Building {
     public TowerBuilding() {
         this.setBuildingName("Tower");
         this.setImagePath(R.drawable.tower);
+        setWoodCost(3);
+        setFoodCost(0);
+        setGoldCost(3);
+        setFavorCost(0);
     }
 }

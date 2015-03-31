@@ -11,5 +11,9 @@ public class WoodWorkshopBuilding extends Building {
     public WoodWorkshopBuilding() {
         this.setBuildingName("WoodWorkshop");
         this.setImagePath(R.drawable.woodwork);
+        setWoodCost(0);
+        setFoodCost(2);
+        setGoldCost(3);
+        setFavorCost(0);
     }
 }

@@ -1,10 +1,13 @@
 package com.anycomp.android.ageofmythology;
 
+import android.app.FragmentManager;
+
 import com.anycomp.android.ageofmythology.model.area.CityArea;
 import com.anycomp.android.ageofmythology.model.building.Building;
 import com.anycomp.android.ageofmythology.model.building.BuildingFactory;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.building.HouseBuilding;
+import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 
 import java.util.ArrayList;
@@ -25,10 +28,21 @@ public class BuildingSelectionController {
     }
 
     private BuildingSelectionController(PlayerController pc) {
-
         this.pc = pc;
         buildingList = new ArrayList<>();
         initBuildingList();
+    }
+
+    private Card card;
+
+    public ArrayList<Building> getBuildingList() {
+        return buildingList;
+    }
+
+    public void playBuildCard(Card card) {
+        this.card = card;
+        //turn on popup
+
     }
 
     public void initBuildingList() {
@@ -58,8 +72,20 @@ public class BuildingSelectionController {
     }
 
     public boolean verifyResource(int pick) {
+        //
+        Building pickedBuilding = buildingList.get(pick);
+        if(pc.getCurrentPlayer().getWoodCube().getValue() >= pickedBuilding.getWoodCost() &&
+        pc.getCurrentPlayer().getFoodCube().getValue() >= pickedBuilding.getFoodCost() &&
+        pc.getCurrentPlayer().getGoldCube().getValue() >= pickedBuilding.getGoldCost() &&
+        pc.getCurrentPlayer().getFavorCube().getValue() >= pickedBuilding.getFavorCost()) {
+            return true;
+        }
         //cost
+        //pickedBuilding.getCost();
+
         //special effect?
+
+        return false;
     }
 
     public void addBuilding(int pick) {
@@ -74,10 +100,21 @@ public class BuildingSelectionController {
             } else {
                 HouseBuilding hb = (HouseBuilding) bt.getBuilding();
                 hb.setQuantity(hb.getQuantity()+1);
+                ca.notifyObservers();
             }
         } else {
             ca.addBuilding(pickedBuilding);
         }
+
+        //maybe refactor later
+        pc.getCurrentPlayer().getWoodCube().setValue(pc.getCurrentPlayer().getWoodCube().getValue()-pickedBuilding.getWoodCost());
+        pc.getCurrentPlayer().getFoodCube().setValue(pc.getCurrentPlayer().getFoodCube().getValue()-pickedBuilding.getFoodCost());
+        pc.getCurrentPlayer().getGoldCube().setValue(pc.getCurrentPlayer().getGoldCube().getValue()-pickedBuilding.getGoldCost());
+        pc.getCurrentPlayer().getFavorCube().setValue(pc.getCurrentPlayer().getFavorCube().getValue()-pickedBuilding.getFavorCost());
+
+        //To do: addition on bank.
+
+
     }
 
 

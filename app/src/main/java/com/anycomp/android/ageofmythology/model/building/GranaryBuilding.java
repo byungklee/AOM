@@ -11,5 +11,9 @@ public class GranaryBuilding extends Building {
     public GranaryBuilding() {
         this.setBuildingName("Granary");
         this.setImagePath(R.drawable.granary);
+        setWoodCost(2);
+        setFoodCost(0);
+        setGoldCost(3);
+        setFavorCost(0);
     }
 }
