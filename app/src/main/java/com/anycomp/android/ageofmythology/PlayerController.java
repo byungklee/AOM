@@ -15,8 +15,6 @@ public class PlayerController {
 	//private PlayerBoard playerBoard;
 	private ArrayList<Player> players;
 
-
-
     public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap) {
 		// TODO Auto-generated constructor stub
 		//players = new Player[numberOfPlayers];

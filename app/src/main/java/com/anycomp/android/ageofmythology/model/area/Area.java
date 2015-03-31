@@ -81,6 +81,8 @@ public abstract class  Area implements Observable {
 		return null;
 	}
 
+    abstract boolean contains(Object o);
+
 //	public Tile[] setTiles() {
 //		
 //	}

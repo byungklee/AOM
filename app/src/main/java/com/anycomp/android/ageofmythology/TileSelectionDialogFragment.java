@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 public class TileSelectionDialogFragment extends DialogFragment {
     public static final String TAG = "TileSelectionDialog";
-    TileSelectionController c;
+    private TileSelectionController c;
 
     public void setTileSelectionController(TileSelectionController c) {
         this.c =c;

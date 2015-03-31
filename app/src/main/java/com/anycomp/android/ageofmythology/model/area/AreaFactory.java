@@ -8,7 +8,7 @@ public class AreaFactory {
 		case HOLDING:
 			return new HoldingArea(5);
 		case PRODUCTION:
-			return new ProductionArea(18);
+			return new ProductionArea(16);
 		default:
 			break;
 		}

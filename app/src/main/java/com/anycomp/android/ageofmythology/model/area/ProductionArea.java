@@ -9,4 +9,9 @@ public class ProductionArea extends Area {
 		// TODO Auto-generated constructor stub
 	}
 
+    @Override
+    boolean contains(Object o) {
+        return false;
+    }
+
 }

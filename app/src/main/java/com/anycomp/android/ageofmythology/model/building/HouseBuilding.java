@@ -10,8 +10,19 @@ import com.anycomp.android.ageofmythology.R;
  *
  */
 public class HouseBuilding extends Building {
+    private int quantity;
     public HouseBuilding() {
         this.setBuildingName("House");
         this.setImagePath(R.drawable.house);
+        quantity = 0;
     }
-}	
+
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+}

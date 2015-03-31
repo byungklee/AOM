@@ -94,11 +94,15 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         transaction.replace(R.id.container, newFragment);
         transaction.addToBackStack("culture_selection");
         transaction.commit();
-        TileSelectionDialogFragment tsd =  new TileSelectionDialogFragment();
-        tsd.setTileSelectionController(new TileSelectionController(mPlayerController,6));
-        tsd.show(getFragmentManager(), "Tile Selection Dialog");
 
+        openTileSelectionPopup(6);
        // getMenuInflater().inflate(R.menu.menu_main, menu);
+    }
+
+    public void openTileSelectionPopup(int maxPick) {
+        TileSelectionDialogFragment tsd =  new TileSelectionDialogFragment();
+        tsd.setTileSelectionController(new TileSelectionController(mPlayerController,maxPick));
+        tsd.show(getFragmentManager(), "Tile Selection Dialog");
     }
 
     @Override

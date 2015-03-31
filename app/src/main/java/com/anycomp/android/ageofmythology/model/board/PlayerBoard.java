@@ -4,6 +4,7 @@ import com.anycomp.android.ageofmythology.model.area.Area;
 import com.anycomp.android.ageofmythology.model.area.AreaFactory;
 import com.anycomp.android.ageofmythology.model.area.AreaType;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
+import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 
 public abstract class PlayerBoard {
 	private Area holdingArea;
@@ -15,6 +16,7 @@ public abstract class PlayerBoard {
 		setProductionArea(AreaFactory.newInstance(AreaType.PRODUCTION));
 		setCityArea(AreaFactory.newInstance(AreaType.CITY));
 		//this.setCulture(culture);
+        initializeCityTile();
 	}
 	
 	public Area getHoldingArea() {
@@ -50,6 +52,13 @@ public abstract class PlayerBoard {
 	}
 	
 	abstract void initializeTile();
+
+    private void initializeCityTile() {
+        for(int i=0;i<16;i++) {
+            cityArea.addTile(new BuildingTile());
+        }
+
+    }
 	
 
 }
