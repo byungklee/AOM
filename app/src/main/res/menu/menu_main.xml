@@ -12,11 +12,11 @@
             app:showAsAction="never"/>
     <item android:id="@+id/play_card"
         android:title="Play Card"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         app:showAsAction="never"/>
     <item android:id="@+id/bank"
         android:title="Bank"
-        android:orderInCategory="101"
+        android:orderInCategory="103"
         app:showAsAction="never"/>
 
 </menu>
