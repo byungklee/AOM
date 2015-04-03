@@ -1,6 +1,7 @@
 package com.anycomp.android.ageofmythology;
 
 
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
@@ -21,7 +22,7 @@ import java.util.HashMap;
 public class MainActivity extends ActionBarActivity implements TileSelectionDialogFragment.OnTileClickListener {
 
     public static final String TAG = "MainActivity";
-
+    private MainPlayingFragment mpf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +58,13 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             openPickCardDialog();
         } else if(id == R.id.play_card) {
             openPlayCardDialog();
+        } else if(id == R.id.greekboard) {
+            mpf.changeBoard(mPlayerController.getPlayerByCulture("Greek"));
+        } else if(id == R.id.norseboard) {
+            mpf.changeBoard(mPlayerController.getPlayerByCulture("Norse"));
+        } else if(id == R.id.egyptboard) {
+            mpf.changeBoard(mPlayerController.getPlayerByCulture("Egypt"));
         }
-
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -93,10 +98,10 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         Button b = (Button) view;
         Log.d(TAG, "start " + b.getText().toString());
         mPlayerController = new PlayerController(3,"user", b.getText().toString(),cultureMap);
-        MainPlayingFragment newFragment = MainPlayingFragment.newInstance(b.getText().toString(), mPlayerController.getHumanPlayer());
+        mpf = MainPlayingFragment.newInstance(b.getText().toString(), mPlayerController.getHumanPlayer());
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, newFragment);
-        transaction.addToBackStack("culture_selection");
+        transaction.replace(R.id.container, mpf);
+        transaction.addToBackStack("main_playing");
         transaction.commit();
 
         openTileSelectionPopup(6);
