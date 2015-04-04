@@ -3,51 +3,64 @@ package com.anycomp.android.ageofmythology;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 public class TurnManager {
     //round and turn
-    PlayerController pc;
-    ArrayList<Integer> order;
+    private PlayerController pc;
+    //private ArrayList<Integer> order;
+    private Random rand;
+    private Callback victoryCallback;
+
     int round;
+    int counter;
     int index;
     int turn;
 
     public TurnManager(PlayerController pc) {
-        order = new ArrayList<Integer>();
-        for(int i =0;i<pc.getPlayers().size();i++) {
-            order.add(i);
-        }
+        this.pc = pc;
         turn = 1;
-        index = 0;
+
         round = 1;
-        Collections.shuffle(order);
+        counter = 0;
+        rand = new Random();
+        index = rand.nextInt(3);
     }
 
     public int getStartingPlayer() {
-        return order.get(index);
+        return index;
     }
 
-    public void nextRound() {
+    public int nextRoundPlayer() {
         //if(round)
-        index++;
-        if(index == order.size()) {
-            if(round == 3) {
+        index = (index+1)%3;
+        if(counter == 2) {
+            if(round > 2) {
                 //nextTurn();
                 //nextTurn();
+                nextTurn();
             } else {
-                index = 0;
+                System.out.println("next round");
+                index = index%3;
+                round++;
+                counter = 0;
             }
         } else {
-            pc.setCurrentPlayer(order.get(index));
+            counter++;
         }
+
+        return index;
     }
 
     public void nextTurn() {
-        Collections.shuffle(order);
+
+        System.out.println("Next Turn");
         turn++;
-        index=0;
+        index= rand.nextInt(3);
+        counter = 0;
         round=1;
-        pc.setCurrentPlayer(order.get(index));
+
+        //pc.setCurrentPlayer(order.get(index));
     }
 
     public int getTurn() {
@@ -56,5 +69,9 @@ public class TurnManager {
 
     public int getRound() {
         return round;
+    }
+
+    public void setVictoryCallback(Callback victoryCallback) {
+        this.victoryCallback = victoryCallback;
     }
 }

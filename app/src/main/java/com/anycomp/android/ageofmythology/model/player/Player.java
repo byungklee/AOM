@@ -12,6 +12,8 @@ import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.CardFactory;
 import com.anycomp.android.ageofmythology.model.card.CardType;
+import com.anycomp.android.ageofmythology.model.card.RandomCard;
+import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.resource.*;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
@@ -29,6 +31,7 @@ public class Player implements Observable {
 	private Cube victoryCube;
 	private String name;
     private VillagerController villagerController;
+    private VictoryCardDeck victoryCardDeck;
 
         //private PermanentCardPools
         private Card[] permanentCardPool;
@@ -56,6 +59,7 @@ public class Player implements Observable {
                 initPermanentCardPool();
 
         villagerController = new VillagerController();
+        victoryCardDeck = new VictoryCardDeck();
 	}
         
         private void initPermanentCardPool() {
@@ -63,7 +67,6 @@ public class Player implements Observable {
             CardType[] ct = CardType.values();
             for(int i=0;i<7;i++) {
                 getPermanentCardPool()[i] = CardFactory.newPermanentCard(ct[i], culture);
-                
             }
         }
         
@@ -72,8 +75,17 @@ public class Player implements Observable {
             
         }
         
-        public void resetPermanentCardPool() {
-            
+        public void resetHand() {
+            for(int i=0;i<hand.size();i++) {
+                Card card = hand.getCardAt(i);
+                card.resetCardStatus();
+                if(card instanceof RandomCard) {
+                    randomCardPool.addCard(hand.getCardAt(i));
+                }
+            }
+            randomCardPool.shuffle();
+            hand.clean();
+
         }
 
         /**
@@ -256,5 +268,12 @@ public class Player implements Observable {
         }
         return false;
     }
-	
+
+    public VictoryCardDeck getVictoryCardDeck() {
+        return victoryCardDeck;
+    }
+
+    public void setVictoryCardDeck(VictoryCardDeck victoryCardDeck) {
+        this.victoryCardDeck = victoryCardDeck;
+    }
 }

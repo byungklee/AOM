@@ -51,6 +51,46 @@ public class PlayerController {
 		return players.get(0);
 	}
 
+    public void setStartingPlayer() {
+        setCurrentPlayer(turnManager.getStartingPlayer());
+        resetCardDeck();
+        if(players.get(currentPlayer).getName().contains("AI")) {
+            //AI work
+            aiWork();
+        }
+    }
+
+    public void resetCardDeck(){
+        Iterator it = players.iterator();
+        while(it.hasNext()) {
+            Player p = (Player) it.next();
+            p.resetHand();
+        }
+    }
+
+
+    public void aiWork() {
+            if(turnManager.getRound() == 1) {
+                //if first round,
+                //get victory cube
+                //pick card
+
+            }
+        //play card
+        //and next round;
+
+    }
+
+    public void nextRound() {
+        //currentPlayer = (currentPlayer+1)%players.size();
+        setCurrentPlayer(turnManager.nextRoundPlayer());
+        if(players.get(currentPlayer).getName().contains("AI")) {
+            //AI work
+            aiWork();
+        }
+        //return players.get(currentPlayer);
+    }
+
 	//public Player 
 
 	/**
@@ -58,7 +98,7 @@ public class PlayerController {
 	 * @param currentPlayer
 	 */
 	public void pass(Player currentPlayer) {
-		
+
 	}
 
 	/**
@@ -106,10 +146,7 @@ public class PlayerController {
             currentPlayer = i;
         }
         
-	public Player getNextPlayer() {
-		currentPlayer = (currentPlayer+1)%players.size();
-		return players.get(currentPlayer);
-	}
+
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);
@@ -150,6 +187,10 @@ public class PlayerController {
             }
         }
         return null;
+    }
+
+    public TurnManager getTurnManager() {
+        return turnManager;
     }
 
 }

@@ -36,8 +36,6 @@ public class PickCardDialogFragment extends DialogFragment {
         this.human = human;
     }
 
-
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

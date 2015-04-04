@@ -24,7 +24,7 @@ public class TileSelectionController {
         playerInfo.put("user", 0);
         playerInfo.put("AI1", 0);
         playerInfo.put("AI2", 0);
-       tileSelectionDeck = TileManager.getInstance().getTileSelectionDeck();
+        tileSelectionDeck = TileManager.getInstance().getTileSelectionDeck();
 //        tileInfo = new HashMap<Integer, Tile>();
 //        for(int i=0;i<al.size();i++) {
 //            tileInfo.put(i,al.get(i));

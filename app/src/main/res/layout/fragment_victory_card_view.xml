@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.anycomp.android.ageofmythology.VictoryCardDialogFragment"
+    android:orientation="vertical">
+    <!-- TODO: Update blank fragment layout -->
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:columnWidth="350dp"
+        android:numColumns="4"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        >
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:text="Next"/>
+    </RelativeLayout>
+</LinearLayout>
