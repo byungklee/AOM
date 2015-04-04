@@ -15,5 +15,7 @@ public class WoodWorkshopBuilding extends Building {
         setFoodCost(2);
         setGoldCost(3);
         setFavorCost(0);
+        setBuildingType(BuildingType.WOOD_WORKSHOP);
+
     }
 }

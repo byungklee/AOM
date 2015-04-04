@@ -50,6 +50,9 @@ public class PlayCardAdapter extends BaseAdapter {
         }
 
         imageView.setImageResource(cd.getCardAt(position).getImagePath());
+        if(cd.getCardAt(position).isPlayed()) {
+            imageView.setAlpha(0.25f);
+        }
 
         return imageView;
     }

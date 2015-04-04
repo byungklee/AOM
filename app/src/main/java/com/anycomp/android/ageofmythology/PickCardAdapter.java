@@ -59,9 +59,17 @@ public class PickCardAdapter extends BaseAdapter {
         }
         if(position == 7) {
             //Fix it to Random Card later!
-            imageView.setImageResource(permanentCardPool[position-1].getImagePath());
+           // Card card = permanentCardPool[position-1];
+            imageView.setImageResource(R.drawable.cardback);
         } else {
-            imageView.setImageResource(permanentCardPool[position].getImagePath());
+            Card card = permanentCardPool[position];
+            imageView.setImageResource(card.getImagePath());
+            if(card.isPicked()) {
+                //imageView.setImageResource();
+
+                imageView.setAlpha(0.25f);
+            }
+
         }
 
         return imageView;

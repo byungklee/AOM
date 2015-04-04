@@ -16,5 +16,7 @@ public class QuarryBuilding extends Building {
      setFoodCost(4);
      setGoldCost(1);
      setFavorCost(0);
+     setBuildingType(BuildingType.QUARRY);
+
  }
 }

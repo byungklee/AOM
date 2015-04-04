@@ -4,14 +4,18 @@ package com.anycomp.android.ageofmythology.model.player;
 import com.anycomp.android.ageofmythology.Observable;
 import com.anycomp.android.ageofmythology.Observer;
 
+import com.anycomp.android.ageofmythology.VillagerController;
 import com.anycomp.android.ageofmythology.model.age.*;
 import com.anycomp.android.ageofmythology.model.board.PlayerBoard;
+import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.CardFactory;
 import com.anycomp.android.ageofmythology.model.card.CardType;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.resource.*;
+import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
+import com.anycomp.android.ageofmythology.model.unit.*;
 
 import java.util.ArrayList;
 
@@ -24,11 +28,13 @@ public class Player implements Observable {
 	private Cube foodCube;
 	private Cube victoryCube;
 	private String name;
+    private VillagerController villagerController;
+
         //private PermanentCardPools
         private Card[] permanentCardPool;
         private CardDeck hand;
         private CardDeck randomCardPool;
-	private ArrayList<Observer> observers;
+	    private ArrayList<Observer> observers;
         private Age age;
 
 	public Player(String name, Culture culture, PlayerBoard board) {
@@ -48,6 +54,8 @@ public class Player implements Observable {
                 age = new ArchaicAge();
 		observers = new ArrayList<Observer>();
                 initPermanentCardPool();
+
+        villagerController = new VillagerController();
 	}
         
         private void initPermanentCardPool() {
@@ -67,13 +75,30 @@ public class Player implements Observable {
         public void resetPermanentCardPool() {
             
         }
-        
-        public void pickCard(int index) {
+
+        /**
+        * //Move pool to deck if vaild.
+        * @param index
+        * @return
+        */
+        public boolean pickCard(int index) {
             System.out.println("Player Class - clicked pickcard");
-            //Move pool to deck if vaild.
-            //if(getPermanentCardPool()[index] instanceof )
-            if(!getHand().contains(getPermanentCardPool()[index]) && getHand().size() < age.getMaxCardAvailable())
-                getHand().addCard(getPermanentCardPool()[index]);
+
+            //this if statement is for random card
+            if(index == 7) {
+                return false;
+            }
+
+            Card pickedCard = getPermanentCardPool()[index];
+             if(!pickedCard.isPicked() && getHand().size() < age.getMaxCardAvailable()) {
+
+                 getHand().addCard(getPermanentCardPool()[index]);
+                 pickedCard.setPicked(true);
+                 //getPermanentCardPool()[index]
+                 return true;
+             }
+            return false;
+
         }
         
         public void playCard(int index, Object c) {
@@ -212,6 +237,24 @@ public class Player implements Observable {
      */
     public void setPermanentCardPool(Card[] permanentCardPool) {
         this.permanentCardPool = permanentCardPool;
+    }
+
+    /**
+     * The method is to use the building effect.
+     * @param bType buidling type to check the player has the type of building
+     * @return
+     */
+    public boolean hasBuilding(BuildingType bType) {
+        ArrayList al = getPlayerBoard().getCityArea().getTiles();
+        for(int i=0;i<al.size();i++) {
+            BuildingTile bt = (BuildingTile) al.get(i);
+            if(bt.getBuilding() != null) {
+                if (bt.getBuilding().getBuildingType() == bType) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 	
 }

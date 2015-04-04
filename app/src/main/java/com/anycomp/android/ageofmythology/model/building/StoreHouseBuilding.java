@@ -14,5 +14,6 @@ public class StoreHouseBuilding extends Building {
         setFoodCost(2);
         setGoldCost(2);
         setFavorCost(2);
+        setBuildingType(BuildingType.STOREHOUSE);
     }
 }

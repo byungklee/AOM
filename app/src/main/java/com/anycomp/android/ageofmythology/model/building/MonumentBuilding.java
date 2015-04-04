@@ -15,5 +15,7 @@ public class MonumentBuilding extends Building{
         setFoodCost(3);
         setGoldCost(2);
         setFavorCost(0);
+        setBuildingType(BuildingType.MONUMENT);
+
     }
 }

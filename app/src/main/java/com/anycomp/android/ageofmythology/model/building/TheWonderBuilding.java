@@ -17,5 +17,7 @@ public class TheWonderBuilding extends Building {
         setFoodCost(10);
         setGoldCost(10);
         setFavorCost(10);
+        setBuildingType(BuildingType.THE_WONDER);
+
     }
 }

@@ -74,12 +74,22 @@ public class BuildingSelectionController {
     public boolean verifyResource(int pick) {
         //
         Building pickedBuilding = buildingList.get(pick);
-        if(pc.getCurrentPlayer().getWoodCube().getValue() >= pickedBuilding.getWoodCost() &&
-        pc.getCurrentPlayer().getFoodCube().getValue() >= pickedBuilding.getFoodCost() &&
-        pc.getCurrentPlayer().getGoldCube().getValue() >= pickedBuilding.getGoldCost() &&
-        pc.getCurrentPlayer().getFavorCube().getValue() >= pickedBuilding.getFavorCost()) {
-            return true;
+        if(pc.getCurrentPlayer().hasBuilding(BuildingType.QUARRY)) {
+            if(pc.getCurrentPlayer().getWoodCube().getValue() >= Math.max(pickedBuilding.getWoodCost()-1,0) &&
+                    pc.getCurrentPlayer().getFoodCube().getValue() >= Math.max(pickedBuilding.getFoodCost()-1,0) &&
+                    pc.getCurrentPlayer().getGoldCube().getValue() >= Math.max(pickedBuilding.getGoldCost()-1,0) &&
+                    pc.getCurrentPlayer().getFavorCube().getValue() >= Math.max(pickedBuilding.getFavorCost()-1,0)) {
+                return true;
+            }
+        } else {
+            if(pc.getCurrentPlayer().getWoodCube().getValue() >= pickedBuilding.getWoodCost() &&
+                    pc.getCurrentPlayer().getFoodCube().getValue() >= pickedBuilding.getFoodCost() &&
+                    pc.getCurrentPlayer().getGoldCube().getValue() >= pickedBuilding.getGoldCost() &&
+                    pc.getCurrentPlayer().getFavorCube().getValue() >= pickedBuilding.getFavorCost()) {
+                return true;
+            }
         }
+
         //cost
         //pickedBuilding.getCost();
 
@@ -107,10 +117,17 @@ public class BuildingSelectionController {
         }
 
         //maybe refactor later
-        pc.getCurrentPlayer().getWoodCube().setValue(pc.getCurrentPlayer().getWoodCube().getValue()-pickedBuilding.getWoodCost());
-        pc.getCurrentPlayer().getFoodCube().setValue(pc.getCurrentPlayer().getFoodCube().getValue()-pickedBuilding.getFoodCost());
-        pc.getCurrentPlayer().getGoldCube().setValue(pc.getCurrentPlayer().getGoldCube().getValue()-pickedBuilding.getGoldCost());
-        pc.getCurrentPlayer().getFavorCube().setValue(pc.getCurrentPlayer().getFavorCube().getValue()-pickedBuilding.getFavorCost());
+        if(pc.getCurrentPlayer().hasBuilding(BuildingType.QUARRY)) {
+            pc.getCurrentPlayer().getWoodCube().setValue(pc.getCurrentPlayer().getWoodCube().getValue() - Math.max(pickedBuilding.getWoodCost()-1,0));
+            pc.getCurrentPlayer().getFoodCube().setValue(pc.getCurrentPlayer().getFoodCube().getValue() - Math.max(pickedBuilding.getFoodCost()-1,0));
+            pc.getCurrentPlayer().getGoldCube().setValue(pc.getCurrentPlayer().getGoldCube().getValue() - Math.max(pickedBuilding.getGoldCost()-1,0));
+            pc.getCurrentPlayer().getFavorCube().setValue(pc.getCurrentPlayer().getFavorCube().getValue() - Math.max(pickedBuilding.getFavorCost()-1,0));
+        } else {
+            pc.getCurrentPlayer().getWoodCube().setValue(pc.getCurrentPlayer().getWoodCube().getValue() - pickedBuilding.getWoodCost());
+            pc.getCurrentPlayer().getFoodCube().setValue(pc.getCurrentPlayer().getFoodCube().getValue() - pickedBuilding.getFoodCost());
+            pc.getCurrentPlayer().getGoldCube().setValue(pc.getCurrentPlayer().getGoldCube().getValue() - pickedBuilding.getGoldCost());
+            pc.getCurrentPlayer().getFavorCube().setValue(pc.getCurrentPlayer().getFavorCube().getValue() - pickedBuilding.getFavorCost());
+        }
 
         //To do: addition on bank.
 

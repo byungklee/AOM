@@ -53,9 +53,8 @@ public class PlayCardDialogFragment extends DialogFragment {
                         Toast.LENGTH_SHORT).show();
                 human.getHand().getCardAt(position).play(getFragmentManager(), pc);
 
-
-
-                human.getHand().removeCardAt(position);
+                v.setAlpha(0.25f);
+                //human.getHand().removeCardAt(position);
                 ((BaseAdapter) gridview.getAdapter()).notifyDataSetChanged();
 
 

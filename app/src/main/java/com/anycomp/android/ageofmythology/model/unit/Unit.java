@@ -1,6 +1,6 @@
 package com.anycomp.android.ageofmythology.model.unit;
 
-abstract class Unit {
+abstract public class Unit {
 	private String mName;
 	private int dice;
 	public Unit() {}

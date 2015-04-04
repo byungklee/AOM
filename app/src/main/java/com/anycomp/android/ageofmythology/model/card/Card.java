@@ -13,6 +13,10 @@ public abstract class Card {
         private Culture culture;
         private int value;
 	public Card() {}
+
+    private boolean isPicked = false;
+    private boolean isPlayed = false;
+
         
     abstract public void play(FragmentManager ctx, PlayerController player);
         
@@ -65,5 +69,25 @@ public abstract class Card {
     public void setValue(int value) {
         this.value = value;
     }
-	
+
+    public boolean isPicked() {
+        return isPicked;
+    }
+
+    public void setPicked(boolean isPicked) {
+        this.isPicked = isPicked;
+    }
+
+    public boolean isPlayed() {
+        return isPlayed;
+    }
+
+    public void setPlayed(boolean isPlayed) {
+        this.isPlayed = isPlayed;
+    }
+
+    public void resetCardStatus() {
+        setPlayed(false);
+        setPicked(false);
+    }
 }

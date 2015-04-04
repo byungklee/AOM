@@ -20,9 +20,12 @@ public class PermanentBuildCard extends PermanentActionCard {
 
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        openBuildingPopup(fm,pc);
+        if(!isPlayed()) {
+            setPlayed(true);
+            openBuildingPopup(fm,pc);
+        }
     }
+
     int i=0;
     private void openBuildingPopup(FragmentManager fm, PlayerController pc) {
         BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
