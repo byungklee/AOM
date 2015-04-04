@@ -4,5 +4,5 @@ abstract public class Unit {
 	private String mName;
 	private int dice;
 	public Unit() {}
-	public Unit(String name) {}
+	public Unit(String name) {this.mName = name;}
 }

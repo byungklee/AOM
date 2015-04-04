@@ -142,4 +142,14 @@ public class PlayerController {
 		return players.get(currentPlayer);
 	}
 
+    public Player getPlayerByCulture(String culture) {
+        for(int i=0;i<players.size();i++) {
+            Player p = players.get(i);
+            if(p.getCulture().getName().equals(culture)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 }

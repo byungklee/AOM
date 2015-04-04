@@ -30,6 +30,7 @@ public class MainPlayingFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mCulture;
     private Player mPlayer;
+    private LinearLayout background;
     private GridView resourceView;
     private GridView buildingView;
     private AreaImageAdapter resourceTileImageAdapter;
@@ -57,6 +58,22 @@ public class MainPlayingFragment extends Fragment {
         mPlayer = player;
     }
 
+    public void changeBoard(Player player) {
+        background.setBackgroundResource(player.getCulture().getImagePath());
+        if(player.getCulture().getName().equals(mCulture)) {
+            resourceView.setAdapter(resourceTileImageAdapter);
+            buildingView.setAdapter(buildingTileAdapter);
+        } else {
+            AreaImageAdapter resourceTileImageAdapter = new AreaImageAdapter(getActivity().getApplicationContext(),
+                    player.getPlayerBoard().getProductionArea().getTiles());
+            resourceView.setAdapter(resourceTileImageAdapter);
+            BuildingImageAdapter buildingTileAdapter = new BuildingImageAdapter(getActivity().getApplicationContext(),
+                    player.getPlayerBoard().getCityArea().getTiles());
+            buildingView.setAdapter(buildingTileAdapter);
+        }
+    }
+
+
     public MainPlayingFragment() {
         // Required empty public constructor
 
@@ -76,8 +93,9 @@ public class MainPlayingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_main_playing, container, false);
-        LinearLayout iv = (LinearLayout) v.findViewById(R.id.layout);
-        iv.setBackgroundResource(mPlayer.getCulture().getImagePath());
+        background = (LinearLayout) v.findViewById(R.id.layout);
+        background.setBackgroundResource(mPlayer.getCulture().getImagePath());
+//        background = (ImageView) v.findViewById(R.id.bac)
 
         resourceView =(GridView) v.findViewById(R.id.resource_tile_grid);
         resourceTileImageAdapter = new AreaImageAdapter(getActivity().getApplicationContext(),
@@ -101,19 +119,27 @@ public class MainPlayingFragment extends Fragment {
         return v;
     }
 
+    private void attachObs() {
+        mPlayer.getPlayerBoard().getProductionArea().attachObserver(resourceTileImageAdapter);
+        mPlayer.getPlayerBoard().getCityArea().attachObserver(buildingTileAdapter);
+    }
+
+    private void detachObs() {
+        mPlayer.getPlayerBoard().getProductionArea().detachObserver(resourceTileImageAdapter);
+        mPlayer.getPlayerBoard().getCityArea().detachObserver(buildingTileAdapter);
+    }
+
 
     @Override
     public void onResume() {
         super.onResume();
-        mPlayer.getPlayerBoard().getProductionArea().attachObserver(resourceTileImageAdapter);
-        mPlayer.getPlayerBoard().getCityArea().attachObserver(buildingTileAdapter);
+        attachObs();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mPlayer.getPlayerBoard().getProductionArea().detachObserver(resourceTileImageAdapter);
-        mPlayer.getPlayerBoard().getCityArea().detachObserver(buildingTileAdapter);
+        detachObs();
 
     }
 }
