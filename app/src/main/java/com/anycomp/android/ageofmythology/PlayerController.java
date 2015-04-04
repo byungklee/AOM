@@ -14,6 +14,7 @@ public class PlayerController {
 
 	//private PlayerBoard playerBoard;
 	private ArrayList<Player> players;
+    private TurnManager turnManager;
 
     public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap) {
 		// TODO Auto-generated constructor stub
@@ -39,6 +40,7 @@ public class PlayerController {
 				i++;
 			}	
 		}
+        turnManager = new TurnManager(this);
 	}
 
 	public ArrayList getPlayers() {
@@ -99,7 +101,8 @@ public class PlayerController {
 	}
 	
 	private int currentPlayer = 0;
-        public void setCurrentPlayer(int i) {
+
+    public void setCurrentPlayer(int i) {
             currentPlayer = i;
         }
         
