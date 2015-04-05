@@ -64,6 +64,8 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             mpf.changeBoard(mPlayerController.getPlayerByCulture("Norse"));
         } else if(id == R.id.egyptboard) {
             mpf.changeBoard(mPlayerController.getPlayerByCulture("Egypt"));
+        } else if(id == R.id.victory_card)  {
+            openVictoryCardPopup(false);
         }
 
         return super.onOptionsItemSelected(item);
@@ -131,7 +133,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
                 index = (index + 1) %3;
                 //must do victory card work
             }
-            openVictoryCardPopup(false);
+            openVictoryCardPopup(true);
 
         }
     };

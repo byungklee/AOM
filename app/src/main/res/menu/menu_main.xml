@@ -27,13 +27,17 @@
         android:title="Play Card"
         android:orderInCategory="102"
         app:showAsAction="never"/>
+    <item android:id="@+id/victory_card"
+        android:title="Victory Card"
+        android:orderInCategory="103"
+        app:showAsAction="never"/>
     <item android:id="@+id/bank"
         android:title="Bank"
-        android:orderInCategory="103"
+        android:orderInCategory="104"
         app:showAsAction="never"/>
     <item android:id="@+id/next_round"
         android:title="Next Round"
-        android:orderInCategory="103"
+        android:orderInCategory="105"
         app:showAsAction="never"/>
 
 </menu>
