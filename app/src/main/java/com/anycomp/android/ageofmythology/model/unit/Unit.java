@@ -12,9 +12,9 @@ public abstract class Unit {
 
     public Unit() { }
 
-    public Unit(String name) {
-        this.name = name;
-    }
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public int getImagePath() {
         return imagePath;

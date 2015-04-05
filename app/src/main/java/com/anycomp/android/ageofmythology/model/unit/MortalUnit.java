@@ -14,6 +14,7 @@ public class MortalUnit extends Unit {
      */
     public MortalUnit(MortalUnitType type) {
         this.type = type;
+        setName(type.toString());
         setImagePath(type.imageID);
         setFavorCost(type.favorCost);
         setFoodCost(type.foodCost);
