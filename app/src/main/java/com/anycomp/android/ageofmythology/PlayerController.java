@@ -1,11 +1,14 @@
 package com.anycomp.android.ageofmythology;
 
+import android.app.FragmentManager;
+
 import com.anycomp.android.ageofmythology.model.board.PlayerBoardFactory;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.tile.Tile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -15,8 +18,9 @@ public class PlayerController {
 	//private PlayerBoard playerBoard;
 	private ArrayList<Player> players;
     private TurnManager turnManager;
+    private FragmentManager fm;
 
-    public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap) {
+    public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap, FragmentManager fm) {
 		// TODO Auto-generated constructor stub
 		//players = new Player[numberOfPlayers];
 		//Making a Human Player
@@ -41,6 +45,18 @@ public class PlayerController {
 			}	
 		}
         turnManager = new TurnManager(this);
+
+
+        cardOrder.add(0);
+        cardOrder.add(1);
+        cardOrder.add(2);
+        cardOrder.add(3);
+        cardOrder.add(4);
+        cardOrder.add(5);
+        cardOrder.add(6);
+        cardOrder.add(7);
+
+        this.fm = fm;
 	}
 
 	public ArrayList getPlayers() {
@@ -52,12 +68,13 @@ public class PlayerController {
 	}
 
     public void setStartingPlayer() {
-        setCurrentPlayer(turnManager.getStartingPlayer());
+
+        setCurrentPlayer(turnManager.getCurrentPlayer());
         resetCardDeck();
-        if(players.get(currentPlayer).getName().contains("AI")) {
-            //AI work
-            aiWork();
-        }
+//        if(players.get(currentPlayer).getName().contains("AI")) {
+//            //AI work
+//            aiWork();
+//        }
     }
 
     public void resetCardDeck(){
@@ -68,14 +85,23 @@ public class PlayerController {
         }
     }
 
+    ArrayList<Integer> cardOrder = new ArrayList<Integer>();
+
 
     public void aiWork() {
             if(turnManager.getRound() == 1) {
                 //if first round,
-                //get victory cube
-                //pick card
 
+                //pick card
+                //PickCardController pcc = new PickCardController();
+
+                Collections.shuffle(cardOrder);
+                for(int i=0;i<getCurrentPlayer().getAge().getMaxCardAvailable();i++) {
+                    getCurrentPlayer().pickCard(cardOrder.get(i));
+                }
             }
+            System.out.println(getCurrentPlayer().getName() + " plays " + getCurrentPlayer().getHand().getCardAt(turnManager.getRound() -1).getName() );
+            getCurrentPlayer().getHand().getCardAt(turnManager.getRound() -1).aiPlay(fm, this);
         //play card
         //and next round;
 
@@ -84,9 +110,16 @@ public class PlayerController {
     public void nextRound() {
         //currentPlayer = (currentPlayer+1)%players.size();
         setCurrentPlayer(turnManager.nextRoundPlayer());
-        if(players.get(currentPlayer).getName().contains("AI")) {
-            //AI work
-            aiWork();
+        System.out.println("next " + turnManager.getRound() + " " + turnManager.getCounter());
+        if(turnManager.getRound() == 1 && turnManager.getCounter() == 0) {
+
+        } else {
+            //System.out.println("TEMPBK");
+            if(players.get(currentPlayer).getName().contains("AI")) {
+                //AI work
+              //  System.out.println("TEMPBK AI");
+                aiWork();
+            }
         }
         //return players.get(currentPlayer);
     }
@@ -157,6 +190,7 @@ public class PlayerController {
         public void setIsForward(boolean s) {
             isForward = s;
         }
+
 	public Player getNextPlayerForTileSelection() {
 		if(isForward) {
 			currentPlayer += 1;
@@ -179,6 +213,11 @@ public class PlayerController {
 		return players.get(currentPlayer);
 	}
 
+    public Player getNextPlayerForTileSelectionLinear() {
+        currentPlayer = (currentPlayer+1)%3;
+        return players.get(currentPlayer);
+    }
+
     public Player getPlayerByCulture(String culture) {
         for(int i=0;i<players.size();i++) {
             Player p = players.get(i);
@@ -191,6 +230,11 @@ public class PlayerController {
 
     public TurnManager getTurnManager() {
         return turnManager;
+    }
+
+    public void spoilAge() {
+        System.out.println("Spoilage");
+
     }
 
 }

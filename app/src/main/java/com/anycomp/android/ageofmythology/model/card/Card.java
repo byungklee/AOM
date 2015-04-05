@@ -18,7 +18,8 @@ public abstract class Card {
     private boolean isPlayed = false;
 
         
-    abstract public void play(FragmentManager ctx, PlayerController player);
+    abstract public void play(FragmentManager fm, PlayerController player);
+    abstract public void aiPlay(FragmentManager fm, PlayerController player);
         
 	public int getImagePath() {
             return mImagePath;

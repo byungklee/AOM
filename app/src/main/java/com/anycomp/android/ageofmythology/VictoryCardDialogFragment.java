@@ -22,9 +22,13 @@ public class VictoryCardDialogFragment extends DialogFragment {
     private boolean place;
     private int counter = 0;
     private int startingPlayerIndex;
+    private Callback onVictoryCardDialogEnd;
 
     public void setPlayerController(PlayerController c) {
         pc = c;
+    }
+    public void setOnVictoryCardDialogEnd(Callback c) {
+        onVictoryCardDialogEnd = c;
     }
 
     public void setPlace(boolean place) {
@@ -78,6 +82,7 @@ public class VictoryCardDialogFragment extends DialogFragment {
                     button.setText("Okay");
                 } else if(counter == 2) {
                     VictoryCardDialogFragment.this.dismiss();
+                    onVictoryCardDialogEnd.callback();
                     return;
                 }
 

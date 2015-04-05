@@ -276,4 +276,8 @@ public class Player implements Observable {
     public void setVictoryCardDeck(VictoryCardDeck victoryCardDeck) {
         this.victoryCardDeck = victoryCardDeck;
     }
+
+    public Age getAge() {
+        return age;
+    }
 }

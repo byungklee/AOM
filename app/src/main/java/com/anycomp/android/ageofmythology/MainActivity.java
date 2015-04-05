@@ -1,7 +1,6 @@
 package com.anycomp.android.ageofmythology;
 
 
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
@@ -98,8 +97,8 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         cultureMap.put("Egypt", new Egyptian());
         Button b = (Button) view;
         Log.d(TAG, "start " + b.getText().toString());
-        mPlayerController = new PlayerController(3,"user", b.getText().toString(),cultureMap);
-        mPlayerController.getTurnManager().setVictoryCallback(victoryCardCallback);
+        mPlayerController = new PlayerController(3,"user", b.getText().toString(),cultureMap, getFragmentManager());
+        mPlayerController.getTurnManager().setVictoryCallback(startPlayerCallback);
         mpf = MainPlayingFragment.newInstance(b.getText().toString(), mPlayerController.getHumanPlayer());
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, mpf);
@@ -110,27 +109,42 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
        // getMenuInflater().inflate(R.menu.menu_main, menu);
     }
 
-    Callback startPlayerCallback = new Callback() {
+    private Callback startPlayerCallback = new Callback() {
         public void callback() {
             System.out.println("starting player call back");
             mPlayerController.setStartingPlayer();
+
             victoryCardCallback.callback();
-            openVictoryCardPopup(false);
+
         }
     };
 
-    Callback victoryCardCallback = new Callback() {
+    private Callback victoryCardCallback = new Callback() {
         public void callback() {
             //turn on victory card view
             System.out.println("victory card callback!");
             TurnManager tm =  mPlayerController.getTurnManager();
-            int index = tm.getStartingPlayer();
+
+            int index = tm.getCurrentPlayer();
             for(int i=0;i<3;i++) {
                 System.out.println(((Player) mPlayerController.getPlayers().get(index)).getName());
                 index = (index + 1) %3;
                 //must do victory card work
             }
+            openVictoryCardPopup(false);
 
+        }
+    };
+
+    private Callback onVictoryCardEnd = new Callback() {
+        @Override
+        public void callback() {
+            System.out.println("Victory Card Dialog is ended. " + mPlayerController.getTurnManager().getCurrentPlayer() + " is starting player");
+//            mPlayerController.setStartingPlayer();
+            if(mPlayerController.getCurrentPlayer().getName().contains("AI")) {
+                System.out.println("First player is AI, so AI IS PLAYING");
+                mPlayerController.aiWork();
+            }
         }
     };
 
@@ -147,6 +161,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         VictoryCardDialogFragment vcdf = new VictoryCardDialogFragment();
         vcdf.setPlace(place);
         vcdf.setPlayerController(mPlayerController);
+        vcdf.setOnVictoryCardDialogEnd(onVictoryCardEnd);
         vcdf.show(getFragmentManager(), "Victory Card Dialog");
     }
 

@@ -22,7 +22,8 @@ public class PermanentExploreCard extends PermanentActionCard {
     public void play(FragmentManager fm, PlayerController pc) {
         if(!isPlayed()) {
             setPlayed(true);
-            pc.setCurrentPlayer(0);
+//            pc.setCurrentPlayer(0);
+            pc.setCurrentPlayer(pc.getTurnManager().getCurrentPlayer());
             pc.setIsForward(true);
             TileManager.getInstance().setNumberOfCardsToRefresh(getValue());
             TileSelectionDialogFragment tsd = new TileSelectionDialogFragment();
@@ -30,5 +31,11 @@ public class PermanentExploreCard extends PermanentActionCard {
             tsd.show(fm, "Tile Selection Dialog");
         }
     }
+
+    @Override
+    public void aiPlay(FragmentManager fm, PlayerController player) {
+        play(fm,player);
+    }
+
 
 }

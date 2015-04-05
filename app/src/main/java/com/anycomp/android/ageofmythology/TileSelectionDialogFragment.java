@@ -95,6 +95,9 @@ public class TileSelectionDialogFragment extends DialogFragment {
         System.out.println("Dismissing Tile Fragment");
         if(callback != null) {
             callback.callback();
+        } else {
+        //    c.getPlayerController().setCurrentPlayer(c.getPlayerController().getTurnManager().getCurrentPlayer());
+            c.nextRound();
         }
     }
 

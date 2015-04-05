@@ -31,5 +31,9 @@
         android:title="Bank"
         android:orderInCategory="103"
         app:showAsAction="never"/>
+    <item android:id="@+id/next_round"
+        android:title="Next Round"
+        android:orderInCategory="103"
+        app:showAsAction="never"/>
 
 </menu>

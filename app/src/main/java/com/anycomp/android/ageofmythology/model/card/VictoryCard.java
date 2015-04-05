@@ -10,11 +10,16 @@ import java.util.ArrayList;
 /**
  * Created by byung on 4/4/15.
  */
-public class VictoryCard extends Card {
+public abstract class VictoryCard extends Card {
     ArrayList<VictoryCube> victoryCubes;
 
     @Override
     public void play(FragmentManager ctx, PlayerController player) {
+
+    }
+
+    @Override
+    public void aiPlay(FragmentManager ctx, PlayerController player) {
 
     }
 

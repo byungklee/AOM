@@ -56,7 +56,7 @@ public class PlayCardDialogFragment extends DialogFragment {
                 v.setAlpha(0.25f);
                 //human.getHand().removeCardAt(position);
                 ((BaseAdapter) gridview.getAdapter()).notifyDataSetChanged();
-
+                PlayCardDialogFragment.this.dismiss();
 
             }
         });

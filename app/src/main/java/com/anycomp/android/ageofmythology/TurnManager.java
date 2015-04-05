@@ -12,10 +12,11 @@ public class TurnManager {
     private Random rand;
     private Callback victoryCallback;
 
-    int round;
-    int counter;
-    int index;
-    int turn;
+
+    int round; //To count number of rounds
+    int counter; // To count number of players played
+    int index; //current player index
+    int turn; //Number of turns played
 
     public TurnManager(PlayerController pc) {
         this.pc = pc;
@@ -27,7 +28,7 @@ public class TurnManager {
         index = rand.nextInt(3);
     }
 
-    public int getStartingPlayer() {
+    public int getCurrentPlayer() {
         return index;
     }
 
@@ -36,9 +37,9 @@ public class TurnManager {
         index = (index+1)%3;
         if(counter == 2) {
             if(round > 2) {
-                //nextTurn();
-                //nextTurn();
+                pc.spoilAge();
                 nextTurn();
+                victoryCallback.callback();
             } else {
                 System.out.println("next round");
                 index = index%3;
@@ -69,6 +70,9 @@ public class TurnManager {
 
     public int getRound() {
         return round;
+    }
+    public int getCounter() {
+        return counter;
     }
 
     public void setVictoryCallback(Callback victoryCallback) {

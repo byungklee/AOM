@@ -110,11 +110,12 @@ public class BuildingSelectionController {
             } else {
                 HouseBuilding hb = (HouseBuilding) bt.getBuilding();
                 hb.setQuantity(hb.getQuantity()+1);
-                ca.notifyObservers();
+
             }
         } else {
             ca.addBuilding(pickedBuilding);
         }
+        ca.notifyObservers();
 
         //maybe refactor later
         if(pc.getCurrentPlayer().hasBuilding(BuildingType.QUARRY)) {
@@ -132,6 +133,11 @@ public class BuildingSelectionController {
         //To do: addition on bank.
 
 
+
+    }
+
+    public void nextRound() {
+        pc.nextRound();
     }
 
 
