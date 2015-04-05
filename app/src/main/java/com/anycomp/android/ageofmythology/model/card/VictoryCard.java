@@ -12,7 +12,9 @@ import java.util.ArrayList;
  */
 public abstract class VictoryCard extends Card {
     ArrayList<VictoryCube> victoryCubes;
-
+    public VictoryCard() {
+        victoryCubes = new ArrayList<VictoryCube>();
+    }
     @Override
     public void play(FragmentManager ctx, PlayerController player) {
 
@@ -30,6 +32,12 @@ public abstract class VictoryCard extends Card {
         if(!victoryCubes.isEmpty())
             victoryCubes.remove(0);
     }
+
+    public ArrayList<VictoryCube> getVictoryCubes() {
+        return victoryCubes;
+    }
+
+
     public int getCubeSize() {
         return victoryCubes.size();
     }

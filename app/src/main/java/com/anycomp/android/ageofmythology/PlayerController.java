@@ -3,6 +3,7 @@ package com.anycomp.android.ageofmythology;
 import android.app.FragmentManager;
 
 import com.anycomp.android.ageofmythology.model.board.PlayerBoardFactory;
+import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.tile.Tile;
@@ -19,6 +20,8 @@ public class PlayerController {
 	private ArrayList<Player> players;
     private TurnManager turnManager;
     private FragmentManager fm;
+    private VictoryCardDeck victoryCardDeck;
+
 
     public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap, FragmentManager fm) {
 		// TODO Auto-generated constructor stub
@@ -57,7 +60,16 @@ public class PlayerController {
         cardOrder.add(7);
 
         this.fm = fm;
+        victoryCardDeck = new VictoryCardDeck();
 	}
+
+    public VictoryCardDeck getVictoryCardDeck() {
+        return victoryCardDeck;
+    }
+
+    public void setVictoryCardDeck(VictoryCardDeck victoryCardDeck) {
+        this.victoryCardDeck = victoryCardDeck;
+    }
 
 	public ArrayList getPlayers() {
 		return players;

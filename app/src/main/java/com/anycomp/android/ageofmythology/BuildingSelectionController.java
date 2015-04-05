@@ -3,6 +3,7 @@ package com.anycomp.android.ageofmythology;
 import android.app.FragmentManager;
 
 import com.anycomp.android.ageofmythology.model.area.CityArea;
+import com.anycomp.android.ageofmythology.model.area.HoldingArea;
 import com.anycomp.android.ageofmythology.model.building.Building;
 import com.anycomp.android.ageofmythology.model.building.BuildingFactory;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
@@ -63,7 +64,7 @@ public class BuildingSelectionController {
         } else {
             if(pickedBuilding instanceof HouseBuilding) {
                 HouseBuilding hb = (HouseBuilding) bt.getBuilding();
-                if(hb.getQuantity() < 9) {
+                if(ca.getNumberOfHouse() < 9) {
                     return true;
                 }
             }
@@ -101,20 +102,11 @@ public class BuildingSelectionController {
     public void addBuilding(int pick) {
         CityArea ca = (CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea();
         Building pickedBuilding = buildingList.get(pick);
-        BuildingTile bt = ca.get(buildingList.get(pick));
+      //  BuildingTile bt = ca.get(buildingList.get(pick));
         if(pickedBuilding instanceof HouseBuilding) {
-            if(bt == null) {
-                HouseBuilding houseBuilding = new HouseBuilding();
-                houseBuilding.setQuantity(1);
-                ca.addBuilding(houseBuilding);
-            } else {
-                HouseBuilding hb = (HouseBuilding) bt.getBuilding();
-                hb.setQuantity(hb.getQuantity()+1);
-
-            }
-        } else {
-            ca.addBuilding(pickedBuilding);
+            ((HoldingArea) pc.getCurrentPlayer().getPlayerBoard().getHoldingArea()).incrementNumberOfVillagers();
         }
+        ca.addBuilding(pickedBuilding);
         ca.notifyObservers();
 
         //maybe refactor later

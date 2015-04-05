@@ -2,15 +2,17 @@ package com.anycomp.android.ageofmythology.model.area;
 
 
 import com.anycomp.android.ageofmythology.model.building.Building;
+import com.anycomp.android.ageofmythology.model.building.HouseBuilding;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 
 import java.util.ArrayList;
 
 public class CityArea extends Area {
-
+    private int numberOfHouse;
 	public CityArea(int maxSize) {
 		super(maxSize);
 		// TODO Auto-generated constructor stub
+        numberOfHouse = 0;
         //Tile
 	}
 
@@ -45,10 +47,24 @@ public class CityArea extends Area {
             BuildingTile bt = (BuildingTile) al.get(i);
             if(bt.getBuilding() == null) {
                 bt.setBuilding(b);
+                if(b instanceof HouseBuilding) {
+                    incrementNumberOfHouse();
+                }
                 break;
             }
         }
         notifyObservers();
     }
 
+    public void incrementNumberOfHouse() {
+        numberOfHouse++;
+    }
+
+    public void decrementNumberOfHouse() {
+        numberOfHouse--;
+    }
+
+    public int getNumberOfHouse() {
+        return numberOfHouse;
+    }
 }

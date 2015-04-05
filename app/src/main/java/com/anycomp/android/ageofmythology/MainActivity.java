@@ -159,11 +159,12 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
     }
 
     public void openVictoryCardPopup(boolean place) {
-        System.out.println("opening victory card popup");
+        System.out.println("opening victory card popup " + place);
         VictoryCardDialogFragment vcdf = new VictoryCardDialogFragment();
         vcdf.setPlace(place);
         vcdf.setPlayerController(mPlayerController);
         vcdf.setOnVictoryCardDialogEnd(onVictoryCardEnd);
+        vcdf.setStartingPlayerIndex(mPlayerController.getTurnManager().getCurrentPlayer());
         vcdf.show(getFragmentManager(), "Victory Card Dialog");
     }
 

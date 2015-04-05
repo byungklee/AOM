@@ -17,7 +17,6 @@ import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.resource.*;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
-import com.anycomp.android.ageofmythology.model.unit.*;
 
 import java.util.ArrayList;
 
@@ -31,7 +30,7 @@ public class Player implements Observable {
 	private Cube victoryCube;
 	private String name;
     private VillagerController villagerController;
-    private VictoryCardDeck victoryCardDeck;
+
 
         //private PermanentCardPools
         private Card[] permanentCardPool;
@@ -59,7 +58,7 @@ public class Player implements Observable {
                 initPermanentCardPool();
 
         villagerController = new VillagerController();
-        victoryCardDeck = new VictoryCardDeck();
+
 	}
         
         private void initPermanentCardPool() {
@@ -269,13 +268,7 @@ public class Player implements Observable {
         return false;
     }
 
-    public VictoryCardDeck getVictoryCardDeck() {
-        return victoryCardDeck;
-    }
 
-    public void setVictoryCardDeck(VictoryCardDeck victoryCardDeck) {
-        this.victoryCardDeck = victoryCardDeck;
-    }
 
     public Age getAge() {
         return age;

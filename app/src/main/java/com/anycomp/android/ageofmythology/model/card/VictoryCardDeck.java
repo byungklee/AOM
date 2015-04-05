@@ -39,6 +39,9 @@ public class VictoryCardDeck {
         return victoryCards.size();
     }
 
+    public void addCube(int index) {
+        victoryCards.get(index).addVictoryCube();
+    }
 
 
     public int getTotalCubeCount() {
