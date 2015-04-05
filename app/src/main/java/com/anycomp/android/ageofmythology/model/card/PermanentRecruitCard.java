@@ -6,6 +6,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.anycomp.android.ageofmythology.PlayerController;
+import com.anycomp.android.ageofmythology.RecruitSelectionController;
+import com.anycomp.android.ageofmythology.RecruitSelectionDialogFragment;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 
 public class PermanentRecruitCard extends PermanentActionCard {
@@ -27,7 +29,10 @@ public class PermanentRecruitCard extends PermanentActionCard {
     }
 
     private void openRecruitPopup(FragmentManager fm, PlayerController pc) {
-
+        RecruitSelectionController rsc = RecruitSelectionController.getInstance(pc);
+        rsc.playRecruitCard(this);
+        RecruitSelectionDialogFragment rsdf = RecruitSelectionDialogFragment.newInstance(rsc);
+        rsdf.show(fm, TAG);
     }
 
 }
