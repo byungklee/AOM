@@ -6,6 +6,8 @@ import com.anycomp.android.ageofmythology.Observer;
 
 import com.anycomp.android.ageofmythology.VillagerController;
 import com.anycomp.android.ageofmythology.model.age.*;
+import com.anycomp.android.ageofmythology.model.area.HoldingArea;
+import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.board.PlayerBoard;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.card.Card;
@@ -13,12 +15,13 @@ import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.CardFactory;
 import com.anycomp.android.ageofmythology.model.card.CardType;
 import com.anycomp.android.ageofmythology.model.card.RandomCard;
-import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
+
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.resource.*;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Player implements Observable {
 	private Culture culture;
@@ -30,6 +33,7 @@ public class Player implements Observable {
 	private Cube victoryCube;
 	private String name;
     private VillagerController villagerController;
+    private ArrayList<Observer> resourceObservers;
 
 
         //private PermanentCardPools
@@ -45,20 +49,24 @@ public class Player implements Observable {
 		playerBoard = board;
 
         //TO DO: After bank implementation...
-		goldCube = new GoldCube(20);
-		favorCube = new FavorCube(20);
-		woodCube = new WoodCube(20);
-		foodCube = new FoodCube(20);
-		victoryCube = new VictoryCube();
-                hand = new CardDeck();
-                randomCardPool = new CardDeck();
-               // permanentCardPool = new Card[7];
-                age = new ArchaicAge();
-		observers = new ArrayList<Observer>();
-                initPermanentCardPool();
-
+		goldCube = new GoldCube(0);
+		favorCube = new FavorCube(0);
+		woodCube = new WoodCube(0);
+		foodCube = new FoodCube(0);
         villagerController = new VillagerController();
-
+        resourceObservers = new ArrayList<>();
+        victoryCube = new VictoryCube();
+        hand = new CardDeck();
+        randomCardPool = new CardDeck();
+        // permanentCardPool = new Card[7];
+        age = new ArchaicAge();
+        observers = new ArrayList<>();
+        takeGold(4);
+        takeFavor(4);
+        takeFood(4);
+        takeWood(4);
+        //takeVictory(1);
+        initPermanentCardPool();
 	}
         
         private void initPermanentCardPool() {
@@ -68,10 +76,10 @@ public class Player implements Observable {
                 getPermanentCardPool()[i] = CardFactory.newPermanentCard(ct[i], culture);
             }
         }
-        
+
         //TO DO
         private void initRandomCardDeck() {
-            
+
         }
         
         public void resetHand() {
@@ -111,15 +119,6 @@ public class Player implements Observable {
             return false;
 
         }
-        
-        public void playCard(int index, Object c) {
-//            System.out.println("Player Class - clicked playcard " + index);
-//            c.setCurrentCard(hand.getCardAt(index));
-//            hand.getCardAt(index).play(c);
-//
-            
-        }
-	
 	
 	public Culture getCulture() {
 		return culture;
@@ -133,49 +132,99 @@ public class Player implements Observable {
 		return playerBoard;
 	}
 
-	public void setPlayerBoard(PlayerBoard playerBoard) {
-		this.playerBoard = playerBoard;
-	}
+	//public void setPlayerBoard(PlayerBoard playerBoard) {
+//		this.playerBoard = playerBoard;
+//	}
 
 	public Cube getGoldCube() {
 		return goldCube;
 	}
 
-	public void setGoldCube(Cube goldCube) {
-		this.goldCube = goldCube;
-	}
+    public void spendGold(int amount) {
+        Bank.getInstance().deposit(ResourceType.GOLD, amount);
+        goldCube.setValue(goldCube.getValue() - amount);
+        resourceUpdate();
+    }
+
+    public void takeGold(int amount) {
+        Bank.getInstance().withdraw(ResourceType.GOLD, amount);
+        goldCube.setValue(goldCube.getValue()+amount);
+        resourceUpdate();
+    }
 
 	public Cube getFavorCube() {
 		return favorCube;
 	}
 
-	public void setFavorCube(Cube favorCube) {
-		this.favorCube = favorCube;
-	}
+    public void spendFavor(int amount) {
+        Bank.getInstance().deposit(ResourceType.FAVOR, amount);
+        favorCube.setValue(favorCube.getValue()-amount);
+        resourceUpdate();
+    }
 
+    public void takeFavor(int amount) {
+        Bank.getInstance().withdraw(ResourceType.FAVOR, amount);
+        favorCube.setValue(favorCube.getValue()+amount);
+        resourceUpdate();
+    }
 	public Cube getWoodCube() {
 		return woodCube;
 	}
 
-	public void setWoodCube(Cube woodCube) {
-		this.woodCube = woodCube;
-	}
+    public void spendWood(int amount) {
+        Bank.getInstance().deposit(ResourceType.WOOD, amount);
+        woodCube.setValue(woodCube.getValue()-amount);
+        resourceUpdate();
+    }
+
+    public void takeWood(int amount) {
+        Bank.getInstance().withdraw(ResourceType.WOOD, amount);
+        woodCube.setValue(woodCube.getValue()+amount);
+        resourceUpdate();
+    }
+
+//	public void setWoodCube(Cube woodCube) {
+//		this.woodCube = woodCube;
+//	}
 
 	public Cube getFoodCube() {
 		return foodCube;
 	}
+    public void spendFood(int amount) {
+        Bank.getInstance().deposit(ResourceType.FOOD, amount);
+        foodCube.setValue(foodCube.getValue()-amount);
+        resourceUpdate();
+    }
 
-	public void setFoodCube(Cube foodCube) {
-		this.foodCube = foodCube;
-	}
+    public void takeFood(int amount) {
+        Bank.getInstance().withdraw(ResourceType.FOOD, amount);
+        foodCube.setValue(foodCube.getValue()+amount);
+        resourceUpdate();
+    }
+
+//	public void setFoodCube(Cube foodCube) {
+//		this.foodCube = foodCube;
+//	}
 
 	public Cube getVictoryCube() {
 		return victoryCube;
 	}
+    public void spendVictory(int amount) {
+        Bank.getInstance().depositVictory(amount);
+        victoryCube.setValue(victoryCube.getValue()-amount);
+        resourceUpdate();
+    }
 
-	public void setVictoryCube(Cube victoryCube) {
-		this.victoryCube = victoryCube;
-	}
+    public void takeVictory(int amount) {
+        Bank.getInstance().withdrawVictory(amount);
+        victoryCube.setValue(victoryCube.getValue()+amount);
+        resourceUpdate();
+    }
+
+    public void incrementNumberOfVillager() {
+        ((HoldingArea) getPlayerBoard().getHoldingArea()).incrementNumberOfVillagers();
+        resourceUpdate();
+    }
 
 	public String getName() {
 		return name;
@@ -267,10 +316,21 @@ public class Player implements Observable {
         }
         return false;
     }
-
-
-
     public Age getAge() {
         return age;
+    }
+
+    public void attachResourceObserver(Observer ob) {
+        resourceObservers.add(ob);
+    }
+
+    public void detachResourceObserver(Observer ob) {
+        resourceObservers.remove(ob);
+    }
+    public void resourceUpdate() {
+        Iterator it = resourceObservers.iterator();
+        while(it.hasNext()) {
+            ((Observer)it.next()).update(this);
+        }
     }
 }

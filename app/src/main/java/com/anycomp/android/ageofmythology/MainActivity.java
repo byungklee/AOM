@@ -187,5 +187,8 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         pcdf.show(getFragmentManager(), "Play Card Dialog");
     }
 
+    public void openPickBattleUnitDialog() {
+
+    }
 
 }

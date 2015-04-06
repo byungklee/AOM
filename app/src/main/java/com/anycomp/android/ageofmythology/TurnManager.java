@@ -37,7 +37,7 @@ public class TurnManager {
         index = (index+1)%3;
         if(counter == 2) {
             if(round > 2) {
-                pc.spoilAge();
+                pc.spoilage();
                 nextTurn();
                 victoryCallback.callback();
             } else {

@@ -3,6 +3,7 @@ package com.anycomp.android.ageofmythology;
 import android.app.FragmentManager;
 
 import com.anycomp.android.ageofmythology.model.board.PlayerBoardFactory;
+import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.player.Player;
@@ -244,9 +245,38 @@ public class PlayerController {
         return turnManager;
     }
 
-    public void spoilAge() {
+    public void spoilage() {
         System.out.println("Spoilage");
-
+        Iterator it = players.iterator();
+        while(it.hasNext()) {
+            Player p = (Player) it.next();
+            int maxAllowed = 5;
+            if(p.hasBuilding(BuildingType.STOREHOUSE)) {
+                maxAllowed = 8;
+            }
+            System.out.println(p.getName() + " has storehouse.");
+            int i;
+            if(p.getFoodCube().getValue() > maxAllowed) {
+                i = p.getFoodCube().getValue() - maxAllowed;
+                System.out.println("spoiling food " + i);
+                p.spendFood(i);
+            }
+            if(p.getWoodCube().getValue() > maxAllowed) {
+                i = p.getWoodCube().getValue() - maxAllowed;
+                System.out.println("spoiling wood " + i);
+                p.spendWood(i);
+            }
+            if(p.getGoldCube().getValue() > maxAllowed) {
+                i = p.getGoldCube().getValue() - maxAllowed;
+                System.out.println("spoiling gold " + i);
+                p.spendGold(i);
+            }
+            if(p.getFavorCube().getValue() > maxAllowed) {
+                i = p.getFavorCube().getValue() - maxAllowed;
+                System.out.println("spoiling favor " + i);
+                p.spendFavor(i);
+            }
+        }
     }
 
 }
