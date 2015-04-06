@@ -12,7 +12,7 @@ import com.anycomp.android.ageofmythology.model.culture.Culture;
 
 public class PermanentRecruitCard extends PermanentActionCard {
 
-    public static final String TAG = "Permanent Recruit Card";
+    public static final String TAG = "PermanentRecruitCard";
 
     public PermanentRecruitCard(Culture culture) {
         setName("Recruit");
@@ -23,7 +23,6 @@ public class PermanentRecruitCard extends PermanentActionCard {
 
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Log.i(TAG, "called play()");
         openRecruitPopup(fm, pc);
     }
