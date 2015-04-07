@@ -30,95 +30,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5db2ebe-2157-449f-9ebc-53cb117a3a75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cardback.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/resource_favor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/resource_food.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/resource_gold.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/resource_wood.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/ArmyVictoryCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/bank/Bank.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/BattleVictoryCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/BuildingEffect.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/BuildingVictoryCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/Callback.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionDialogFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/VictoryCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/VictoryCardAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/VictoryCardDeck.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/VictoryCardDialogFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/VictoryCubeAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/VillagerController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/WonderVictoryCard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_trade_selection_dialog.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_victory_card_view.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AgeOfMythology.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/app/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/ArmoryBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/ArmoryBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/BattleCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/BattleCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/Building.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/Building.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/BuildingSelectionAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/BuildingSelectionAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/BuildingSelectionController.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/BuildingSelectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/BuildingSelectionDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/BuildingSelectionDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/Card.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/Card.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/CardDeck.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/CardDeck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/area/CityArea.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/area/CityArea.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/resource/Cube.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/resource/Cube.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/GoldMintBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/GoldMintBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/GranaryBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/GranaryBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/GreatTempleBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/GreatTempleBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/area/HoldingArea.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/area/HoldingArea.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/HouseBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/HouseBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/MainPlayingFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/MainPlayingFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/MarketBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/MarketBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/MonumentBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/MonumentBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentAttackCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentAttackCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentBuildCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentBuildCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentExploreCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentExploreCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentGatherCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentGatherCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentNextAge.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentNextAge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentRecruitCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentRecruitCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/bank/Bank.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/bank/Bank.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentTradeCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentTradeCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PickCardAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PickCardAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PickCardDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PickCardDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PlayCardAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PlayCardAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PlayCardDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PlayCardDialogFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/player/Player.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/player/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PlayerController.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/PlayerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/QuarryBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/QuarryBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomAttackCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomAttackCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomBuildCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomBuildCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomExploreCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomExploreCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomGatherCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomGatherCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomRecruitCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomRecruitCard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomTradeCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/RandomTradeCard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/RecruitSelectionController.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/RecruitSelectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/SiegeEngineWorkshopBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/SiegeEngineWorkshopBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/StoreHouseBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/StoreHouseBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/TheWonderBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/TheWonderBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TileSelectionController.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TileSelectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TileSelectionDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TileSelectionDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/TowerBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/TowerBuilding.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionController.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TurnManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TurnManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionDialogFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionDialogFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/unit/Unit.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/unit/Unit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/resource/VictoryCube.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/resource/VictoryCube.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/unit/VillagerUnit.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/unit/VillagerUnit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/WallBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/WallBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/WoodWorkshopBuilding.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/building/WoodWorkshopBuilding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_21_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_21_0_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_playing.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main_playing.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pick_card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pick_card.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_play_card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_play_card.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recruit_selection_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_recruit_selection_dialog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_trade_selection_dialog.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_trade_selection_dialog.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Age Of Mythology.iws" />
@@ -172,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TradeSelectionController.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TradeSelectionController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1035">
+            <state vertical-scroll-proportion="1.165" vertical-offset="126" max-vertical-offset="1035">
               <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -204,10 +127,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.026041666" vertical-offset="0" max-vertical-offset="576">
+            <state vertical-scroll-proportion="-0.6" vertical-offset="0" max-vertical-offset="105">
               <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
               <folding />
             </state>
@@ -2138,15 +2061,19 @@
       <created>1428298866820</created>
       <updated>1428298866820</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge branch 'byung' into mike&#10;&#10;Conflicts:&#10;&#9;app/src/main/java/com/anycomp/android/ageofmythology/model/player/Player.java&#10;&#9;app/src/main/java/com/anycomp/android/ageofmythology/model/unit/Unit.java&#10;">
+      <created>1428394471271</created>
+      <updated>1428394471271</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
@@ -2156,7 +2083,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32870865" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32870865" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2554,18 +2481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1035">
-          <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1221#1222#0" expanded="true" />
-            <element signature="e#1253#1254#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/RecruitSelectionAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15555556" vertical-offset="0" max-vertical-offset="810">
@@ -2586,14 +2501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
           <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentTradeCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -2654,9 +2561,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.026041666" vertical-offset="0" max-vertical-offset="576">
+        <state vertical-scroll-proportion="-0.6" vertical-offset="0" max-vertical-offset="105">
           <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/model/card/PermanentTradeCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TradeSelectionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.165" vertical-offset="126" max-vertical-offset="1035">
+          <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1221#1222#0" expanded="true" />
+            <element signature="e#1253#1254#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

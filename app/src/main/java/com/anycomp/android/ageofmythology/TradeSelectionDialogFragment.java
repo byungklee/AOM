@@ -8,26 +8,33 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+
+import com.anycomp.android.ageofmythology.model.bank.Bank;
+
+import java.util.ArrayList;
 
 /**
  * Created by mike on 4/3/15.
  */
 public class TradeSelectionDialogFragment extends DialogFragment {
 
-    public static final String TAG = "Recruit Selection Dialog";
+    public static final String TAG = "TradeSelectionDialog";
 
-    private RecruitSelectionController controller;
+    private TradeSelectionController controller;
 
-    public void setController(RecruitSelectionController controller) {
+    public void setController(TradeSelectionController controller) {
         this.controller = controller;
     }
 
-    public static TradeSelectionDialogFragment newInstance(RecruitSelectionController rsc) {
-        TradeSelectionDialogFragment rsdf = new TradeSelectionDialogFragment();
-        rsdf.setController(rsc);
+    public static TradeSelectionDialogFragment newInstance(TradeSelectionController tsc) {
+        TradeSelectionDialogFragment tsdf = new TradeSelectionDialogFragment();
+        tsdf.setController(tsc);
 
-        return rsdf;
+        return tsdf;
     }
 
     @Override
@@ -40,43 +47,51 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_recruit_selection_dialog, null);
+        View v = inflater.inflate(R.layout.fragment_trade_selection_dialog, null);
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(v);
 
         // Create the AlertDialog object and return it
-        final GridView gridview = (GridView) v.findViewById(R.id.gridview);
+        final Spinner favorSpinner = (Spinner) v.findViewById(R.id.bank_favor_spinner);
+        final Spinner foodSpinner = (Spinner) v.findViewById(R.id.bank_food_spinner);
+        final Spinner goldSpinner = (Spinner) v.findViewById(R.id.bank_gold_spinner);
+        final Spinner woodSpinner = (Spinner) v.findViewById(R.id.bank_wood_spinner);
+        final Spinner playerResourceSpinner = (Spinner) v.findViewById(R.id.player_resource_spinner);
+        final Spinner playerNumberSpinner = (Spinner) v.findViewById(R.id.player_number_spinner);
 
-        gridview.setAdapter(
-                new RecruitSelectionAdapter(
-                    getActivity().getApplicationContext(),
-                    controller.getMortalRecruitList(),
-                    controller.getMythicRecruitList(),
-                    controller.getHeroicRecruitList()
-                )
-        );
+        Bank bank = controller.getBank();
 
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // bank spinners
+        favorSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                                R.layout.support_simple_spinner_dropdown_item,
+                                buildStringArray(bank.getFavor())));
+        foodSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                               R.layout.support_simple_spinner_dropdown_item,
+                               buildStringArray(bank.getFood())));
+        goldSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                               R.layout.support_simple_spinner_dropdown_item,
+                               buildStringArray(bank.getGold())));
+        woodSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                               R.layout.support_simple_spinner_dropdown_item,
+                               buildStringArray(bank.getWood())));
+
+        // player spinners
+        playerResourceSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                                         R.layout.support_simple_spinner_dropdown_item,
+                                         new String[] {"Favor", "Food", "Gold", "Wood"}));
+        playerNumberSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                                       R.layout.support_simple_spinner_dropdown_item,
+                                       buildStringArray(5)));
+
+        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // adds the recruit to the player's army if they have sufficient resources
-                // otherwise, it returns false and displays the alert message.
-                if (!controller.addRecruit(position)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("Not available for you.")
-                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-
-                            }
-                        });
-                    AlertDialog ad = builder.create();
-                    ad.show();
-                }
+            public void onClick(DialogInterface dialog, int which) {
+                //TODO: perform trade (via controller)
             }
         });
 
-        builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -84,6 +99,15 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         });
         //final Button closeButton = (Button) v.findViewById(R.id.close_button);
         return builder.create();
+    }
+
+    /** Utility function used above. */
+    private String[] buildStringArray(int n) {
+        String[] strings = new String[n+1];
+        for (int i = 0; i <= n; i++) {
+            strings[i] = "" + i;
+        }
+        return strings;
     }
 
 }

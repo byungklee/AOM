@@ -21,13 +21,10 @@ import com.anycomp.android.ageofmythology.model.culture.Egyptian;
 import com.anycomp.android.ageofmythology.model.culture.Greek;
 import com.anycomp.android.ageofmythology.model.culture.Norse;
 import com.anycomp.android.ageofmythology.model.resource.*;
-<<<<<<< HEAD
 import com.anycomp.android.ageofmythology.model.unit.MortalUnit;
 import com.anycomp.android.ageofmythology.model.unit.MortalUnitType;
 import com.anycomp.android.ageofmythology.model.unit.Unit;
-=======
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
->>>>>>> byung
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -59,22 +56,7 @@ public class Player implements Observable {
 		playerBoard = board;
 
         //TO DO: After bank implementation...
-<<<<<<< HEAD
-		goldCube = new GoldCube(20);
-		favorCube = new FavorCube(20);
-		woodCube = new WoodCube(20);
-		foodCube = new FoodCube(20);
-		victoryCube = new VictoryCube();
-                hand = new CardDeck();
-                randomCardPool = new CardDeck();
-               // permanentCardPool = new Card[7];
-                age = new ArchaicAge();
-		observers = new ArrayList<Observer>();
-                initPermanentCardPool();
 
-        army = new ArrayList<>();
-        initArmy();
-=======
 		goldCube = new GoldCube(0);
 		favorCube = new FavorCube(0);
 		woodCube = new WoodCube(0);
@@ -93,7 +75,9 @@ public class Player implements Observable {
         takeWood(4);
         //takeVictory(1);
         initPermanentCardPool();
->>>>>>> byung
+
+        army = new ArrayList<>();
+        initArmy();
 	}
 
     /**

@@ -151,10 +151,10 @@ public class RecruitSelectionController {
              player.getWoodCube().getValue() >= chosen.getWoodCost()) {
 
             // deduct the cost of the unit from the player's resources
-            player.getFavorCube().setValue(player.getFavorCube().getValue() - chosen.getFavorCost());
-            player.getFoodCube().setValue(player.getFoodCube().getValue() - chosen.getFoodCost());
-            player.getGoldCube().setValue(player.getGoldCube().getValue() - chosen.getGoldCost());
-            player.getWoodCube().setValue(player.getWoodCube().getValue() - chosen.getWoodCost());
+            player.spendFavor(chosen.getFavorCost());
+            player.spendFood(chosen.getFoodCost());
+            player.spendGold(chosen.getGoldCost());
+            player.spendWood(chosen.getWoodCost());
 
             // add the unit to the player's army
             player.getArmy().add(chosen);

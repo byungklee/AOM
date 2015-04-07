@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.anycomp.android.ageofmythology.PlayerController;
+import com.anycomp.android.ageofmythology.TradeSelectionController;
+import com.anycomp.android.ageofmythology.TradeSelectionDialogFragment;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 
 public class PermanentTradeCard extends PermanentActionCard {
@@ -20,11 +22,14 @@ public class PermanentTradeCard extends PermanentActionCard {
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
         Log.i(TAG, "called play()");
-        openTradePopup(pc);
+        openTradePopup(fm, pc);
     }
 
-    public void openTradePopup(PlayerController pc) {
-
+    public void openTradePopup(FragmentManager fm, PlayerController pc) {
+        TradeSelectionController tsc = new TradeSelectionController(pc);
+        tsc.playTradeCard(this);
+        TradeSelectionDialogFragment tsdf = TradeSelectionDialogFragment.newInstance(tsc);
+        tsdf.show(fm, TAG);
     }
 
     @Override
