@@ -45,7 +45,8 @@ public class AreaImageAdapter extends BaseAdapter implements Observer {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(c);
             imageView.setLayoutParams(new GridView.LayoutParams(250, 150));
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;

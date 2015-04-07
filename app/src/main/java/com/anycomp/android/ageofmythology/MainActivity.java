@@ -138,6 +138,8 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         }
     };
 
+
+
     private Callback onVictoryCardEnd = new Callback() {
         @Override
         public void callback() {
@@ -187,8 +189,14 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         pcdf.show(getFragmentManager(), "Play Card Dialog");
     }
 
-    public void openPickBattleUnitDialog() {
+//    public void openSelectOpponentDialog() {
+//        SelectOpponentDialogFragment sodf = new SelectOpponentDialogFragment();
+//        sodf.setPlayerController(mPlayerController);
+//        sodf.set
+//    }
 
-    }
+//    public void openPickBattleUnitDialog() {
+//
+//    }
 
 }

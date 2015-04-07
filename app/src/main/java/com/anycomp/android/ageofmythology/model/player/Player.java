@@ -333,4 +333,11 @@ public class Player implements Observable {
             ((Observer)it.next()).update(this);
         }
     }
+
+    //TO DO: change return type and return unit list.
+    public void getUnitList() {
+
+    }
+
+
 }

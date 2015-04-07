@@ -19,10 +19,10 @@ import java.util.Iterator;
  */
 public class VictoryCardAdapter extends BaseAdapter {
 
-    Context ctx;
-    VictoryCardDeck victoryCardDeck;
-    ArrayList<VictoryCubeAdapter> vcalist;
-    VictoryCardDialogFragment.ImageClickCallback callback;
+    private Context ctx;
+    private VictoryCardDeck victoryCardDeck;
+    private ArrayList<VictoryCubeAdapter> vcalist;
+    private VictoryCardDialogFragment.ImageClickCallback callback;
 
     public VictoryCardAdapter(Context c, VictoryCardDeck victoryCardDeck, VictoryCardDialogFragment.ImageClickCallback callback) {
         this.ctx = c;
