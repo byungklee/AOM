@@ -14,7 +14,9 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.player.Player;
+import com.anycomp.android.ageofmythology.model.resource.ResourceType;
 
 import java.util.Random;
 
@@ -38,6 +40,7 @@ public class VictoryCardDialogFragment extends DialogFragment {
             if(pc.getPlayers().get(startingPlayerIndex) == pc.getHumanPlayer() && counter < 3) {
                 System.out.println("Human place a victory cube");
                 pc.getVictoryCardDeck().addCube(index);
+                Bank.getInstance().withdrawVictory(1);
                 counter++;
                 startingPlayerIndex = (startingPlayerIndex + 1) % 3;
 
@@ -159,6 +162,7 @@ public class VictoryCardDialogFragment extends DialogFragment {
             System.out.println("AI is placing victory cube on card");
             int randomNum = new Random().nextInt(4);
             pc.getVictoryCardDeck().addCube(randomNum);
+            Bank.getInstance().withdrawVictory(1);
             ((VictoryCardAdapter) gridview.getAdapter()).refresh();
             counter++;
             startingPlayerIndex = (startingPlayerIndex + 1)%3;

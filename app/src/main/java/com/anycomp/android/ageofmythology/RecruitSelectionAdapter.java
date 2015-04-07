@@ -19,14 +19,19 @@ public class RecruitSelectionAdapter extends BaseAdapter {
     private ArrayList<Unit> list;
     private Context context;
 
-    public RecruitSelectionAdapter(Context context, ArrayList mortals, ArrayList mythics, ArrayList heroics) {
+    public RecruitSelectionAdapter(Context context, ArrayList<Unit> list) {
+        this.list = list;
         this.context = context;
-        // combine all unit types into one list to display in the recruit selection dialog fragment.
-        list = new ArrayList<>();
-        list.addAll(mortals);
-        list.addAll(mythics);
-        list.addAll(heroics);
     }
+
+//    public RecruitSelectionAdapter(Context context, ArrayList mortals, ArrayList mythics, ArrayList heroics) {
+//        this.context = context;
+//        // combine all unit types into one list to display in the recruit selection dialog fragment.
+//        list = new ArrayList<>();
+//        list.addAll(mortals);
+//        list.addAll(mythics);
+//        list.addAll(heroics);
+//    }
 
     @Override
     public int getCount() {
@@ -49,7 +54,7 @@ public class RecruitSelectionAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(80,80));
+            imageView.setLayoutParams(new GridView.LayoutParams(200,250));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
         } else {

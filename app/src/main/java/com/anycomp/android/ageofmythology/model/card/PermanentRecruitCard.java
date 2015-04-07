@@ -18,6 +18,7 @@ public class PermanentRecruitCard extends PermanentActionCard {
         setName("Recruit");
         setCulture(culture);
         setImagePath(culture.getPermanentRecruitCardImage());
+        setValue(2);
     }
 
 
@@ -34,8 +35,11 @@ public class PermanentRecruitCard extends PermanentActionCard {
 
     private void openRecruitPopup(FragmentManager fm, PlayerController pc) {
         RecruitSelectionController rsc = RecruitSelectionController.getInstance(pc);
-        rsc.playRecruitCard(this);
+        rsc.setRecruitCard(this);
+
+
         RecruitSelectionDialogFragment rsdf = RecruitSelectionDialogFragment.newInstance(rsc);
+        rsdf.setPlayerController(pc);
         rsdf.show(fm, TAG);
     }
 

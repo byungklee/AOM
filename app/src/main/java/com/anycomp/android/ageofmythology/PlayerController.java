@@ -2,6 +2,7 @@ package com.anycomp.android.ageofmythology;
 
 import android.app.FragmentManager;
 
+import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.board.PlayerBoardFactory;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
@@ -277,6 +278,13 @@ public class PlayerController {
                 p.spendFavor(i);
             }
         }
+    }
+
+    public boolean isEndCondtionMet() {
+        if(Bank.getInstance().getVictoryCubeCount() == 0) {
+            return true;
+        }
+        return false;
     }
 
 }

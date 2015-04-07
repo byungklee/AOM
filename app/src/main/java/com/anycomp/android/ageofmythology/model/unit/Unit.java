@@ -1,14 +1,37 @@
 package com.anycomp.android.ageofmythology.model.unit;
 
+import com.anycomp.android.ageofmythology.model.culture.Culture;
+
 public abstract class Unit {
 
 	private String name;
+    private String culture;
 	private int imagePath;
+    private int age = 1;
+    private boolean doesNegateWallAndTower = false;
 
     private int favorCost;
     private int foodCost;
     private int goldCost;
     private int woodCost;
+
+    //VS Effect
+    private int vsMortal;
+    private int vsGiantKiller;
+    private int vsArchers;
+    private int vsFlyers;
+    private int vsWarriors;
+    private int vsCavarlys;
+    private int vsHeroes;
+    private int vsGiant;
+    private int vsMyth;
+
+    //TO DO: just putting it as String for temporarily.
+    private String specialEffect;
+
+    private int dice;
+
+
 
     public Unit() { }
 
@@ -64,4 +87,115 @@ public abstract class Unit {
         return str;
     }
 
+    public int getVsMortal() {
+        return vsMortal;
+    }
+
+    public void setVsMortal(int vsMortal) {
+        this.vsMortal = vsMortal;
+    }
+
+    public int getVsGiantKiller() {
+        return vsGiantKiller;
+    }
+
+    public void setVsGiantKiller(int vsGiantKiller) {
+        this.vsGiantKiller = vsGiantKiller;
+    }
+
+    public int getVsArchers() {
+        return vsArchers;
+    }
+
+    public void setVsArchers(int vsArchers) {
+        this.vsArchers = vsArchers;
+    }
+
+    public int getVsFlyers() {
+        return vsFlyers;
+    }
+
+    public void setVsFlyers(int vsFlyers) {
+        this.vsFlyers = vsFlyers;
+    }
+
+    public int getVsWarriors() {
+        return vsWarriors;
+    }
+
+    public void setVsWarriors(int vsWarriors) {
+        this.vsWarriors = vsWarriors;
+    }
+
+    public int getVsCavarlys() {
+        return vsCavarlys;
+    }
+
+    public void setVsCavarlys(int vsCavarlys) {
+        this.vsCavarlys = vsCavarlys;
+    }
+
+    public int getVsHeroes() {
+        return vsHeroes;
+    }
+
+    public void setVsHeroes(int vsHeroes) {
+        this.vsHeroes = vsHeroes;
+    }
+
+    public int getVsGiant() {
+        return vsGiant;
+    }
+
+    public void setVsGiant(int vsGiant) {
+        this.vsGiant = vsGiant;
+    }
+
+    public int getVsMyth() {
+        return vsMyth;
+    }
+
+    public void setVsMyth(int vsMyth) {
+        this.vsMyth = vsMyth;
+    }
+
+    public String getSpecialEffect() {
+        return specialEffect;
+    }
+
+    public void setSpecialEffect(String specialEffect) {
+        this.specialEffect = specialEffect;
+    }
+
+    public String getCulture() {
+        return culture;
+    }
+
+    public void setCulture(String culture) {
+        this.culture = culture;
+    }
+
+    public boolean isDoesNegateWallAndTower() {
+        return doesNegateWallAndTower;
+    }
+
+    public void setDoesNegateWallAndTower(boolean doesNegateWallAndTower) {
+        this.doesNegateWallAndTower = doesNegateWallAndTower;
+    }
+
+    public int getDice() {
+        return dice;
+    }
+
+    public void setDice(int dice) {
+        this.dice = dice;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

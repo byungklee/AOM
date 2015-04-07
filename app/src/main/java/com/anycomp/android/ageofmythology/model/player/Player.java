@@ -64,9 +64,9 @@ public class Player implements Observable {
 		favorCube = new FavorCube(0);
 		woodCube = new WoodCube(0);
 		foodCube = new FoodCube(0);
+        victoryCube = new VictoryCube(0);
         villagerController = new VillagerController();
         resourceObservers = new ArrayList<>();
-        victoryCube = new VictoryCube();
         hand = new CardDeck();
         randomCardPool = new CardDeck();
         // permanentCardPool = new Card[7];

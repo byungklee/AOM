@@ -12,5 +12,6 @@ public class ClassicalAge extends Age {
      public ClassicalAge() {
         name = "Classical";
         maxCardAvailable = 5;
+         setOrder(2);
     }
 }
