@@ -17,8 +17,17 @@ import com.anycomp.android.ageofmythology.model.card.CardType;
 import com.anycomp.android.ageofmythology.model.card.RandomCard;
 
 import com.anycomp.android.ageofmythology.model.culture.Culture;
+import com.anycomp.android.ageofmythology.model.culture.Egyptian;
+import com.anycomp.android.ageofmythology.model.culture.Greek;
+import com.anycomp.android.ageofmythology.model.culture.Norse;
 import com.anycomp.android.ageofmythology.model.resource.*;
+
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
+
+import com.anycomp.android.ageofmythology.model.unit.MortalUnit;
+import com.anycomp.android.ageofmythology.model.unit.MortalUnitType;
+import com.anycomp.android.ageofmythology.model.unit.Unit;
+
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,6 +51,7 @@ public class Player implements Observable {
         private CardDeck randomCardPool;
 	    private ArrayList<Observer> observers;
         private Age age;
+    private ArrayList<Unit> army;
 
 	public Player(String name, Culture culture, PlayerBoard board) {
 		this.setCulture(culture);
@@ -49,6 +59,7 @@ public class Player implements Observable {
 		playerBoard = board;
 
         //TO DO: After bank implementation...
+
 		goldCube = new GoldCube(0);
 		favorCube = new FavorCube(0);
 		woodCube = new WoodCube(0);
@@ -67,7 +78,39 @@ public class Player implements Observable {
         takeWood(4);
         //takeVictory(1);
         initPermanentCardPool();
+        army = new ArrayList<>();
+        initArmy();
 	}
+
+    /**
+     * Initializes the players army according to their culture
+     */
+    private void initArmy() {
+        if (culture instanceof Egyptian) {
+            army.add(new MortalUnit(MortalUnitType.SPEARMAN));
+            army.add(new MortalUnit(MortalUnitType.SPEARMAN));
+            army.add(new MortalUnit(MortalUnitType.ELEPHANT));
+            army.add(new MortalUnit(MortalUnitType.ELEPHANT));
+            army.add(new MortalUnit(MortalUnitType.CHARIOT_ARCHER));
+            army.add(new MortalUnit(MortalUnitType.CHARIOT_ARCHER));
+        }
+        else if (culture instanceof Greek) {
+            army.add(new MortalUnit(MortalUnitType.TOXOTE));
+            army.add(new MortalUnit(MortalUnitType.TOXOTE));
+            army.add(new MortalUnit(MortalUnitType.HOPLITE));
+            army.add(new MortalUnit(MortalUnitType.HOPLITE));
+            army.add(new MortalUnit(MortalUnitType.HIPPOKON));
+            army.add(new MortalUnit(MortalUnitType.HIPPOKON));
+        }
+        else if (culture instanceof Norse) {
+            army.add(new MortalUnit(MortalUnitType.JARL));
+            army.add(new MortalUnit(MortalUnitType.JARL));
+            army.add(new MortalUnit(MortalUnitType.HUSKARL));
+            army.add(new MortalUnit(MortalUnitType.HUSKARL));
+            army.add(new MortalUnit(MortalUnitType.THROWING_AXEMAN));
+            army.add(new MortalUnit(MortalUnitType.THROWING_AXEMAN));
+        }
+    }
         
         private void initPermanentCardPool() {
             setPermanentCardPool(new Card[7]);
@@ -234,6 +277,7 @@ public class Player implements Observable {
 		this.name = name;
 	}
 
+    public ArrayList<Unit> getArmy() { return army; }
 
 	@Override
 	public void attachObserver(Observer o) {
