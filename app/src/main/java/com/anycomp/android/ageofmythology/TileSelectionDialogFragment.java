@@ -22,6 +22,8 @@ import android.widget.Toast;
 public class TileSelectionDialogFragment extends DialogFragment {
     public static final String TAG = "TileSelectionDialog";
     private TileSelectionController c;
+    private Callback callback = null;
+
 
     public void setTileSelectionController(TileSelectionController c) {
         this.c =c;
@@ -80,10 +82,23 @@ public class TileSelectionDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 TileSelectionDialogFragment.this.dismiss();
+
             }
         });
 
         return builder.create();
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        System.out.println("Dismissing Tile Fragment");
+        if(callback != null) {
+            callback.callback();
+        } else {
+        //    c.getPlayerController().setCurrentPlayer(c.getPlayerController().getTurnManager().getCurrentPlayer());
+            c.nextRound();
+        }
     }
 
     private OnTileClickListener mListener;
@@ -106,6 +121,10 @@ public class TileSelectionDialogFragment extends DialogFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 
 

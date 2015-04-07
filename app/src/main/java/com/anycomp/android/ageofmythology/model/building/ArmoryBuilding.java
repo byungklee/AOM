@@ -16,6 +16,7 @@ public class ArmoryBuilding extends Building {
         setFoodCost(0);
         setGoldCost(2);
         setFavorCost(0);
+        setBuildingType(BuildingType.ARMORY);
 
     }
 }

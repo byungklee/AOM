@@ -15,5 +15,6 @@ public class GoldMintBuilding extends Building{
         setFoodCost(3);
         setGoldCost(0);
         setFavorCost(0);
+        setBuildingType(BuildingType.GOLD_MINT);
     }
 }

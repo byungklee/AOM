@@ -27,4 +27,10 @@ public class PermanentTradeCard extends PermanentActionCard {
 
     }
 
+    @Override
+    public void aiPlay(FragmentManager fm, PlayerController player) {
+        player.nextRound();
+    }
+
+
 }

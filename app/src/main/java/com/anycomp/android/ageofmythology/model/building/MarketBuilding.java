@@ -13,5 +13,7 @@ public class MarketBuilding extends Building {
         setFoodCost(0);
         setGoldCost(3);
         setFavorCost(2);
+        setBuildingType(BuildingType.MARKET);
+
     }
 }

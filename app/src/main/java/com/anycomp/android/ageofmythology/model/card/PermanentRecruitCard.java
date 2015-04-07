@@ -27,6 +27,11 @@ public class PermanentRecruitCard extends PermanentActionCard {
         openRecruitPopup(fm, pc);
     }
 
+    @Override
+    public void aiPlay(FragmentManager fm, PlayerController player) {
+        player.nextRound();
+    }
+
     private void openRecruitPopup(FragmentManager fm, PlayerController pc) {
         RecruitSelectionController rsc = RecruitSelectionController.getInstance(pc);
         rsc.playRecruitCard(this);

@@ -1,11 +1,16 @@
 package com.anycomp.android.ageofmythology;
 
+import android.app.FragmentManager;
+
 import com.anycomp.android.ageofmythology.model.board.PlayerBoardFactory;
+import com.anycomp.android.ageofmythology.model.building.BuildingType;
+import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.tile.Tile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -14,8 +19,12 @@ public class PlayerController {
 
 	//private PlayerBoard playerBoard;
 	private ArrayList<Player> players;
+    private TurnManager turnManager;
+    private FragmentManager fm;
+    private VictoryCardDeck victoryCardDeck;
 
-    public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap) {
+
+    public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap, FragmentManager fm) {
 		// TODO Auto-generated constructor stub
 		//players = new Player[numberOfPlayers];
 		//Making a Human Player
@@ -39,7 +48,29 @@ public class PlayerController {
 				i++;
 			}	
 		}
+        turnManager = new TurnManager(this);
+
+
+        cardOrder.add(0);
+        cardOrder.add(1);
+        cardOrder.add(2);
+        cardOrder.add(3);
+        cardOrder.add(4);
+        cardOrder.add(5);
+        cardOrder.add(6);
+        cardOrder.add(7);
+
+        this.fm = fm;
+        victoryCardDeck = new VictoryCardDeck();
 	}
+
+    public VictoryCardDeck getVictoryCardDeck() {
+        return victoryCardDeck;
+    }
+
+    public void setVictoryCardDeck(VictoryCardDeck victoryCardDeck) {
+        this.victoryCardDeck = victoryCardDeck;
+    }
 
 	public ArrayList getPlayers() {
 		return players;
@@ -49,6 +80,63 @@ public class PlayerController {
 		return players.get(0);
 	}
 
+    public void setStartingPlayer() {
+
+        setCurrentPlayer(turnManager.getCurrentPlayer());
+        resetCardDeck();
+//        if(players.get(currentPlayer).getName().contains("AI")) {
+//            //AI work
+//            aiWork();
+//        }
+    }
+
+    public void resetCardDeck(){
+        Iterator it = players.iterator();
+        while(it.hasNext()) {
+            Player p = (Player) it.next();
+            p.resetHand();
+        }
+    }
+
+    ArrayList<Integer> cardOrder = new ArrayList<Integer>();
+
+
+    public void aiWork() {
+            if(turnManager.getRound() == 1) {
+                //if first round,
+
+                //pick card
+                //PickCardController pcc = new PickCardController();
+
+                Collections.shuffle(cardOrder);
+                for(int i=0;i<getCurrentPlayer().getAge().getMaxCardAvailable();i++) {
+                    getCurrentPlayer().pickCard(cardOrder.get(i));
+                }
+            }
+            System.out.println(getCurrentPlayer().getName() + " plays " + getCurrentPlayer().getHand().getCardAt(turnManager.getRound() -1).getName() );
+            getCurrentPlayer().getHand().getCardAt(turnManager.getRound() -1).aiPlay(fm, this);
+        //play card
+        //and next round;
+
+    }
+
+    public void nextRound() {
+        //currentPlayer = (currentPlayer+1)%players.size();
+        setCurrentPlayer(turnManager.nextRoundPlayer());
+        System.out.println("next " + turnManager.getRound() + " " + turnManager.getCounter());
+        if(turnManager.getRound() == 1 && turnManager.getCounter() == 0) {
+
+        } else {
+            //System.out.println("TEMPBK");
+            if(players.get(currentPlayer).getName().contains("AI")) {
+                //AI work
+              //  System.out.println("TEMPBK AI");
+                aiWork();
+            }
+        }
+        //return players.get(currentPlayer);
+    }
+
 	//public Player 
 
 	/**
@@ -56,7 +144,7 @@ public class PlayerController {
 	 * @param currentPlayer
 	 */
 	public void pass(Player currentPlayer) {
-		
+
 	}
 
 	/**
@@ -99,14 +187,12 @@ public class PlayerController {
 	}
 	
 	private int currentPlayer = 0;
-        public void setCurrentPlayer(int i) {
+
+    public void setCurrentPlayer(int i) {
             currentPlayer = i;
         }
         
-	public Player getNextPlayer() {
-		currentPlayer = (currentPlayer+1)%players.size();
-		return players.get(currentPlayer);
-	}
+
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);
@@ -117,6 +203,7 @@ public class PlayerController {
         public void setIsForward(boolean s) {
             isForward = s;
         }
+
 	public Player getNextPlayerForTileSelection() {
 		if(isForward) {
 			currentPlayer += 1;
@@ -139,6 +226,11 @@ public class PlayerController {
 		return players.get(currentPlayer);
 	}
 
+    public Player getNextPlayerForTileSelectionLinear() {
+        currentPlayer = (currentPlayer+1)%3;
+        return players.get(currentPlayer);
+    }
+
     public Player getPlayerByCulture(String culture) {
         for(int i=0;i<players.size();i++) {
             Player p = players.get(i);
@@ -147,6 +239,44 @@ public class PlayerController {
             }
         }
         return null;
+    }
+
+    public TurnManager getTurnManager() {
+        return turnManager;
+    }
+
+    public void spoilage() {
+        System.out.println("Spoilage");
+        Iterator it = players.iterator();
+        while(it.hasNext()) {
+            Player p = (Player) it.next();
+            int maxAllowed = 5;
+            if(p.hasBuilding(BuildingType.STOREHOUSE)) {
+                maxAllowed = 8;
+            }
+            System.out.println(p.getName() + " has storehouse.");
+            int i;
+            if(p.getFoodCube().getValue() > maxAllowed) {
+                i = p.getFoodCube().getValue() - maxAllowed;
+                System.out.println("spoiling food " + i);
+                p.spendFood(i);
+            }
+            if(p.getWoodCube().getValue() > maxAllowed) {
+                i = p.getWoodCube().getValue() - maxAllowed;
+                System.out.println("spoiling wood " + i);
+                p.spendWood(i);
+            }
+            if(p.getGoldCube().getValue() > maxAllowed) {
+                i = p.getGoldCube().getValue() - maxAllowed;
+                System.out.println("spoiling gold " + i);
+                p.spendGold(i);
+            }
+            if(p.getFavorCube().getValue() > maxAllowed) {
+                i = p.getFavorCube().getValue() - maxAllowed;
+                System.out.println("spoiling favor " + i);
+                p.spendFavor(i);
+            }
+        }
     }
 
 }

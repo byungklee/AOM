@@ -15,5 +15,7 @@ public class GreatTempleBuilding extends Building {
         setFoodCost(4);
         setGoldCost(4);
         setFavorCost(4);
+        setBuildingType(BuildingType.GREAT_TEMPLE);
+
     }
 }

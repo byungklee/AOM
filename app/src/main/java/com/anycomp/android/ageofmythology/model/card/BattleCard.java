@@ -10,4 +10,9 @@ public class BattleCard extends Card {
     public void play(FragmentManager fm, PlayerController pc) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void aiPlay(FragmentManager fm, PlayerController player) {
+
+    }
 }

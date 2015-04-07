@@ -8,6 +8,7 @@ import com.anycomp.android.ageofmythology.Observable;
 import com.anycomp.android.ageofmythology.Observer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -66,6 +67,9 @@ public class CardDeck implements Observable {
             ((Observer) it.next()).update(this);
         }
                 
+    }
+    public void shuffle() {
+        Collections.shuffle(cards);
     }
     
     public Iterator iterator() {

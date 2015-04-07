@@ -12,8 +12,10 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anycomp.android.ageofmythology.model.area.HoldingArea;
 import com.anycomp.android.ageofmythology.model.player.Player;
 
 /**
@@ -21,7 +23,7 @@ import com.anycomp.android.ageofmythology.model.player.Player;
  * Use the {@link MainPlayingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainPlayingFragment extends Fragment {
+public class MainPlayingFragment extends Fragment implements Observer {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,6 +37,14 @@ public class MainPlayingFragment extends Fragment {
     private GridView buildingView;
     private AreaImageAdapter resourceTileImageAdapter;
     private BuildingImageAdapter buildingTileAdapter;
+    private TextView age;
+    private TextView food;
+    private TextView wood;
+    private TextView gold;
+    private TextView favor;
+    private TextView villagers;
+
+    private String currentPlayerBoard;
 
     /**
      * Use this factory method to create a new instance of
@@ -60,9 +70,12 @@ public class MainPlayingFragment extends Fragment {
 
     public void changeBoard(Player player) {
         background.setBackgroundResource(player.getCulture().getImagePath());
+        currentPlayerBoard = player.getCulture().getName();
         if(player.getCulture().getName().equals(mCulture)) {
             resourceView.setAdapter(resourceTileImageAdapter);
             buildingView.setAdapter(buildingTileAdapter);
+            showResourceInfo(player);
+
         } else {
             AreaImageAdapter resourceTileImageAdapter = new AreaImageAdapter(getActivity().getApplicationContext(),
                     player.getPlayerBoard().getProductionArea().getTiles());
@@ -70,9 +83,9 @@ public class MainPlayingFragment extends Fragment {
             BuildingImageAdapter buildingTileAdapter = new BuildingImageAdapter(getActivity().getApplicationContext(),
                     player.getPlayerBoard().getCityArea().getTiles());
             buildingView.setAdapter(buildingTileAdapter);
+            showResourceInfo(player);
         }
     }
-
 
     public MainPlayingFragment() {
         // Required empty public constructor
@@ -88,11 +101,35 @@ public class MainPlayingFragment extends Fragment {
         }
     }
 
+    public void showResourceInfo() {
+        age.setText("Age " + mPlayer.getAge().getName());
+        food.setText("Food: " + mPlayer.getFoodCube().getValue());
+        wood.setText("Wood: " + mPlayer.getWoodCube().getValue());
+        gold.setText("Gold: " + mPlayer.getGoldCube().getValue());
+        favor.setText("Favor: " + mPlayer.getFavorCube().getValue());
+        villagers.setText("Villager: " + ((HoldingArea) mPlayer.getPlayerBoard().getHoldingArea()).getNumberOfVillagers());
+    }
+    public void showResourceInfo(Player mPlayer) {
+        age.setText("Age " + mPlayer.getAge().getName());
+        food.setText("Food: " + mPlayer.getFoodCube().getValue());
+        wood.setText("Wood: " + mPlayer.getWoodCube().getValue());
+        gold.setText("Gold: " + mPlayer.getGoldCube().getValue());
+        favor.setText("Favor: " + mPlayer.getFavorCube().getValue());
+        villagers.setText("Villager: " + ((HoldingArea) mPlayer.getPlayerBoard().getHoldingArea()).getNumberOfVillagers());
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_main_playing, container, false);
+        age = (TextView)v.findViewById(R.id.current_age);
+        food = (TextView) v.findViewById(R.id.food);
+        wood = (TextView) v.findViewById(R.id.wood);
+        gold = (TextView) v.findViewById(R.id.gold);
+        favor = (TextView) v.findViewById(R.id.favor);
+        villagers = (TextView) v.findViewById(R.id.villager);
+        showResourceInfo();
         background = (LinearLayout) v.findViewById(R.id.layout);
         background.setBackgroundResource(mPlayer.getCulture().getImagePath());
 //        background = (ImageView) v.findViewById(R.id.bac)
@@ -115,18 +152,20 @@ public class MainPlayingFragment extends Fragment {
                 mPlayer.getPlayerBoard().getCityArea().getTiles());
         buildingView.setAdapter(buildingTileAdapter);
 
-
+        currentPlayerBoard = mPlayer.getCulture().getName();
         return v;
     }
 
     private void attachObs() {
         mPlayer.getPlayerBoard().getProductionArea().attachObserver(resourceTileImageAdapter);
         mPlayer.getPlayerBoard().getCityArea().attachObserver(buildingTileAdapter);
+        mPlayer.attachResourceObserver(this);
     }
 
     private void detachObs() {
         mPlayer.getPlayerBoard().getProductionArea().detachObserver(resourceTileImageAdapter);
         mPlayer.getPlayerBoard().getCityArea().detachObserver(buildingTileAdapter);
+        mPlayer.detachResourceObserver(this);
     }
 
 
@@ -141,5 +180,12 @@ public class MainPlayingFragment extends Fragment {
         super.onStop();
         detachObs();
 
+    }
+
+    @Override
+    public void update(Object object) {
+        if(mPlayer.getCulture().getName().equals(currentPlayerBoard)) {
+            showResourceInfo();
+        }
     }
 }

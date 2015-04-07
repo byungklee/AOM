@@ -36,6 +36,9 @@ public class BuildingSelectionDialogFragment extends DialogFragment {
     private int maxAllowedPick;
     private String mParam2;
 
+    private int counter = 0;
+
+
     private void setController(BuildingSelectionController c) {
         this.c = c;
     }
@@ -82,8 +85,9 @@ public class BuildingSelectionDialogFragment extends DialogFragment {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(c.verifyAvailability(position) && c.verifyResource(position)) {
+                if(c.verifyAvailability(position) && c.verifyResource(position) && counter < maxAllowedPick) {
                     c.addBuilding(position);
+                    counter++;
                 } else {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -109,5 +113,20 @@ public class BuildingSelectionDialogFragment extends DialogFragment {
         });
         //final Button closeButton = (Button) v.findViewById(R.id.close_button);
         return builder.create();
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        c.nextRound();
+
+    }
+
+    public int getMaxAllowedPick() {
+        return maxAllowedPick;
+    }
+
+    public void setMaxAllowedPick(int maxAllowedPick) {
+        this.maxAllowedPick = maxAllowedPick;
     }
 }

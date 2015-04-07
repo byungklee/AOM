@@ -36,8 +36,6 @@ public class PickCardDialogFragment extends DialogFragment {
         this.human = human;
     }
 
-
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
@@ -59,8 +57,10 @@ public class PickCardDialogFragment extends DialogFragment {
                 Toast.makeText(getActivity().getApplicationContext(), "" + position,
                         Toast.LENGTH_SHORT).show();
 
-                human.pickCard(position);
-                v.setEnabled(false);
+                if(human.pickCard(position)) {
+                    v.setAlpha(0.25f);
+                }
+
 
             }
         });

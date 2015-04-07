@@ -15,23 +15,44 @@ public class PermanentBuildCard extends PermanentActionCard {
          setName("Build");
         setCulture(culture);
         setImagePath(culture.getPermanentBuildCardImage());
+        setValue(2);
     }
 
 
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        openBuildingPopup(fm,pc);
+        if(!isPlayed()) {
+
+                setPlayed(true);
+                openBuildingPopup(fm, pc);
+
+        }
     }
+
+    @Override
+    public void aiPlay(FragmentManager fm, PlayerController pc) {
+        setPlayed(true);
+        BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
+        //bsc.
+        for(int j=0;j<getValue();j++) {
+            for (int i = 0; i < bsc.getBuildingList().size(); i++) {
+                if (bsc.verifyAvailability(i) && bsc.verifyResource(i)) {
+                    bsc.addBuilding(i);
+                }
+            }
+        }
+        pc.nextRound();
+    }
+
+
+
     int i=0;
     private void openBuildingPopup(FragmentManager fm, PlayerController pc) {
         BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
         bsc.playBuildCard(this);
         BuildingSelectionDialogFragment bsdf = BuildingSelectionDialogFragment.newInstance(bsc);
+        bsdf.setMaxAllowedPick(getValue());
         bsdf.show(fm, "Building Selection Dialog");
-
-
-
 
     }
 

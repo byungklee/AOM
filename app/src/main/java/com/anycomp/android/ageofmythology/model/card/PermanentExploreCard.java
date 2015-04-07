@@ -20,13 +20,22 @@ public class PermanentExploreCard extends PermanentActionCard {
 
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
-        pc.setCurrentPlayer(0);
-        pc.setIsForward(true);
-        TileManager.getInstance().setNumberOfCardsToRefresh(getValue());
-        TileSelectionDialogFragment tsd =  new TileSelectionDialogFragment();
-        tsd.setTileSelectionController(new TileSelectionController(pc,1));
-
-        tsd.show(fm, "Tile Selection Dialog");
+        if(!isPlayed()) {
+            setPlayed(true);
+//            pc.setCurrentPlayer(0);
+            pc.setCurrentPlayer(pc.getTurnManager().getCurrentPlayer());
+            pc.setIsForward(true);
+            TileManager.getInstance().setNumberOfCardsToRefresh(getValue());
+            TileSelectionDialogFragment tsd = new TileSelectionDialogFragment();
+            tsd.setTileSelectionController(new TileSelectionController(pc, 1));
+            tsd.show(fm, "Tile Selection Dialog");
+        }
     }
+
+    @Override
+    public void aiPlay(FragmentManager fm, PlayerController player) {
+        play(fm,player);
+    }
+
 
 }
