@@ -9,5 +9,6 @@
     <!-- for the Trade Selection Dialog -->
     <string name="bank_resources">Bank:</string>
     <string name="player_resources">Player Resources:</string>
+    <string name="transaction_cost">Transaction Cost:</string>
 
 </resources>

@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
 import com.anycomp.android.ageofmythology.model.bank.Bank;
+import com.anycomp.android.ageofmythology.model.resource.ResourceType;
 
 import java.util.ArrayList;
 
@@ -59,6 +60,7 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         final Spinner woodSpinner = (Spinner) v.findViewById(R.id.bank_wood_spinner);
         final Spinner playerResourceSpinner = (Spinner) v.findViewById(R.id.player_resource_spinner);
         final Spinner playerNumberSpinner = (Spinner) v.findViewById(R.id.player_number_spinner);
+        final Spinner transactionCostTypeSpinner = (Spinner) v.findViewById(R.id.transaction_cost_type);
 
         Bank bank = controller.getBank();
 
@@ -83,18 +85,64 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         playerNumberSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
                                        R.layout.support_simple_spinner_dropdown_item,
                                        buildStringArray(5)));
+        transactionCostTypeSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                                              R.layout.support_simple_spinner_dropdown_item,
+                                              new String[] {"Favor", "Food", "Gold", "Wood"}));
 
         builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //TODO: perform trade (via controller)
+                int requestFavor = favorSpinner.getSelectedItemPosition();
+                int requestFood = foodSpinner.getSelectedItemPosition();
+                int requestGold = goldSpinner.getSelectedItemPosition();
+                int requestWood = woodSpinner.getSelectedItemPosition();
+                int amount = playerNumberSpinner.getSelectedItemPosition();
+
+                ResourceType paymentType = null;
+                switch (playerResourceSpinner.getSelectedItemPosition()) {
+                    case 0:
+                        paymentType = ResourceType.FAVOR;
+                        break;
+                    case 1:
+                        paymentType = ResourceType.FOOD;
+                        break;
+                    case 2:
+                        paymentType = ResourceType.GOLD;
+                        break;
+                    case 3:
+                        paymentType = ResourceType.WOOD;
+                        break;
+                    default:
+                        break;
+                }
+
+                ResourceType costType = null;
+                switch(transactionCostTypeSpinner.getSelectedItemPosition()) {
+                    case 0:
+                        costType = ResourceType.FAVOR;
+                        break;
+                    case 1:
+                        costType = ResourceType.FOOD;
+                        break;
+                    case 2:
+                        costType = ResourceType.GOLD;
+                        break;
+                    case 3:
+                        costType = ResourceType.WOOD;
+                        break;
+                    default:
+                        break;
+                }
+
+                controller.makeTrade(requestFavor, requestFood, requestGold, requestWood, paymentType, amount, costType);
             }
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                // dismiss dialog without doing anything
             }
         });
         //final Button closeButton = (Button) v.findViewById(R.id.close_button);

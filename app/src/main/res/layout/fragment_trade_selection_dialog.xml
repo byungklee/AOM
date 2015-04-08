@@ -87,13 +87,24 @@
 
         <Spinner
             android:id="@+id/player_resource_spinner"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp">
         </Spinner>
         <Spinner
             android:id="@+id/player_number_spinner"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+        <TextView
+            android:id="@+id/transaction_cost_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_cost"/>
+        <Spinner
+            android:id="@+id/transaction_cost_type"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp">
         </Spinner>
