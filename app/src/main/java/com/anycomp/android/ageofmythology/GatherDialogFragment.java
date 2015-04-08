@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.player.Player;
 
 import java.util.ArrayList;
@@ -15,10 +16,9 @@ import java.util.ArrayList;
  */
 public class GatherDialogFragment extends DialogFragment {
     private GatherController gc;
-    private boolean confirmed;
+    private Card card;
 
-    /* Empty constructor */
-    public GatherDialogFragment() { confirmed = false; }
+    public GatherDialogFragment() {}
 
     public static GatherDialogFragment newInstance(
             GatherController c) {
@@ -39,41 +39,38 @@ public class GatherDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
     }
 
+    public void playBuildCard(Card card) { this.card = card; }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.gather_selection).setItems(
-                R.array.gather_options, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        gc.setPick(which);
+        CharSequence[] options = {"DESERT", "FERTILE", "HILL", "MOUNTAIN",
+                "SWAMP", "FOREST", "WOOD", "GOLD", "FOOD", "FAVOR"};
 
-                        new AlertDialog.Builder(getActivity())
-                                .setTitle(R.string.gather_title)
-                                .setMessage(R.string.gather_message)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .setPositiveButton(android.R.string.yes,
-                                        new DialogInterface.OnClickListener() {
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                gc.setPick(which);
+            }
+        };
 
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        int current = gc.getPlayerController()
-                                                .getCurrentPlayerID();
+        builder.setTitle(R.string.gather_selection).setSingleChoiceItems(
+                options, 0, listener);
 
-                                        gc.gather();
-                                        gc.getPlayerController()
-                                                .setCurrentPlayer(
-                                                        (++current) % 3);
-                                        gc.gather();
-                                        gc.getPlayerController()
-                                                .setCurrentPlayer(
-                                                        (++current) % 3);
-                                        gc.gather();
-                                        gc.getPlayerController()
-                                                .setCurrentPlayer(
-                                                        (++current) % 3);
-                                    }})
-                                .setNegativeButton(android.R.string.no, null).show();
-                    }
-                });
+        builder.setPositiveButton("Gather", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int current = gc.getPlayerController()
+                        .getCurrentPlayerID();
+
+                gc.gather();
+                gc.getPlayerController().setCurrentPlayer((++current) % 3);
+                gc.gather();
+                gc.getPlayerController().setCurrentPlayer((++current) % 3);
+                gc.gather();
+                gc.getPlayerController().setCurrentPlayer((++current) % 3);
+            }
+        });
+
         return builder.create();
     }
 }

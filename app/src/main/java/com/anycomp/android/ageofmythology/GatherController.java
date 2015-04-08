@@ -76,23 +76,23 @@ public class GatherController {
                 switch(((ResourceProductionTile) tiles.get(i))
                         .getResourceType()) {
                     case WOOD:
-                        player.takeWood(player.getWoodCube().getValue()
-                                + ((ResourceProductionTile) tiles.get(i))
+                        player.takeWood(
+                                ((ResourceProductionTile) tiles.get(i))
                                 .getResourceNumber());
                         break;
                     case GOLD:
-                        player.takeGold(player.getGoldCube().getValue()
-                                + ((ResourceProductionTile) tiles.get(i))
+                        player.takeGold(
+                                ((ResourceProductionTile) tiles.get(i))
                                 .getResourceNumber());
                         break;
                     case FOOD:
-                        player.takeFood(player.getFoodCube().getValue()
-                                + ((ResourceProductionTile) tiles.get(i))
+                        player.takeFood(
+                                ((ResourceProductionTile) tiles.get(i))
                                 .getResourceNumber());
                         break;
                     case FAVOR:
-                        player.takeFavor(player.getFavorCube().getValue()
-                                + ((ResourceProductionTile) tiles.get(i))
+                        player.takeFavor(
+                                ((ResourceProductionTile) tiles.get(i))
                                 .getResourceNumber());
                         break;
                 }
