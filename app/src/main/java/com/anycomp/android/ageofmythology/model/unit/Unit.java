@@ -198,4 +198,37 @@ public abstract class Unit {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public int getAdditionalDice(Unit unit) {
+        int sum =0;
+        if(unit instanceof Mortal) {
+            sum += getVsMortal();
+        }
+        if(unit instanceof Myth) {
+            sum += getVsMyth();
+        }
+        if(unit instanceof Hero) {
+            sum += getVsHeroes();
+        }
+        if(unit instanceof Warrior) {
+            sum += getVsWarriors();
+        }
+        if(unit instanceof Archer) {
+            sum += getVsArchers();
+        }
+        if(unit instanceof Flyer) {
+            sum += getVsFlyers();
+        }
+        if(unit instanceof Cavalry) {
+            sum += getVsCavarlys();
+        }
+        if(unit instanceof Giant) {
+            sum += getVsGiant();
+        }
+        if(unit instanceof GiantKiller) {
+            sum += getVsGiantKiller();
+        }
+
+        return sum;
+    }
 }

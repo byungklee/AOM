@@ -26,6 +26,7 @@ public class PermanentRecruitCard extends PermanentActionCard {
     public void play(FragmentManager fm, PlayerController pc) {
         Log.i(TAG, "called play()");
         openRecruitPopup(fm, pc);
+        setPlayed(true);
     }
 
     @Override

@@ -79,14 +79,16 @@ public class BuildingSelectionController {
             if(pc.getCurrentPlayer().getWoodCube().getValue() >= Math.max(pickedBuilding.getWoodCost()-1,0) &&
                     pc.getCurrentPlayer().getFoodCube().getValue() >= Math.max(pickedBuilding.getFoodCost()-1,0) &&
                     pc.getCurrentPlayer().getGoldCube().getValue() >= Math.max(pickedBuilding.getGoldCost()-1,0) &&
-                    pc.getCurrentPlayer().getFavorCube().getValue() >= Math.max(pickedBuilding.getFavorCost()-1,0)) {
+                    pc.getCurrentPlayer().getFavorCube().getValue() >= Math.max(pickedBuilding.getFavorCost()-1,0) &&
+                    pc.getCurrentPlayer().getAge().getOrder() >= pickedBuilding.getAge()) {
                 return true;
             }
         } else {
             if(pc.getCurrentPlayer().getWoodCube().getValue() >= pickedBuilding.getWoodCost() &&
                     pc.getCurrentPlayer().getFoodCube().getValue() >= pickedBuilding.getFoodCost() &&
                     pc.getCurrentPlayer().getGoldCube().getValue() >= pickedBuilding.getGoldCost() &&
-                    pc.getCurrentPlayer().getFavorCube().getValue() >= pickedBuilding.getFavorCost()) {
+                    pc.getCurrentPlayer().getFavorCube().getValue() >= pickedBuilding.getFavorCost() &&
+                    pc.getCurrentPlayer().getAge().getOrder() >= pickedBuilding.getAge()) {
                 return true;
             }
         }
