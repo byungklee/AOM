@@ -53,6 +53,10 @@ public class GatherController {
 
     public void playGatherCard(Card card) { this.card = card; }
 
+    public void nextRound() {
+        pc.nextRound();
+    }
+
     public void gather() {
         ResourceType resource = null;
         TileType terrain = null;

@@ -3,6 +3,7 @@ package com.anycomp.android.ageofmythology;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -34,6 +35,12 @@ public class NextAgeDialogFragment extends DialogFragment {
         if (nac.check()) {
             makeToast();
         }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        nac.nextRound();
     }
 
     public void makeToast() {

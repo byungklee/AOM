@@ -40,6 +40,10 @@ public class NextAgeController {
 
     public Age getAge() { return age; }
 
+    public void nextRound() {
+        pc.nextRound();
+    }
+
     public boolean check() {
         Player player = pc.getCurrentPlayer();
         Age age = player.getAge();

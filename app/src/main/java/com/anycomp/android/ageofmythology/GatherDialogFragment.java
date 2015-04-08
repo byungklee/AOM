@@ -39,6 +39,12 @@ public class GatherDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        gc.nextRound();
+    }
+
     public void playBuildCard(Card card) { this.card = card; }
 
     @Override
