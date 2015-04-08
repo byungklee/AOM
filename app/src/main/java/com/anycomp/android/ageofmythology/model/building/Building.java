@@ -12,6 +12,7 @@ public abstract class Building {
     private int foodCost;
     private int favorCost;
     private int goldCost;
+    private int age = 0;
     private BuildingType bType;
         public Building() {
             
@@ -68,5 +69,13 @@ public abstract class Building {
 
     protected void setBuildingType(BuildingType bType) {
         this.bType = bType;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

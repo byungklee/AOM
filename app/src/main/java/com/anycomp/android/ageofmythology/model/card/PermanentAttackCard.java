@@ -3,7 +3,11 @@ package com.anycomp.android.ageofmythology.model.card;
 import android.app.FragmentManager;
 import android.content.Context;
 
+import com.anycomp.android.ageofmythology.AfterSelectOpponentCallback;
+import com.anycomp.android.ageofmythology.AttackController;
+import com.anycomp.android.ageofmythology.PickBattleUnitDialogFragment;
 import com.anycomp.android.ageofmythology.PlayerController;
+import com.anycomp.android.ageofmythology.SelectOpponentDialogFragment;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 
 
@@ -14,7 +18,7 @@ public class PermanentAttackCard extends PermanentActionCard {
         setCulture(culture);
 
         setImagePath(culture.getPermanentAttackCardImage());
-
+        setValue(4);
     }
 
 
@@ -28,13 +32,19 @@ public class PermanentAttackCard extends PermanentActionCard {
         //do action until end
         //finish
 
-        pc.nextRound();
+//        pc.nextRound();
+        AttackController ac = new AttackController(fm,pc,getValue());
+        ac.setAttackPlayerIndex(pc.getTurnManager().getCurrentPlayer());
+        ac.startBattle();
+        setPlayed(true);
     }
 
     @Override
-    public void aiPlay(FragmentManager fm, PlayerController player) {
-        player.nextRound();
+    public void aiPlay(FragmentManager fm, PlayerController pc) {
+        AttackController ac = new AttackController(fm,pc,getValue());
+        ac.setAttackPlayerIndex(pc.getTurnManager().getCurrentPlayer());
+        ac.startBattle();
+        setPlayed(true);
     }
-
 
 }

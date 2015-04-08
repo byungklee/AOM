@@ -1,9 +1,11 @@
 package com.anycomp.android.ageofmythology;
 
 
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -27,9 +29,6 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Button button = new Button(this);
-        //button.setBackgroundResource();
-
         if (savedInstanceState == null) {
             Log.d(TAG, "Starting main fragment");
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -125,18 +124,25 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         public void callback() {
             //turn on victory card view
             System.out.println("victory card callback!");
-            TurnManager tm =  mPlayerController.getTurnManager();
+            if(mPlayerController.isEndCondtionMet()) {
+                //TO DO: implement game end logic
 
-            int index = tm.getCurrentPlayer();
-            for(int i=0;i<3;i++) {
-                System.out.println(((Player) mPlayerController.getPlayers().get(index)).getName());
-                index = (index + 1) %3;
-                //must do victory card work
+            } else {
+                TurnManager tm = mPlayerController.getTurnManager();
+
+                int index = tm.getCurrentPlayer();
+                for (int i = 0; i < 3; i++) {
+                    System.out.println(((Player) mPlayerController.getPlayers().get(index)).getName());
+                    index = (index + 1) % 3;
+                    //must do victory card work
+                }
+                openVictoryCardPopup(true);
             }
-            openVictoryCardPopup(true);
 
         }
     };
+
+
 
     private Callback onVictoryCardEnd = new Callback() {
         @Override
@@ -185,10 +191,8 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         pcdf.setPlayer(mPlayerController.getHumanPlayer());
         pcdf.setPlayerController(mPlayerController);
         pcdf.show(getFragmentManager(), "Play Card Dialog");
+//        getFragmentManager().popBackStack("MainPlayingView",);
     }
 
-    public void openPickBattleUnitDialog() {
-
-    }
 
 }

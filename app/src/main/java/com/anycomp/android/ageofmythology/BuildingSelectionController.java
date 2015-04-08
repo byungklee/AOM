@@ -79,14 +79,16 @@ public class BuildingSelectionController {
             if(pc.getCurrentPlayer().getWoodCube().getValue() >= Math.max(pickedBuilding.getWoodCost()-1,0) &&
                     pc.getCurrentPlayer().getFoodCube().getValue() >= Math.max(pickedBuilding.getFoodCost()-1,0) &&
                     pc.getCurrentPlayer().getGoldCube().getValue() >= Math.max(pickedBuilding.getGoldCost()-1,0) &&
-                    pc.getCurrentPlayer().getFavorCube().getValue() >= Math.max(pickedBuilding.getFavorCost()-1,0)) {
+                    pc.getCurrentPlayer().getFavorCube().getValue() >= Math.max(pickedBuilding.getFavorCost()-1,0) &&
+                    pc.getCurrentPlayer().getAge().getOrder() >= pickedBuilding.getAge()) {
                 return true;
             }
         } else {
             if(pc.getCurrentPlayer().getWoodCube().getValue() >= pickedBuilding.getWoodCost() &&
                     pc.getCurrentPlayer().getFoodCube().getValue() >= pickedBuilding.getFoodCost() &&
                     pc.getCurrentPlayer().getGoldCube().getValue() >= pickedBuilding.getGoldCost() &&
-                    pc.getCurrentPlayer().getFavorCube().getValue() >= pickedBuilding.getFavorCost()) {
+                    pc.getCurrentPlayer().getFavorCube().getValue() >= pickedBuilding.getFavorCost() &&
+                    pc.getCurrentPlayer().getAge().getOrder() >= pickedBuilding.getAge()) {
                 return true;
             }
         }
@@ -115,31 +117,19 @@ public class BuildingSelectionController {
             pc.getCurrentPlayer().spendFood(Math.max(pickedBuilding.getFoodCost()-1,0));
             pc.getCurrentPlayer().spendGold(Math.max(pickedBuilding.getGoldCost()-1,0));
             pc.getCurrentPlayer().spendFavor(Math.max(pickedBuilding.getFavorCost()-1,0));
-            //pc.getCurrentPlayer().getWoodCube().setValue(pc.getCurrentPlayer().getWoodCube().getValue() - Math.max(pickedBuilding.getWoodCost()-1,0));
-//            pc.getCurrentPlayer().getFoodCube().setValue(pc.getCurrentPlayer().getFoodCube().getValue() - Math.max(pickedBuilding.getFoodCost()-1,0));
-//            pc.getCurrentPlayer().getGoldCube().setValue(pc.getCurrentPlayer().getGoldCube().getValue() - Math.max(pickedBuilding.getGoldCost()-1,0));
-//            pc.getCurrentPlayer().getFavorCube().setValue(pc.getCurrentPlayer().getFavorCube().getValue() - Math.max(pickedBuilding.getFavorCost()-1,0));
         } else {
             pc.getCurrentPlayer().spendWood(pickedBuilding.getWoodCost());
             pc.getCurrentPlayer().spendFood(pickedBuilding.getFoodCost());
             pc.getCurrentPlayer().spendGold(pickedBuilding.getGoldCost());
             pc.getCurrentPlayer().spendFavor(pickedBuilding.getFavorCost());
-
-//            pc.getCurrentPlayer().getWoodCube().setValue(pc.getCurrentPlayer().getWoodCube().getValue() - pickedBuilding.getWoodCost());
-//            pc.getCurrentPlayer().getFoodCube().setValue(pc.getCurrentPlayer().getFoodCube().getValue() - pickedBuilding.getFoodCost());
-//            pc.getCurrentPlayer().getGoldCube().setValue(pc.getCurrentPlayer().getGoldCube().getValue() - pickedBuilding.getGoldCost());
-//            pc.getCurrentPlayer().getFavorCube().setValue(pc.getCurrentPlayer().getFavorCube().getValue() - pickedBuilding.getFavorCost());
         }
-
-        //To do: addition on bank.
-
-
-
     }
 
     public void nextRound() {
         pc.nextRound();
     }
 
+    public void gameEnd() {
 
+    }
 }

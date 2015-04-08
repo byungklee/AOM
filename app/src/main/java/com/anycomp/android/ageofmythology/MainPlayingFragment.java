@@ -42,6 +42,7 @@ public class MainPlayingFragment extends Fragment implements Observer {
     private TextView wood;
     private TextView gold;
     private TextView favor;
+    private TextView victory;
     private TextView villagers;
 
     private String currentPlayerBoard;
@@ -102,12 +103,7 @@ public class MainPlayingFragment extends Fragment implements Observer {
     }
 
     public void showResourceInfo() {
-        age.setText("Age " + mPlayer.getAge().getName());
-        food.setText("Food: " + mPlayer.getFoodCube().getValue());
-        wood.setText("Wood: " + mPlayer.getWoodCube().getValue());
-        gold.setText("Gold: " + mPlayer.getGoldCube().getValue());
-        favor.setText("Favor: " + mPlayer.getFavorCube().getValue());
-        villagers.setText("Villager: " + ((HoldingArea) mPlayer.getPlayerBoard().getHoldingArea()).getNumberOfVillagers());
+        showResourceInfo(mPlayer);
     }
     public void showResourceInfo(Player mPlayer) {
         age.setText("Age " + mPlayer.getAge().getName());
@@ -115,6 +111,7 @@ public class MainPlayingFragment extends Fragment implements Observer {
         wood.setText("Wood: " + mPlayer.getWoodCube().getValue());
         gold.setText("Gold: " + mPlayer.getGoldCube().getValue());
         favor.setText("Favor: " + mPlayer.getFavorCube().getValue());
+        victory.setText("Victory: " + mPlayer.getVictoryCube().getValue());
         villagers.setText("Villager: " + ((HoldingArea) mPlayer.getPlayerBoard().getHoldingArea()).getNumberOfVillagers());
     }
 
@@ -128,6 +125,7 @@ public class MainPlayingFragment extends Fragment implements Observer {
         wood = (TextView) v.findViewById(R.id.wood);
         gold = (TextView) v.findViewById(R.id.gold);
         favor = (TextView) v.findViewById(R.id.favor);
+        victory = (TextView) v.findViewById(R.id.victory);
         villagers = (TextView) v.findViewById(R.id.villager);
         showResourceInfo();
         background = (LinearLayout) v.findViewById(R.id.layout);
