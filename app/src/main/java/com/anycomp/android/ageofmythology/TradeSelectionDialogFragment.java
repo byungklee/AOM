@@ -158,4 +158,9 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         return strings;
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        controller.nextRound();
+    }
 }

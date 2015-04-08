@@ -19,13 +19,15 @@ import com.anycomp.android.ageofmythology.model.card.RandomCard;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.culture.Egyptian;
 import com.anycomp.android.ageofmythology.model.culture.Greek;
-import com.anycomp.android.ageofmythology.model.culture.Norse;
+
 import com.anycomp.android.ageofmythology.model.resource.*;
 
 
-import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 
 import com.anycomp.android.ageofmythology.model.unit.Unit;
+import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
+
+
 import com.anycomp.android.ageofmythology.model.unit.specific.ChariotArcher;
 import com.anycomp.android.ageofmythology.model.unit.specific.Elephant;
 import com.anycomp.android.ageofmythology.model.unit.specific.Hippokon;
@@ -421,5 +423,5 @@ public class Player implements Observable {
 
     }
 
-
+    public void setAge(Age age) { this.age = age; }
 }

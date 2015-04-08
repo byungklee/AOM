@@ -197,7 +197,7 @@ public class PlayerController {
             currentPlayer = i;
         }
         
-
+    public int getCurrentPlayerID() { return currentPlayer; }
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);

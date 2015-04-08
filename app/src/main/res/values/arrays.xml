@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gather_options">
+        <item>DESERT</item>
+        <item>FERTILE</item>
+        <item>HILL</item>
+        <item>MOUNTAIN</item>
+        <item>SWAMP</item>
+        <item>FOREST</item>
+        <item>WOOD</item>
+        <item>GOLD</item>
+        <item>FOOD</item>
+        <item>FAVOR</item>
+    </string-array>
+</resources>

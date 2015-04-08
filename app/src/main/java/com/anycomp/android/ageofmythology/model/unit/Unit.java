@@ -1,6 +1,5 @@
 package com.anycomp.android.ageofmythology.model.unit;
 
-
 public abstract class Unit {
 
 	private String name;
@@ -29,8 +28,6 @@ public abstract class Unit {
     private String specialEffect;
 
     private int dice;
-
-
 
     public Unit() { }
 
@@ -85,7 +82,6 @@ public abstract class Unit {
         str += "   woodCost = " + woodCost + "\n";
         return str;
     }
-
 
     public int getVsMortal() {
         return vsMortal;
