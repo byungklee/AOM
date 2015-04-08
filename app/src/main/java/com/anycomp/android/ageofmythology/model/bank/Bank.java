@@ -107,7 +107,14 @@ public class Bank {
     /* Deposit victory cubes */
     public void depositVictory(int amount) { victory += amount; }
 
+
     public int getVictoryCubeCount() {
         return victory;
     }
+
+    public int getFavor() { return favor; }
+    public int getFood() { return food; }
+    public int getGold() { return gold; }
+    public int getWood() { return wood; }
+
 }

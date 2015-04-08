@@ -1,6 +1,5 @@
 package com.anycomp.android.ageofmythology.model.unit;
 
-import com.anycomp.android.ageofmythology.model.culture.Culture;
 
 public abstract class Unit {
 
@@ -86,6 +85,7 @@ public abstract class Unit {
         str += "   woodCost = " + woodCost + "\n";
         return str;
     }
+
 
     public int getVsMortal() {
         return vsMortal;
@@ -231,4 +231,5 @@ public abstract class Unit {
 
         return sum;
     }
+
 }
