@@ -229,7 +229,9 @@ public class AttackController {
             ArrayList<Unit> unit = p.getArmy();
             int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
             Random random = new Random();
-
+            if(unit.size() == 0) {
+                return;
+            }
             for(int i=0;i<maxAllowedByAI;i++) {
                 defenders.add(unit.remove(random.nextInt(unit.size())));
             }

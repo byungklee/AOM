@@ -35,6 +35,7 @@ public class PermanentExploreCard extends PermanentActionCard {
     @Override
     public void aiPlay(FragmentManager fm, PlayerController player) {
         play(fm,player);
+//        player.nextRound();
     }
 
 

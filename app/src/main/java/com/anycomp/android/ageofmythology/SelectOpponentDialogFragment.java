@@ -41,7 +41,6 @@ public class SelectOpponentDialogFragment extends DialogFragment {
             Player p = (Player) it.next();
             if(p != pc.getCurrentPlayer()) {
                 opponents[counter].setText(p.getCulture().getName());
-
                 counter++;
             }
         }
