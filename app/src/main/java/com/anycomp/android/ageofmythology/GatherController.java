@@ -34,7 +34,7 @@ public class GatherController {
         int length = tts.length + rts.length;
 
         this.pc = pc;
-        pick = -1;
+        pick = 0;
         list = new ArrayList<>();
 
         for (int i = 1; i < length; i++) {

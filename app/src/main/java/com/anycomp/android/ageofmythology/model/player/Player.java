@@ -422,5 +422,5 @@ public class Player implements Observable {
 
     }
 
-
+    public void setAge(Age age) { this.age = age; }
 }

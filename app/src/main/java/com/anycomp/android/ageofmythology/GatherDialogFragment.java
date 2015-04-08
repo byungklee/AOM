@@ -53,7 +53,7 @@ public class GatherDialogFragment extends DialogFragment {
             }
         };
 
-        builder.setTitle(R.string.gather_selection).setSingleChoiceItems(
+        builder.setTitle("Choose a terrain or resource").setSingleChoiceItems(
                 options, 0, listener);
 
         builder.setPositiveButton("Gather", new DialogInterface.OnClickListener() {
