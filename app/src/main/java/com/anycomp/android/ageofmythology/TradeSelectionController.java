@@ -160,5 +160,6 @@ public class TradeSelectionController {
     }
 
     public Bank getBank() { return bank; }
+    public void nextRound() { pc.nextRound(); }
 
 }
