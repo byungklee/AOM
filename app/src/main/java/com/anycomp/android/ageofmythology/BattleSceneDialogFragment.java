@@ -170,6 +170,11 @@ public class BattleSceneDialogFragment extends DialogFragment {
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
         ac.winnerTakeVictoryCube();
+        moveAlltheUnitBack();
         pc.nextRound();
+    }
+
+    public void moveAlltheUnitBack() {
+
     }
 }
