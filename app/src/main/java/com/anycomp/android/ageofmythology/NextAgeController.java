@@ -61,10 +61,10 @@ public class NextAgeController {
                 && gold >= 4) {
             this.age = new ClassicalAge();
             player.setAge(this.age);
-            bank.deposit(ResourceType.WOOD, 4);
-            bank.deposit(ResourceType.FOOD, 4);
-            bank.deposit(ResourceType.FAVOR, 4);
-            bank.deposit(ResourceType.GOLD, 4);
+//            bank.deposit(ResourceType.WOOD, 4);
+//            bank.deposit(ResourceType.FOOD, 4);
+//            bank.deposit(ResourceType.FAVOR, 4);
+//            bank.deposit(ResourceType.GOLD, 4);
             player.spendWood(4);
             player.spendFood(4);
             player.spendFavor(4);
@@ -73,10 +73,10 @@ public class NextAgeController {
                 && gold >= 5) {
             this.age = new HeroicAge();
             player.setAge(this.age);
-            bank.deposit(ResourceType.WOOD, 5);
-            bank.deposit(ResourceType.FOOD, 5);
-            bank.deposit(ResourceType.FAVOR, 5);
-            bank.deposit(ResourceType.GOLD, 5);
+//            bank.deposit(ResourceType.WOOD, 5);
+//            bank.deposit(ResourceType.FOOD, 5);
+//            bank.deposit(ResourceType.FAVOR, 5);
+//            bank.deposit(ResourceType.GOLD, 5);
             player.spendWood(5);
             player.spendFood(5);
             player.spendFavor(5);
@@ -85,10 +85,10 @@ public class NextAgeController {
                 && gold >= 6) {
             this.age = new MythicAge();
             player.setAge(this.age);
-            bank.deposit(ResourceType.WOOD, 6);
-            bank.deposit(ResourceType.FOOD, 6);
-            bank.deposit(ResourceType.FAVOR, 6);
-            bank.deposit(ResourceType.GOLD, 6);
+//            bank.deposit(ResourceType.WOOD, 6);
+//            bank.deposit(ResourceType.FOOD, 6);
+//            bank.deposit(ResourceType.FAVOR, 6);
+//            bank.deposit(ResourceType.GOLD, 6);
             player.spendWood(6);
             player.spendFood(6);
             player.spendFavor(6);
