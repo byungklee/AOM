@@ -22,8 +22,11 @@ import com.anycomp.android.ageofmythology.model.culture.Greek;
 
 import com.anycomp.android.ageofmythology.model.resource.*;
 
+
+
 import com.anycomp.android.ageofmythology.model.unit.Unit;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
+
 
 import com.anycomp.android.ageofmythology.model.unit.specific.ChariotArcher;
 import com.anycomp.android.ageofmythology.model.unit.specific.Elephant;
@@ -34,8 +37,6 @@ import com.anycomp.android.ageofmythology.model.unit.specific.Jarl;
 import com.anycomp.android.ageofmythology.model.unit.specific.Spearman;
 import com.anycomp.android.ageofmythology.model.unit.specific.ThrowingAxeman;
 import com.anycomp.android.ageofmythology.model.unit.specific.Toxotes;
-
-
 
 import java.util.ArrayList;
 import java.util.Iterator;

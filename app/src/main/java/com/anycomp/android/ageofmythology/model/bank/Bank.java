@@ -108,6 +108,7 @@ public class Bank {
     public void depositVictory(int amount) { victory += amount; }
 
 
+
     public int getFavor() { return favor; }
     public int getFood() { return food; }
     public int getGold() { return gold; }
@@ -116,5 +117,6 @@ public class Bank {
     public int getVictoryCubeCount() {
         return victory;
     }
+
 
 }

@@ -69,6 +69,7 @@ public class BuildingSelectionController {
                 }
             }
         }
+        System.out.println("Verifying Available Fail");
         return false;
     }
 
@@ -97,6 +98,7 @@ public class BuildingSelectionController {
         //pickedBuilding.getCost();
 
         //special effect?
+        System.out.println("Verifying resource Fail");
 
         return false;
     }

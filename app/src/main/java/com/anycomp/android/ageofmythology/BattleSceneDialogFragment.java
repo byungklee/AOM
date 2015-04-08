@@ -187,6 +187,7 @@ public class BattleSceneDialogFragment extends DialogFragment {
         ac.winnerTakeVictoryCube();
         ac.moveAllTheUnitBack();
         ac.takeTrophy();
+        pc.nextRound();
     }
 
 
