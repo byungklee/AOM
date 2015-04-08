@@ -12,5 +12,6 @@ public class HeroicAge extends Age {
      public HeroicAge() {
         name = "Heroic";
         maxCardAvailable = 6;
+         setOrder(3);
     }
 }

@@ -16,11 +16,15 @@ import android.widget.GridView;
 public class RecruitSelectionDialogFragment extends DialogFragment {
 
     public static final String TAG = "Recruit Selection Dialog";
-
+    private PlayerController pc;
     private RecruitSelectionController controller;
 
     public void setController(RecruitSelectionController controller) {
         this.controller = controller;
+    }
+
+    public void setPlayerController(PlayerController pc) {
+        this.pc = pc;
     }
 
     public static RecruitSelectionDialogFragment newInstance(RecruitSelectionController rsc) {
@@ -48,14 +52,8 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
         // Create the AlertDialog object and return it
         final GridView gridview = (GridView) v.findViewById(R.id.gridview);
 
-        gridview.setAdapter(
-                new RecruitSelectionAdapter(
-                    getActivity().getApplicationContext(),
-                    controller.getMortalRecruitList(),
-                    controller.getMythicRecruitList(),
-                    controller.getHeroicRecruitList()
-                )
-        );
+        String cultureName = pc.getHumanPlayer().getCulture().getName();
+        gridview.setAdapter(new RecruitSelectionAdapter(getActivity(), controller.getRecruitListByCulture(cultureName)));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,4 +84,9 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
         return builder.create();
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        pc.nextRound();
+    }
 }

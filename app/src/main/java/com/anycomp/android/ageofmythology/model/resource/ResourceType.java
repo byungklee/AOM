@@ -4,5 +4,6 @@ public enum ResourceType {
 WOOD,
 GOLD,
 FOOD,
-FAVOR
+FAVOR,
+Victory
 }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    >
+
+    <ListView
+        android:id="@+id/attacker_card_list"
+        android:layout_width="0dp"
+        android:layout_weight = "0.25"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight = "0.5"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/attacker_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/attacker_card"
+            android:text="@string/sample"/>
+
+        <ImageView
+            android:id="@+id/attacker_card"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:maxHeight="400dp"
+            android:maxWidth="300dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/attacker_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/attacker_card"
+            android:layout_centerHorizontal="@+id/attacker_card"
+            android:text="@string/sample"/>
+
+
+        <TextView
+            android:id="@+id/defender_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/defender_card"
+            android:layout_alignParentRight="true"
+            android:text="@string/sample"/>
+        <ImageView
+            android:id="@+id/defender_card"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:maxHeight="400dp"
+            android:maxWidth="300dp"
+            />
+        <TextView
+            android:id="@+id/defender_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/defender_card"
+            android:layout_centerHorizontal="@+id/defender_card"
+            android:layout_alignParentRight="true"
+            android:text="@string/sample"/>
+
+        <Button
+            android:id="@+id/battle_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:text="Battle"/>
+        <Button
+            android:id="@+id/roll_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/battle_button"
+            android:text="Roll"/>
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/roll_button"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:text="Next"/>
+        <Button
+            android:id="@+id/retreat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/next_button"
+            android:layout_marginLeft="10dp"
+            android:text="Retreat"/>
+
+        </RelativeLayout>
+
+    <ListView
+        android:id="@+id/defender_card_list"
+        android:layout_width="0dp"
+        android:layout_weight = "0.25"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

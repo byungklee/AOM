@@ -35,12 +35,14 @@ public class PermanentAttackCard extends PermanentActionCard {
 //        pc.nextRound();
         AttackController ac = new AttackController(fm,pc,getValue());
         ac.startBattle();
+        setPlayed(true);
     }
 
     @Override
     public void aiPlay(FragmentManager fm, PlayerController pc) {
         AttackController ac = new AttackController(fm,pc,getValue());
         ac.startBattle();
+        setPlayed(true);
     }
 
 }

@@ -12,5 +12,6 @@ public class MythicAge extends Age {
     public MythicAge() {
         name = "Mythic";
         maxCardAvailable = 7;
+        setOrder(4);
     }
 }

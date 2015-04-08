@@ -125,15 +125,19 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         public void callback() {
             //turn on victory card view
             System.out.println("victory card callback!");
-            TurnManager tm =  mPlayerController.getTurnManager();
+            if(mPlayerController.isEndCondtionMet()) {
 
-            int index = tm.getCurrentPlayer();
-            for(int i=0;i<3;i++) {
-                System.out.println(((Player) mPlayerController.getPlayers().get(index)).getName());
-                index = (index + 1) %3;
-                //must do victory card work
+            } else {
+                TurnManager tm = mPlayerController.getTurnManager();
+
+                int index = tm.getCurrentPlayer();
+                for (int i = 0; i < 3; i++) {
+                    System.out.println(((Player) mPlayerController.getPlayers().get(index)).getName());
+                    index = (index + 1) % 3;
+                    //must do victory card work
+                }
+                openVictoryCardPopup(true);
             }
-            openVictoryCardPopup(true);
 
         }
     };

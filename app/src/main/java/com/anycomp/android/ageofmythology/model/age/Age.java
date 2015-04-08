@@ -11,7 +11,7 @@ package com.anycomp.android.ageofmythology.model.age;
 abstract public class Age {
     protected String name;
     protected int maxCardAvailable;
-
+    protected int order;
     /**
      * @return the name
      */
@@ -38,6 +38,13 @@ abstract public class Age {
      */
     public void setMaxCardAvailable(int maxCardAvailable) {
         this.maxCardAvailable = maxCardAvailable;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+    public int getOrder() {
+        return this.order;
     }
     
 }

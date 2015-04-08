@@ -18,6 +18,7 @@ public class TheWonderBuilding extends Building {
         setGoldCost(10);
         setFavorCost(10);
         setBuildingType(BuildingType.THE_WONDER);
+        setAge(4);
 
     }
 }

@@ -27,6 +27,15 @@ import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 import com.anycomp.android.ageofmythology.model.unit.MortalUnit;
 import com.anycomp.android.ageofmythology.model.unit.MortalUnitType;
 import com.anycomp.android.ageofmythology.model.unit.Unit;
+import com.anycomp.android.ageofmythology.model.unit.specific.ChariotArcher;
+import com.anycomp.android.ageofmythology.model.unit.specific.Elephant;
+import com.anycomp.android.ageofmythology.model.unit.specific.Hippokon;
+import com.anycomp.android.ageofmythology.model.unit.specific.Hoplite;
+import com.anycomp.android.ageofmythology.model.unit.specific.Huskarl;
+import com.anycomp.android.ageofmythology.model.unit.specific.Jarl;
+import com.anycomp.android.ageofmythology.model.unit.specific.Spearman;
+import com.anycomp.android.ageofmythology.model.unit.specific.ThrowingAxeman;
+import com.anycomp.android.ageofmythology.model.unit.specific.Toxotes;
 
 
 import java.util.ArrayList;
@@ -64,9 +73,9 @@ public class Player implements Observable {
 		favorCube = new FavorCube(0);
 		woodCube = new WoodCube(0);
 		foodCube = new FoodCube(0);
+        victoryCube = new VictoryCube(0);
         villagerController = new VillagerController();
         resourceObservers = new ArrayList<>();
-        victoryCube = new VictoryCube();
         hand = new CardDeck();
         randomCardPool = new CardDeck();
         // permanentCardPool = new Card[7];
@@ -85,30 +94,55 @@ public class Player implements Observable {
     /**
      * Initializes the players army according to their culture
      */
+//    private void initArmy() {
+//        if (culture instanceof Egyptian) {
+//            army.add(new MortalUnit(MortalUnitType.SPEARMAN));
+//            army.add(new MortalUnit(MortalUnitType.SPEARMAN));
+//            army.add(new MortalUnit(MortalUnitType.ELEPHANT));
+//            army.add(new MortalUnit(MortalUnitType.ELEPHANT));
+//            army.add(new MortalUnit(MortalUnitType.CHARIOT_ARCHER));
+//            army.add(new MortalUnit(MortalUnitType.CHARIOT_ARCHER));
+//        }
+//        else if (culture instanceof Greek) {
+//            army.add(new MortalUnit(MortalUnitType.TOXOTE));
+//            army.add(new MortalUnit(MortalUnitType.TOXOTE));
+//            army.add(new MortalUnit(MortalUnitType.HOPLITE));
+//            army.add(new MortalUnit(MortalUnitType.HOPLITE));
+//            army.add(new MortalUnit(MortalUnitType.HIPPOKON));
+//            army.add(new MortalUnit(MortalUnitType.HIPPOKON));
+//        }
+//        else if (culture instanceof Norse) {
+//            army.add(new MortalUnit(MortalUnitType.JARL));
+//            army.add(new MortalUnit(MortalUnitType.JARL));
+//            army.add(new MortalUnit(MortalUnitType.HUSKARL));
+//            army.add(new MortalUnit(MortalUnitType.HUSKARL));
+//            army.add(new MortalUnit(MortalUnitType.THROWING_AXEMAN));
+//            army.add(new MortalUnit(MortalUnitType.THROWING_AXEMAN));
+//        }
+//    }
     private void initArmy() {
-        if (culture instanceof Egyptian) {
-            army.add(new MortalUnit(MortalUnitType.SPEARMAN));
-            army.add(new MortalUnit(MortalUnitType.SPEARMAN));
-            army.add(new MortalUnit(MortalUnitType.ELEPHANT));
-            army.add(new MortalUnit(MortalUnitType.ELEPHANT));
-            army.add(new MortalUnit(MortalUnitType.CHARIOT_ARCHER));
-            army.add(new MortalUnit(MortalUnitType.CHARIOT_ARCHER));
+        if(culture instanceof Egyptian) {
+            army.add(new Spearman());
+            army.add(new Spearman());
+            army.add(new Elephant());
+            army.add(new Elephant());
+            army.add(new ChariotArcher());
         }
-        else if (culture instanceof Greek) {
-            army.add(new MortalUnit(MortalUnitType.TOXOTE));
-            army.add(new MortalUnit(MortalUnitType.TOXOTE));
-            army.add(new MortalUnit(MortalUnitType.HOPLITE));
-            army.add(new MortalUnit(MortalUnitType.HOPLITE));
-            army.add(new MortalUnit(MortalUnitType.HIPPOKON));
-            army.add(new MortalUnit(MortalUnitType.HIPPOKON));
+        else if(culture instanceof Greek) {
+            army.add(new Toxotes());
+            army.add(new Toxotes());
+            army.add(new Hoplite());
+            army.add(new Hoplite());
+            army.add(new Hippokon());
+            army.add(new Hippokon());
         }
-        else if (culture instanceof Norse) {
-            army.add(new MortalUnit(MortalUnitType.JARL));
-            army.add(new MortalUnit(MortalUnitType.JARL));
-            army.add(new MortalUnit(MortalUnitType.HUSKARL));
-            army.add(new MortalUnit(MortalUnitType.HUSKARL));
-            army.add(new MortalUnit(MortalUnitType.THROWING_AXEMAN));
-            army.add(new MortalUnit(MortalUnitType.THROWING_AXEMAN));
+        else {
+            army.add(new Jarl());
+            army.add(new Jarl());
+            army.add(new Huskarl());
+            army.add(new Huskarl());
+            army.add(new ThrowingAxeman());
+            army.add(new ThrowingAxeman());
         }
     }
         
@@ -260,6 +294,11 @@ public class Player implements Observable {
 
     public void takeVictory(int amount) {
         Bank.getInstance().withdrawVictory(amount);
+        victoryCube.setValue(victoryCube.getValue()+amount);
+        resourceUpdate();
+    }
+
+    public void takeVictoryFromCard(int amount) {
         victoryCube.setValue(victoryCube.getValue()+amount);
         resourceUpdate();
     }

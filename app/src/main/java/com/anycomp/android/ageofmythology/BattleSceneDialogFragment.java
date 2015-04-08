@@ -3,10 +3,17 @@ package com.anycomp.android.ageofmythology;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.Random;
 
 /**
  * Created by byung on 4/6/15.
@@ -16,7 +23,18 @@ public class BattleSceneDialogFragment extends DialogFragment {
     PlayerController pc;
     AttackController ac;
 
-    Button mRetreatButton;
+    ListView attackers;
+    ListView defenders;
+    ImageView attackCard;
+    ImageView defendCard;
+    Button battleButton;
+    Button nextButton;
+    Button retreatButton;
+    Button rollButton;
+    TextView attackerText;
+    TextView attackerScore;
+    TextView defenderText;
+    TextView defenderScore;
 
     public BattleSceneDialogFragment() {}
     public void setPlayerController(PlayerController pc) {
@@ -28,12 +46,135 @@ public class BattleSceneDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        //View v = inflater.inflate(R.layout.fragment_battle_scene, null);
-
+        View v = inflater.inflate(R.layout.fragment_battle_scene, null);
+        attackers=(ListView) v.findViewById(R.id.attacker_card_list);
+        defenders=(ListView) v.findViewById(R.id.defender_card_list);
+        attackCard=(ImageView) v.findViewById(R.id.attacker_card);
+        defendCard=(ImageView) v.findViewById(R.id.defender_card);
+        battleButton=(Button) v.findViewById(R.id.battle_button);
+        nextButton=(Button) v.findViewById(R.id.next_button);
+        rollButton=(Button) v.findViewById(R.id.roll_button);
+        retreatButton=(Button)v.findViewById(R.id.retreat_button);
+        attackerText=(TextView) v.findViewById(R.id.attacker_text);
+        attackerScore=(TextView) v.findViewById(R.id.attacker_score);
+        defenderText=(TextView)v.findViewById(R.id.defender_text);
+        defenderScore=(TextView) v.findViewById(R.id.defender_score);
         //TO DO:
 
-        return super.onCreateDialog(savedInstanceState);
+
+        BattleUnitAdapter attackersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getAttackers());
+        BattleUnitAdapter defendersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getDefenders());
+
+
+
+        attackers.setAdapter(attackersAdapter);
+        defenders.setAdapter(defendersAdapter);
+
+        if(ac.isHumanAttacking()) {
+            attackers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ac.setAttackerSelection(position);
+                    attackCard.setImageResource(ac.getAttackers().get(ac.getAttackerSelection()).getImagePath());
+
+                    ac.aiDefenderChooseRandomUnit();
+                    defendCard.setImageResource(R.drawable.cardback);
+                }
+            });
+        } else {
+            defenders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ac.setDefenderSelection(position);
+                    defendCard.setImageResource(ac.getDefenders().get(position).getImagePath());
+
+                    ac.aiAttackerChooseRandomUnit();
+                    attackCard.setImageResource(R.drawable.cardback);
+                }
+            });
+        }
+
+        battleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ac.battle();
+                if(ac.isHumanAttacking()) {
+                    defendCard.setImageResource(ac.getDefenders().get(ac.getDefenderSelection()).getImagePath());
+                } else {
+                    attackCard.setImageResource(ac.getAttackers().get(ac.getAttackerSelection()).getImagePath());
+                }
+                updateTextViewsForBattle();
+            }
+        });
+
+        rollButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ac.roll();
+                updateTextViewsForRoll();
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(ac.nextBattle()) {
+                clearTextAndImageViews();
+               } else {
+                    //game end
+                   BattleSceneDialogFragment.this.dismiss();
+                }
+
+
+            }
+        });
+
+        retreatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ac.retreat(0);
+                BattleSceneDialogFragment.this.dismiss();
+            }
+        });
+
+        builder.setView(v);
+        return builder.create();
+    }
+
+    public void updateTextViewsForBattle() {
+        attackerText.setText("Possible Roll: "+ac.getAttackerPossibleDice());
+        attackerScore.setText(""+ac.getAttackerScore());
+        defenderText.setText("Possible Roll: "+ac.getDefenderPossibleDice());
+        defenderScore.setText(""+ac.getDefenderScore());
+    }
+
+    public void updateTextViewsForRoll() {
+        attackerText.setText("Rolled: "+ac.getAttackerDice());
+        attackerScore.setText(""+ac.getAttackerScore());
+        defenderText.setText("Rolled: "+ac.getDefenderDice());
+        defenderScore.setText(""+ac.getDefenderScore());
+    }
+
+    public void clearTextAndImageViews() {
+        attackCard.setImageResource(0);
+        defendCard.setImageResource(0);
+        attackerText.setText("");
+        defenderText.setText("");
+
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        ac.winnerTakeVictoryCube();
+        moveAlltheUnitBack();
+        pc.nextRound();
+    }
+
+    public void moveAlltheUnitBack() {
+
     }
 }
