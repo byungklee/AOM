@@ -2,9 +2,11 @@ package com.anycomp.android.ageofmythology;
 
 import android.app.FragmentManager;
 
+import com.anycomp.android.ageofmythology.model.area.CityArea;
 import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.board.PlayerBoardFactory;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
+import com.anycomp.android.ageofmythology.model.card.VictoryCard;
 import com.anycomp.android.ageofmythology.model.card.VictoryCardDeck;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.player.Player;
@@ -12,8 +14,10 @@ import com.anycomp.android.ageofmythology.model.tile.Tile;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
 public class PlayerController {
@@ -285,6 +289,62 @@ public class PlayerController {
             return true;
         }
         return false;
+    }
+
+    public void gameEnd() {
+        VictoryCardDeck vcd = getVictoryCardDeck();
+///army buidling battle wonder
+        Iterator it = vcd.getVictoryCards().iterator();
+
+        Player p1 = players.get(0);
+        Player p2 = players.get(1);
+        Player p3 = players.get(2);
+        VictoryCard army = vcd.getVictoryCards().get(0);
+        VictoryCard building = vcd.getVictoryCards().get(1);
+        //VictoryCard battle = vcd.getVictoryCards().get(2);
+        //VictoryCard wonder = vcd.getVictoryCards().get(3);
+        List<Player> list = new ArrayList<>();
+        list.add(p1);
+        list.add(p2);
+        list.add(p3);
+        Collections.sort(list, new Comparator<Player>() {
+            @Override
+            public int compare(Player lhs, Player rhs) {
+                if(lhs.getArmy().size() >= rhs.getArmy().size()) {
+                    return -1;
+                }
+                return 1;
+            }
+        });
+        if(list.get(0).getArmy().size() != list.get(1).getArmy().size()) {
+            list.get(0).takeVictoryFromCard(army.getCubeSize());
+            army.getVictoryCubes().clear();
+        }
+
+        Collections.sort(list, new Comparator<Player>() {
+            @Override
+            public int compare(Player lhs, Player rhs) {
+                if(((CityArea)lhs.getPlayerBoard().getCityArea()).getNumberOfBuilding() >=
+                        ((CityArea)rhs.getPlayerBoard().getCityArea()).getNumberOfBuilding())
+                return -1;
+                return 1;
+            }
+        });
+
+        if(((CityArea)list.get(0).getPlayerBoard().getCityArea()).getNumberOfBuilding() !=
+                ((CityArea)list.get(1).getPlayerBoard().getCityArea()).getNumberOfBuilding()) {
+            list.get(0).takeVictoryFromCard(building.getCubeSize());
+            building.getVictoryCubes().clear();
+        }
+
+
+
+
+//        VictoryCard vc = (VictoryCard) it.next();
+  ///      int numberOfVictoryCard = vc.getVictoryCubes().size();
+
+
+
     }
 
 }

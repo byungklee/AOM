@@ -1,7 +1,5 @@
 package com.anycomp.android.ageofmythology.model.unit;
 
-import com.anycomp.android.ageofmythology.model.culture.Culture;
-
 public abstract class Unit {
 
 	private String name;
@@ -30,8 +28,6 @@ public abstract class Unit {
     private String specialEffect;
 
     private int dice;
-
-
 
     public Unit() { }
 
@@ -231,4 +227,5 @@ public abstract class Unit {
 
         return sum;
     }
+
 }

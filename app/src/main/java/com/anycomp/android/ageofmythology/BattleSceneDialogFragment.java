@@ -64,6 +64,10 @@ public class BattleSceneDialogFragment extends DialogFragment {
         defenderScore=(TextView) v.findViewById(R.id.defender_score);
         //TO DO:
 
+        battleButton.setEnabled(false);
+        rollButton.setEnabled(false);
+        nextButton.setEnabled(false);
+
 
         BattleUnitAdapter attackersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getAttackers());
         BattleUnitAdapter defendersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getDefenders());
@@ -82,6 +86,7 @@ public class BattleSceneDialogFragment extends DialogFragment {
 
                     ac.aiDefenderChooseRandomUnit();
                     defendCard.setImageResource(R.drawable.cardback);
+                    battleButton.setEnabled(true);
                 }
             });
         } else {
@@ -93,6 +98,7 @@ public class BattleSceneDialogFragment extends DialogFragment {
 
                     ac.aiAttackerChooseRandomUnit();
                     attackCard.setImageResource(R.drawable.cardback);
+                    battleButton.setEnabled(true);
                 }
             });
         }
@@ -106,6 +112,10 @@ public class BattleSceneDialogFragment extends DialogFragment {
                 } else {
                     attackCard.setImageResource(ac.getAttackers().get(ac.getAttackerSelection()).getImagePath());
                 }
+                battleButton.setEnabled(false);
+                rollButton.setEnabled(true);
+                attackers.setEnabled(false);
+                defenders.setEnabled(false);
                 updateTextViewsForBattle();
             }
         });
@@ -113,7 +123,10 @@ public class BattleSceneDialogFragment extends DialogFragment {
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ac.roll();
+                if(ac.roll()) {
+                    nextButton.setEnabled(true);
+                    rollButton.setEnabled(false);
+                }
                 updateTextViewsForRoll();
             }
         });
@@ -127,7 +140,9 @@ public class BattleSceneDialogFragment extends DialogFragment {
                     //game end
                    BattleSceneDialogFragment.this.dismiss();
                 }
-
+                nextButton.setEnabled(false);
+                attackers.setEnabled(true);
+                defenders.setEnabled(true);
 
             }
         });
@@ -170,11 +185,9 @@ public class BattleSceneDialogFragment extends DialogFragment {
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
         ac.winnerTakeVictoryCube();
-        moveAlltheUnitBack();
-        pc.nextRound();
+        ac.moveAllTheUnitBack();
+        ac.takeTrophy();
     }
 
-    public void moveAlltheUnitBack() {
 
-    }
 }

@@ -2,11 +2,13 @@ package com.anycomp.android.ageofmythology;
 
 import android.app.FragmentManager;
 
+import com.anycomp.android.ageofmythology.model.area.AreaType;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.unit.Unit;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -14,14 +16,19 @@ import java.util.Random;
  */
 public class AttackController {
 
-    FragmentManager fm;
-    PlayerController pc;
+    private FragmentManager fm;
+    private PlayerController pc;
+    private int attackPlayerIndex;
     private int opponentPlayerIndex;
-    ArrayList<Unit> attackers;
-    ArrayList<Unit> defenders;
+    private ArrayList<Unit> attackers;
+    private ArrayList<Unit> defenders;
     private int numberOfUnitsAllowed;
-    int counter = 0;
-    boolean isHumanAttacking;
+    private int counter = 0;
+    private boolean isHumanAttacking;
+    private int buildingEffect = 0;
+    private AreaType attackArea;
+    private Random random = new Random();
+
     //requires turn manager.
 
     private int attackerSelection;
@@ -51,6 +58,8 @@ public class AttackController {
                 opponentPlayerIndex = random.nextInt(3);
             }
 
+
+
             //select units by ai
             aiPickBattleUnitCard(false);
 
@@ -60,8 +69,44 @@ public class AttackController {
             } else {
                 //AI VS AI
                 aiDefenderPickBattleUnitCard();
-            }
 
+               //fight start
+               //for ai get sum of all attack card; whoever has biggest wins, if tie, then attacker wins.
+                int attackSum=0;
+                int defendSum=0;
+                Iterator it = attackers.iterator();
+                while(it.hasNext()) {
+                    Unit u = (Unit) it.next();
+                    attackSum += u.getDice();
+                }
+                it = defenders.iterator();
+                while(it.hasNext()) {
+                    Unit u = (Unit) it.next();
+                    defendSum += u.getDice();
+                }
+                defendSum = defendSum + buildingEffect*defenders.size();
+                if(attackSum >= defendSum) {
+                    isAttackerWin=true;
+                    defenders.clear();
+
+                    //lose half of the unit
+                    int temp = attackers.size();
+                    while(temp-- > attackers.size()/2) {
+                        attackers.remove(0);
+                    }
+                } else {
+                    isAttackerWin=false;
+                    attackers.clear();
+                    //lose half of the unit
+                    int temp = defenders.size();
+                    while(temp-- > defenders.size()/2) {
+                        defenders.remove(0);
+                    }
+                }
+                moveAllTheUnitBack();
+                winnerTakeVictoryCube();
+                takeResourceTile();
+            }
         }
     }
 
@@ -72,7 +117,8 @@ public class AttackController {
             @Override
             public void callback(int i) {
                 opponentPlayerIndex = i;
-                openPickBattleUnitDialog(true);
+                //openPickBattleUnitDialog(true);
+                openAttackAreaDialog();
                 isHumanAttacking = true;
             }
         });
@@ -96,15 +142,44 @@ public class AttackController {
     }
 
     public void openBattleSceneDialog() {
+        setup();
         BattleSceneDialogFragment bsdf = new BattleSceneDialogFragment();
         bsdf.setPlayerController(pc);
         bsdf.setAttackController(this);
         bsdf.show(fm,"Battle Scene Dialog");
     }
 
+    public void setup() {
+        //building effect
+        Player attacker = (Player) pc.getPlayers().get(attackPlayerIndex);
+        Player defender = (Player) pc.getPlayers().get(opponentPlayerIndex);
+        if(attacker.hasBuilding(BuildingType.SIEGE_ENGINE_WORKSHOP)) {
+            setBuildingEffect(0);
+            return;
+        }
+
+        if(attackArea == AreaType.CITY) {
+            if(defender.hasBuilding(BuildingType.WALL)) {
+                setBuildingEffect(2);
+            } else
+                setBuildingEffect(0);
+        } else if(attackArea == AreaType.PRODUCTION) {
+            if(defender.hasBuilding(BuildingType.TOWER)) {
+                setBuildingEffect(2);
+            } else
+                setBuildingEffect(0);
+        }
+    }
+
+    public void openAttackAreaDialog() {
+        PickAttackAreaDialogFragment paadf = new PickAttackAreaDialogFragment();
+        paadf.setAttackController(this);
+        paadf.show(fm, "Attack Area");
+    }
 
     public boolean pickBattleUnitCard(boolean isHumanAttacking, int index) {
         Player p = (Player) pc.getPlayers().get(0);
+
         int maxAllowed = p.hasBuilding(BuildingType.ARMORY) ? numberOfUnitsAllowed + 1: numberOfUnitsAllowed;
         if(counter >= maxAllowed) {
             return false;
@@ -137,9 +212,11 @@ public class AttackController {
             Player p = (Player) pc.getCurrentPlayer();
             ArrayList<Unit> unit = p.getArmy();
             int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
-            Random random = new Random();
 
             for(int i=0;i<maxAllowedByAI;i++) {
+                if(unit.size() == 0) {
+                    break;
+                }
                 attackers.add(unit.remove(random.nextInt(unit.size())));
             }
         }
@@ -177,11 +254,11 @@ public class AttackController {
         //load unit
         Unit au = attackers.get(attackerSelection);
         Unit du = defenders.get(defenderSelection);
-
+        int negateBuildingEffect = au.isDoesNegateWallAndTower() ? 2:0;
         //calculate
 //        int additionalAttackerDice = au.getAdditionalDice(du);
 //        int additionalDefenderDice = du.getAdditionalDice(au);
-        setAttackerPossibleDice(au.getAdditionalDice(du) + au.getDice());
+        setAttackerPossibleDice(au.getAdditionalDice(du) + au.getDice()-negateBuildingEffect);
         setDefenderPossibleDice(du.getAdditionalDice(au) + du.getDice());
     }
 
@@ -214,7 +291,6 @@ public class AttackController {
         return defenderScore;
     }
 
-
     public void resetInfo() {
 
         attackerDice=0;
@@ -229,18 +305,16 @@ public class AttackController {
             attackers.remove(attackerSelection);
         }
         if(attackers.size() == 0) {
-            isAttackerWin = true;
+            isAttackerWin = false;
             return false;
         }else if(defenders.size() == 0) {
-            isAttackerWin = false;
+            isAttackerWin = true;
             return false;
         }
         //remove
         resetInfo();
         return true;
     }
-
-
 
     public void retreat(int playerIndex) {
         //playerIndex has retreated.
@@ -271,7 +345,7 @@ public class AttackController {
     public void setAttackerSelection(int attackerSelection) {
         this.attackerSelection = attackerSelection;
     }
-    Random random = new Random();
+
     public void aiDefenderChooseRandomUnit() {
 
         int index = random.nextInt(getDefenders().size());
@@ -310,5 +384,74 @@ public class AttackController {
         }
         p.takeVictoryFromCard(value);
         pc.getVictoryCardDeck().getVictoryCards().get(2).getVictoryCubes().clear();
+    }
+
+    public void moveAllTheUnitBack() {
+        if(!attackers.isEmpty()) {
+            Iterator it = attackers.iterator();
+            while(it.hasNext()) {
+                Unit u =  (Unit) it.next();
+                pc.getCurrentPlayer().getArmy().add(u);
+            }
+            attackers.clear();
+        }
+        if(!defenders.isEmpty()) {
+            Iterator it = defenders.iterator();
+            while(it.hasNext()) {
+                Unit u =  (Unit) it.next();
+                ((Player)pc.getPlayers().get(opponentPlayerIndex)).getArmy().add(u);
+            }
+            defenders.clear();
+        }
+    }
+
+    public void takeTrophy() {
+        //if(attackArea)
+        if(attackArea == AreaType.HOLDING) {
+            takeResources();
+        } else if(attackArea == AreaType.PRODUCTION) {
+            takeResourceTile();
+        } else {
+            destroyBuilding();
+        }
+    }
+
+    public void takeResources() {
+        //TO DO:
+        System.out.println("To do: take  5 resource");
+    }
+
+    public void takeResourceTile() {
+        //TO DO:
+        System.out.println("To do: take resource tile");
+    }
+
+    public void destroyBuilding() {
+        //TO DO:
+        System.out.println("To do: destroy building");
+    }
+
+    public AreaType getAttackArea() {
+        return attackArea;
+    }
+
+    public void setAttackArea(AreaType attackArea) {
+        this.attackArea = attackArea;
+    }
+
+    public int getBuildingEffect() {
+        return buildingEffect;
+    }
+
+    public void setBuildingEffect(int buildingEffect) {
+        this.buildingEffect = buildingEffect;
+    }
+
+    public int getAttackPlayerIndex() {
+        return attackPlayerIndex;
+    }
+
+    public void setAttackPlayerIndex(int attackPlayerIndex) {
+        this.attackPlayerIndex = attackPlayerIndex;
     }
 }

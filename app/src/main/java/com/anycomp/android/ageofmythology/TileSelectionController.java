@@ -26,41 +26,25 @@ public class TileSelectionController {
         playerInfo.put("AI1", 0);
         playerInfo.put("AI2", 0);
         tileSelectionDeck = TileManager.getInstance().getTileSelectionDeck();
-//        tileInfo = new HashMap<Integer, Tile>();
-//        for(int i=0;i<al.size();i++) {
-//            tileInfo.put(i,al.get(i));
-//        }
+
         if(getPlayerController().getCurrentPlayer().getName().contains("AI")) {
             aiPickTile();
-           // nextPlayer();
         }
     }
 
     public void execute(int pick) {
-//        if(pick)
-//        Player p = pc.getCurrentPlayer();
-//        String currentPlayerName = p.getName();
-//        playerInfo.get(currentPlayerName);
         if(tileSelectionDeck.get(pick) == null) {
             return;
         }
 
         String playerName = pc.getCurrentPlayer().getName();
 
-        Tile t = tileSelectionDeck.get(pick);
-        //		System.out.println("Clicked Geo " + geo.getName() + " " + t.getTileType() + t.getImagePath() );
-        //t.print();
         // TODO Auto-generated method stub
         //		String playerName = main.getCurrentPlayer().getName();
         System.out.println("MAX_SIZE: " + maxPick);
         if (playerInfo.get(playerName) > maxPick -1) {
-
             playerInfo.put(playerName, playerInfo.get(playerName) + 1);
             if (isAllResourceTilePlaced()) {
-                //goToNextState(controller);
-                // controller.setCurrentPlayer();
-                //turnOff();
-
                 return;
             }
             nextPlayer();
@@ -189,9 +173,6 @@ public class TileSelectionController {
 
     private void aiPickTile() {
         System.out.println(pc.getCurrentPlayer().getName() + " is playing");
-        //TileType tileType = pc.getCurrentPlayer().getPlayerBoard().getProductionArea().getFirstAvailableTile().getTileType();
-        //Tile tile = TileManager.getInstance().getFirstAvailableTileByTileType(tileType);
-        //ArrayList al = TileManager.getInstance().getTileSelectionDeck();
         boolean isExecuted = false;
         for(int i=0; i<tileSelectionDeck.size();i++ ) {
             if(isTileAvailable(tileSelectionDeck.get(i))) {
@@ -203,13 +184,6 @@ public class TileSelectionController {
         if(!isExecuted) {
             pass();
         }
-
-//        if(tile == null) {
-//            pass();
-//        } else {
-//            execute(tileSelectionDeck.indexOf(tile));
-//        }
-        //System.out.println("AI Chooses");
     }
 
     public void nextRound() {

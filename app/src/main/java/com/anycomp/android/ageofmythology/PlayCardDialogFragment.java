@@ -25,7 +25,6 @@ public class PlayCardDialogFragment extends DialogFragment {
         // Required empty public constructor
     }
 
-
     public void setPlayer(Player human) {
         this.human = human;
     }

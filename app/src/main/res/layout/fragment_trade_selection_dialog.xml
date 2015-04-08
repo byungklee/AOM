@@ -1,0 +1,114 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.anycomp.android.ageofmythology.TradeSelectionDialogFragment"
+    android:orientation="vertical"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/favor_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_favor"/>
+        <ImageView
+            android:id="@+id/food_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_food"/>
+        <ImageView
+            android:id="@+id/gold_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_gold"/>
+        <ImageView
+            android:id="@+id/wood_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_wood"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bank_resources" />
+
+        <Spinner
+            android:id="@+id/bank_favor_spinner"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+        <Spinner
+            android:id="@+id/bank_food_spinner"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+        <Spinner
+            android:id="@+id/bank_gold_spinner"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+        <Spinner
+            android:id="@+id/bank_wood_spinner"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_resources" />
+
+        <Spinner
+            android:id="@+id/player_resource_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+        <Spinner
+            android:id="@+id/player_number_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+        <TextView
+            android:id="@+id/transaction_cost_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transaction_cost"/>
+        <Spinner
+            android:id="@+id/transaction_cost_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+
+    </LinearLayout>
+
+</LinearLayout>

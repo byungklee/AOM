@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/home/moat/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/moat/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/classes-fca2eed360a4c294ca59139b9b6a4305a1a88189.jar" />
-    </item>
-    <item
-        jar="/home/moat/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="/Users/mike/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/home/moat/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/classes-2a02d5fba40e38bba0d527ec12a8a078beae4652.jar" />
+        <dex dex="/Users/mike/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/classes-9d79dbd1364aba58febfcc5d9f55d5fc8cc156cd.jar" />
     </item>
     <item
-        jar="/home/moat/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/moat/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-9ed6a121d05bf7c84047e932743d56bd0e08c5a7.jar" />
-    </item>
-    <item
-        jar="/home/moat/android-sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="/Users/mike/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/home/moat/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-b6b3185cd4d34d5453afb0eb169fa114e2de6494.jar" />
+        <dex dex="/Users/mike/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-5317ee55a34a8bfa76abe91e39a80d14d4cecf03.jar" />
+    </item>
+    <item
+        jar="/Users/mike/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/mike/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-a1bb5d7bad82b79b75c32dbd87166eb63bb8d527.jar" />
+    </item>
+    <item
+        jar="/Users/mike/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/mike/AndroidStudioProjects/age-of-mythology-android/app/build/intermediates/pre-dexed/debug/classes-b51a114d413e3c3669ce903cfe3a76b66df15f26.jar" />
     </item>
 
 </items>
