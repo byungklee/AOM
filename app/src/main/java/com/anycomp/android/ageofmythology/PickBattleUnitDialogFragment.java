@@ -45,14 +45,14 @@ public class PickBattleUnitDialogFragment extends DialogFragment {
         super.onCreateDialog(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_pick_battle_unit, null);
-        title = (TextView) v.findViewById(R.id.title);
+        //View v = inflater.inflate(R.layout.fragment_pick_battle_unit, null);
+        //title = (TextView) v.findViewById(R.id.title);
         if(isHumanAttacking) {
             title.setText("Pick units for your attack");
         } else
             title.setText("Pick units for your defense");
 
-        gridview = (GridView)v.findViewById(R.id.gridview);
+        //gridview = (GridView)v.findViewById(R.id.gridview);
 
 
         //TO DO: load available units
@@ -63,7 +63,7 @@ public class PickBattleUnitDialogFragment extends DialogFragment {
 
 
 
-        builder.setView(v);
+        //builder.setView(v);
         return builder.create();
     }
 }

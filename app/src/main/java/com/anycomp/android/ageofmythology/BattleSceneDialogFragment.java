@@ -30,7 +30,7 @@ public class BattleSceneDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_battle_scene, null);
+        //View v = inflater.inflate(R.layout.fragment_battle_scene, null);
 
         //TO DO:
 
