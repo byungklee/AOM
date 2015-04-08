@@ -82,14 +82,6 @@ public class PickBattleUnitDialogFragment extends DialogFragment {
             }
         });
 
-        //TO DO: load available units
-        //       onClickListner(take out unit and put it on selectUnit data structure);
-        //        place it in attackController
-
-        //pc.getCurrentPlayer().getunit etc
-
-
-
         builder.setView(v);
         return builder.create();
     }

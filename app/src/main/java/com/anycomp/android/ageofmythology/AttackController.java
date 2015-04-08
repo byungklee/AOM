@@ -106,6 +106,7 @@ public class AttackController {
                 moveAllTheUnitBack();
                 winnerTakeVictoryCube();
                 takeResourceTile();
+                pc.nextRound();
             }
         }
     }
@@ -231,6 +232,9 @@ public class AttackController {
             Random random = new Random();
 
             for(int i=0;i<maxAllowedByAI;i++) {
+                if(unit.size() == 0) {
+                    return;
+                }
                 defenders.add(unit.remove(random.nextInt(unit.size())));
             }
     }
