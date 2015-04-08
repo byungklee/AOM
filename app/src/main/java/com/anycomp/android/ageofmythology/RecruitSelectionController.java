@@ -224,7 +224,6 @@ public class RecruitSelectionController {
             return false;
         }
 
-
         // check that the player has sufficient resources
         if ( chosen != null &&
              player.getFavorCube().getValue() >= chosen.getFavorCost() &&
@@ -242,7 +241,6 @@ public class RecruitSelectionController {
             // add the unit to the player's army
             player.getArmy().add(chosen);
 
-
             for (Unit unit : player.getArmy()) {
                 Log.d("RecruitCard", unit.toString());
             }
@@ -255,11 +253,6 @@ public class RecruitSelectionController {
     }
 
     public ArrayList<Unit> getRecruitListByCulture(String culture) {
-//        System.out.println("BKDEBUG: " + culture);
-//        if(cultureUnitMap.get(culture) == null) {
-//            System.out.println("why the fuck is it null?");
-//        }
-
         return cultureUnitMap.get(culture);
     }
 }
