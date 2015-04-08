@@ -65,6 +65,8 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             mpf.changeBoard(mPlayerController.getPlayerByCulture("Egypt"));
         } else if(id == R.id.victory_card)  {
             openVictoryCardPopup(false);
+        } else if(id == R.id.next_round) {
+            mPlayerController.nextRound();
         }
 
         return super.onOptionsItemSelected(item);

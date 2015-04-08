@@ -31,10 +31,10 @@ public class SelectOpponentDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        /*View v = inflater.inflate(R.layout.fragment_select_opponent,null);
+        View v = inflater.inflate(R.layout.fragment_select_opponent,null);
         opponents = new Button[2];
         opponents[0] = (Button) v.findViewById(R.id.button_opponent_1);
-        opponents[1] = (Button) v.findViewById(R.id.button_opponent_2);*/
+        opponents[1] = (Button) v.findViewById(R.id.button_opponent_2);
         Iterator it = pc.getPlayers().iterator();
         int counter = 0;
         while(it.hasNext()) {
@@ -63,7 +63,7 @@ public class SelectOpponentDialogFragment extends DialogFragment {
             });
         }
 
-        //builder.setView(v);
+        builder.setView(v);
         return builder.create();
     }
 }

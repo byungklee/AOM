@@ -37,7 +37,7 @@ public class PlayerController {
 			System.out.println("cultureMap is null");
 		}
 		players = new ArrayList<Player>();
-		players.add(new Player(name, 
+		players.add(new Player(name,
 				(Culture) cultureMap.get(userChosen),
 				PlayerBoardFactory.newInstance((Culture) cultureMap.get(userChosen))));
 
@@ -130,7 +130,7 @@ public class PlayerController {
         setCurrentPlayer(turnManager.nextRoundPlayer());
         System.out.println("next " + turnManager.getRound() + " " + turnManager.getCounter());
         if(turnManager.getRound() == 1 && turnManager.getCounter() == 0) {
-
+            
         } else {
             //System.out.println("TEMPBK");
             if(players.get(currentPlayer).getName().contains("AI")) {
