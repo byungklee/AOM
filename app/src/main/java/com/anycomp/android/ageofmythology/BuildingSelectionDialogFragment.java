@@ -87,8 +87,13 @@ public class BuildingSelectionDialogFragment extends DialogFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(c.verifyAvailability(position) && c.verifyResource(position) && counter < maxAllowedPick) {
                     c.addBuilding(position);
-
                     counter++;
+                    new AlertDialog.Builder(getActivity()).setMessage("Building is added").setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).create().show();
                 } else {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

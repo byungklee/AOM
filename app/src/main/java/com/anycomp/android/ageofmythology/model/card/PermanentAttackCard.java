@@ -33,18 +33,22 @@ public class PermanentAttackCard extends PermanentActionCard {
         //finish
 
 //        pc.nextRound();
-        AttackController ac = new AttackController(fm,pc,getValue());
-        ac.setAttackPlayerIndex(pc.getTurnManager().getCurrentPlayer());
-        ac.startBattle();
-        setPlayed(true);
+        if(!isPlayed()) {
+            setPlayed(true);
+            AttackController ac = new AttackController(fm, pc, getValue());
+            ac.setAttackPlayerIndex(pc.getTurnManager().getCurrentPlayer());
+            ac.startBattle();
+        }
     }
 
     @Override
     public void aiPlay(FragmentManager fm, PlayerController pc) {
-        AttackController ac = new AttackController(fm,pc,getValue());
-        ac.setAttackPlayerIndex(pc.getTurnManager().getCurrentPlayer());
-        ac.startBattle();
-        setPlayed(true);
+        if(!isPlayed()) {
+            setPlayed(true);
+            AttackController ac = new AttackController(fm, pc, getValue());
+            ac.setAttackPlayerIndex(pc.getTurnManager().getCurrentPlayer());
+            ac.startBattle();
+        }
     }
 
 }

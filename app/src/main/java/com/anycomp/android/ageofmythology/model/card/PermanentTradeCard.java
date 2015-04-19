@@ -22,7 +22,10 @@ public class PermanentTradeCard extends PermanentActionCard {
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
         Log.i(TAG, "called play()");
-        openTradePopup(fm, pc);
+        if(!isPlayed()) {
+            setPlayed(true);
+            openTradePopup(fm, pc);
+        }
     }
 
     public void openTradePopup(FragmentManager fm, PlayerController pc) {

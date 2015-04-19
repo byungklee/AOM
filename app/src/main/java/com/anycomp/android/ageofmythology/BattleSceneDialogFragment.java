@@ -138,7 +138,8 @@ public class BattleSceneDialogFragment extends DialogFragment {
                 clearTextAndImageViews();
                } else {
                     //game end
-                   BattleSceneDialogFragment.this.dismiss();
+                   gameEndDialog();
+
                 }
                 nextButton.setEnabled(false);
                 attackers.setEnabled(true);
@@ -151,7 +152,9 @@ public class BattleSceneDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 ac.retreat(0);
-                BattleSceneDialogFragment.this.dismiss();
+             //   BattleSceneDialogFragment.this.dismiss();
+                gameEndDialog();
+
             }
         });
 
@@ -171,6 +174,23 @@ public class BattleSceneDialogFragment extends DialogFragment {
         attackerScore.setText(""+ac.getAttackerScore());
         defenderText.setText("Rolled: "+ac.getDefenderDice());
         defenderScore.setText(""+ac.getDefenderScore());
+    }
+
+    public void gameEndDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        if(ac.isAttackerWin) {
+            builder.setMessage("Attacker won");
+        } else {
+            builder.setMessage("Defender won");
+        }
+
+        builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+                BattleSceneDialogFragment.this.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     public void clearTextAndImageViews() {

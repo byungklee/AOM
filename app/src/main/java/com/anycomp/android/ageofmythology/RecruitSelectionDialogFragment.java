@@ -60,16 +60,25 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // adds the recruit to the player's army if they have sufficient resources
                 // otherwise, it returns false and displays the alert message.
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 if (!controller.addRecruit(position)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
                     builder.setMessage("Not available for you.")
                         .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                             }
                         });
-                    AlertDialog ad = builder.create();
-                    ad.show();
+                    builder.create().show();
+
+                } else {
+                    builder.setMessage("Purchased.")
+                            .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            });
+                    builder.create().show();
                 }
             }
         });

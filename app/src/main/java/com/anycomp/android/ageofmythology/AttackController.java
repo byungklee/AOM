@@ -335,7 +335,6 @@ public class AttackController {
 
     }
 
-
     public int getDefenderSelection() {
         return defenderSelection;
     }

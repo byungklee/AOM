@@ -67,6 +67,8 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             openVictoryCardPopup(false);
         } else if(id == R.id.next_round) {
             mPlayerController.nextRound();
+        } else if(id == R.id.unit_list) {
+            openUnitListDialog();
         }
 
         return super.onOptionsItemSelected(item);
@@ -174,6 +176,12 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         vcdf.setOnVictoryCardDialogEnd(onVictoryCardEnd);
         vcdf.setStartingPlayerIndex(mPlayerController.getTurnManager().getCurrentPlayer());
         vcdf.show(getFragmentManager(), "Victory Card Dialog");
+    }
+
+    public void openUnitListDialog() {
+        CurrentUnitListDialogFragment culdf = new CurrentUnitListDialogFragment();
+        culdf.setPlayerController(mPlayerController);
+        culdf.show(getFragmentManager(),"Unit List");
     }
 
     @Override
