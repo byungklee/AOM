@@ -89,6 +89,7 @@ public class PlayerController {
 
         setCurrentPlayer(turnManager.getCurrentPlayer());
         resetCardDeck();
+
 //        if(players.get(currentPlayer).getName().contains("AI")) {
 //            //AI work
 //            aiWork();
@@ -100,6 +101,7 @@ public class PlayerController {
         while(it.hasNext()) {
             Player p = (Player) it.next();
             p.resetHand();
+
         }
     }
 
@@ -132,10 +134,8 @@ public class PlayerController {
         if(turnManager.getRound() == 1 && turnManager.getCounter() == 0) {
             
         } else {
-            //System.out.println("TEMPBK");
             if(players.get(currentPlayer).getName().contains("AI")) {
                 //AI work
-              //  System.out.println("TEMPBK AI");
                 aiWork();
             }
         }

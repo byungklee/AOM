@@ -21,7 +21,6 @@ public class PermanentRecruitCard extends PermanentActionCard {
         setValue(2);
     }
 
-
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
         Log.i(TAG, "called play()");
@@ -39,8 +38,6 @@ public class PermanentRecruitCard extends PermanentActionCard {
     private void openRecruitPopup(FragmentManager fm, PlayerController pc) {
         RecruitSelectionController rsc = RecruitSelectionController.getInstance(pc);
         rsc.setRecruitCard(this);
-
-
         RecruitSelectionDialogFragment rsdf = RecruitSelectionDialogFragment.newInstance(rsc);
         rsdf.setPlayerController(pc);
         rsdf.show(fm, TAG);

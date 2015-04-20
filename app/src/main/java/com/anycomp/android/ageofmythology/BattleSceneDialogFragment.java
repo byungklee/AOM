@@ -210,5 +210,12 @@ public class BattleSceneDialogFragment extends DialogFragment {
         pc.nextRound();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(ac.decideWinner()) {
 
+            gameEndDialog();
+        }
+    }
 }

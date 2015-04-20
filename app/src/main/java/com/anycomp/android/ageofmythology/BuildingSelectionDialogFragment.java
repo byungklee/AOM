@@ -105,8 +105,6 @@ public class BuildingSelectionDialogFragment extends DialogFragment {
                             });
                     AlertDialog ad = builder.create();
                     ad.show();
-
-
                 }
             }
         });

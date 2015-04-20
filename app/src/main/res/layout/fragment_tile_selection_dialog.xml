@@ -5,6 +5,7 @@
     tools:context="com.anycomp.android.ageofmythology.TileSelectionDialogFragment"
     android:orientation="vertical">
     <!-- TODO: Update blank fragment layout -->
+
     <GridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"

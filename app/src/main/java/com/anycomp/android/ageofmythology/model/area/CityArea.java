@@ -67,6 +67,7 @@ public class CityArea extends Area {
         bt.setBuilding(null);
 
         numberOfBuilding--;
+        notifyObservers();
     }
 
     public void incrementNumberOfHouse() {

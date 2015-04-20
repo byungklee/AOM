@@ -4,6 +4,9 @@ import android.app.FragmentManager;
 
 import com.anycomp.android.ageofmythology.model.area.AreaType;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
+import com.anycomp.android.ageofmythology.model.card.Card;
+import com.anycomp.android.ageofmythology.model.card.God;
+import com.anycomp.android.ageofmythology.model.card.RandomCard;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.unit.Unit;
 
@@ -28,7 +31,7 @@ public class AttackController {
     private int buildingEffect = 0;
     private AreaType attackArea;
     private Random random = new Random();
-
+    private Card mAttackCard;
     //requires turn manager.
 
     private int attackerSelection;
@@ -37,7 +40,8 @@ public class AttackController {
     public boolean isHumanAttacking() {
         return isHumanAttacking;
     }
-    public AttackController(FragmentManager fm, PlayerController pc, int numberOfUnitsAllowed) {
+    public AttackController(Card card, FragmentManager fm, PlayerController pc, int numberOfUnitsAllowed) {
+        mAttackCard = card;
         this.fm = fm;
         this.pc = pc;
         attackers = new ArrayList<>();
@@ -57,8 +61,6 @@ public class AttackController {
             while(pc.getCurrentPlayer() == pc.getPlayers().get(opponentPlayerIndex)) {
                 opponentPlayerIndex = random.nextInt(3);
             }
-
-
 
             //select units by ai
             aiPickBattleUnitCard(false);
@@ -182,6 +184,9 @@ public class AttackController {
         Player p = (Player) pc.getPlayers().get(0);
 
         int maxAllowed = p.hasBuilding(BuildingType.ARMORY) ? numberOfUnitsAllowed + 1: numberOfUnitsAllowed;
+        if(!isHumanAttacking && mAttackCard instanceof God) {
+            maxAllowed -= 2;
+        }
         if(counter >= maxAllowed) {
             return false;
         }
@@ -202,6 +207,9 @@ public class AttackController {
             Player p = (Player) pc.getPlayers().get(opponentPlayerIndex);
             ArrayList<Unit> unit = p.getArmy();
             int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
+            if(mAttackCard instanceof God) {
+                maxAllowedByAI -= 2;
+            }
             Random random = new Random();
 
             for(int i=0;i<maxAllowedByAI;i++) {
@@ -229,6 +237,9 @@ public class AttackController {
             Player p = (Player) pc.getPlayers().get(opponentPlayerIndex);
             ArrayList<Unit> unit = p.getArmy();
             int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
+            if(mAttackCard instanceof God) {
+                maxAllowedByAI -= 2;
+            }
             Random random = new Random();
             if(unit.size() == 0) {
                 return;
@@ -320,6 +331,17 @@ public class AttackController {
         //remove
         resetInfo();
         return true;
+    }
+
+    public boolean decideWinner() {
+        if(attackers.size() == 0) {
+            isAttackerWin = false;
+            return true;
+        }else if(defenders.size() == 0) {
+            isAttackerWin = true;
+            return true;
+        }
+        return false;
     }
 
     public void retreat(int playerIndex) {

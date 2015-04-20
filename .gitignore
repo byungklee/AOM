@@ -17,3 +17,6 @@ app/build.gradle
 local.properties
 build/intermediates/model_data.bin
 build/*
+.idea/modules.xml
+.idea/.name
+.idea/misc.xml

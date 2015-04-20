@@ -14,6 +14,10 @@ import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.CardFactory;
 import com.anycomp.android.ageofmythology.model.card.CardType;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptBuildCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekBuildCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseBuildCard;
+import com.anycomp.android.ageofmythology.model.card.PermanentBuildCard;
 import com.anycomp.android.ageofmythology.model.card.RandomCard;
 
 import com.anycomp.android.ageofmythology.model.culture.Culture;
@@ -87,6 +91,7 @@ public class Player implements Observable {
         takeWood(4);
         //takeVictory(1);
         initPermanentCardPool();
+        initRandomCardDeck();
 
         army = new ArrayList<>();
         initArmy();
@@ -157,7 +162,16 @@ public class Player implements Observable {
 
         //TO DO
         private void initRandomCardDeck() {
+            if(culture instanceof Egyptian) {
+                randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
 
+            }
+            else if(culture instanceof Greek) {
+                randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
+            }
+            else {
+                randomCardPool.addCard(new GodNorseBuildCard());
+            }
         }
         
         public void resetHand() {
@@ -170,7 +184,6 @@ public class Player implements Observable {
             }
             randomCardPool.shuffle();
             hand.clean();
-
         }
 
         /**
@@ -183,6 +196,12 @@ public class Player implements Observable {
 
             //this if statement is for random card
             if(index == 7) {
+                if(randomCardPool.size() == 0) {
+                    return false;
+                }
+                randomCardPool.shuffle();
+                getHand().addCard(randomCardPool.getCardAt(0));
+                randomCardPool.removeCardAt(0);
                 return false;
             }
 

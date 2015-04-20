@@ -22,10 +22,8 @@ public class PermanentBuildCard extends PermanentActionCard {
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
         if(!isPlayed()) {
-
                 setPlayed(true);
                 openBuildingPopup(fm, pc);
-
         }
     }
 
@@ -53,7 +51,6 @@ public class PermanentBuildCard extends PermanentActionCard {
         BuildingSelectionDialogFragment bsdf = BuildingSelectionDialogFragment.newInstance(bsc);
         bsdf.setMaxAllowedPick(getValue());
         bsdf.show(fm, "Building Selection Dialog");
-
     }
 
 }
