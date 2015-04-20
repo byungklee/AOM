@@ -35,6 +35,9 @@ public class GodEgyptBuildCard extends RandomBuildCard implements God {
 
     @Override
     public void aiPlay(FragmentManager fm, PlayerController player) {
-        card.aiPlay(fm, player);
+
+        //card.aiPlay(fm, player);
+        player.nextRound();
+
     }
 }

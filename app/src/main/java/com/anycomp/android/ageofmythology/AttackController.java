@@ -6,7 +6,8 @@ import com.anycomp.android.ageofmythology.model.area.AreaType;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.God;
-import com.anycomp.android.ageofmythology.model.card.RandomCard;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptAttackCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekAttackCard;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.unit.Unit;
 
@@ -32,6 +33,7 @@ public class AttackController {
     private AreaType attackArea;
     private Random random = new Random();
     private Card mAttackCard;
+    private int bragiEffect;
     //requires turn manager.
 
     private int attackerSelection;
@@ -40,6 +42,7 @@ public class AttackController {
     public boolean isHumanAttacking() {
         return isHumanAttacking;
     }
+
     public AttackController(Card card, FragmentManager fm, PlayerController pc, int numberOfUnitsAllowed) {
         mAttackCard = card;
         this.fm = fm;
@@ -47,6 +50,8 @@ public class AttackController {
         attackers = new ArrayList<>();
         defenders = new ArrayList<>();
         this.numberOfUnitsAllowed = numberOfUnitsAllowed;
+        setBragiEffect(0);
+
     }
 
     public void startBattle() {
@@ -184,7 +189,7 @@ public class AttackController {
         Player p = (Player) pc.getPlayers().get(0);
 
         int maxAllowed = p.hasBuilding(BuildingType.ARMORY) ? numberOfUnitsAllowed + 1: numberOfUnitsAllowed;
-        if(!isHumanAttacking && mAttackCard instanceof God) {
+        if(!isHumanAttacking && (mAttackCard instanceof GodEgyptAttackCard || mAttackCard instanceof GodGreekAttackCard)) {
             maxAllowed -= 2;
         }
         if(counter >= maxAllowed) {
@@ -207,12 +212,15 @@ public class AttackController {
             Player p = (Player) pc.getPlayers().get(opponentPlayerIndex);
             ArrayList<Unit> unit = p.getArmy();
             int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
-            if(mAttackCard instanceof God) {
+            if((mAttackCard instanceof GodEgyptAttackCard || mAttackCard instanceof GodGreekAttackCard)) {
                 maxAllowedByAI -= 2;
             }
             Random random = new Random();
 
             for(int i=0;i<maxAllowedByAI;i++) {
+                if(unit.size() == 0) {
+                    break;
+                }
                 defenders.add(unit.remove(random.nextInt(unit.size())));
             }
 
@@ -237,7 +245,7 @@ public class AttackController {
             Player p = (Player) pc.getPlayers().get(opponentPlayerIndex);
             ArrayList<Unit> unit = p.getArmy();
             int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
-            if(mAttackCard instanceof God) {
+            if((mAttackCard instanceof GodEgyptAttackCard || mAttackCard instanceof GodGreekAttackCard)) {
                 maxAllowedByAI -= 2;
             }
             Random random = new Random();
@@ -275,7 +283,7 @@ public class AttackController {
         //calculate
 //        int additionalAttackerDice = au.getAdditionalDice(du);
 //        int additionalDefenderDice = du.getAdditionalDice(au);
-        setAttackerPossibleDice(au.getAdditionalDice(du) + au.getDice()-negateBuildingEffect);
+        setAttackerPossibleDice(au.getAdditionalDice(du) + au.getDice()-negateBuildingEffect + getBragiEffect());
         setDefenderPossibleDice(du.getAdditionalDice(au) + du.getDice());
     }
 
@@ -480,5 +488,13 @@ public class AttackController {
 
     public void setAttackPlayerIndex(int attackPlayerIndex) {
         this.attackPlayerIndex = attackPlayerIndex;
+    }
+
+    public int getBragiEffect() {
+        return bragiEffect;
+    }
+
+    public void setBragiEffect(int bragiEffect) {
+        this.bragiEffect = bragiEffect;
     }
 }

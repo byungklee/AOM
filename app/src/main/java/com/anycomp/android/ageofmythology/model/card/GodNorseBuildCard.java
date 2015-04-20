@@ -20,28 +20,39 @@ public class GodNorseBuildCard extends RandomBuildCard implements God {
     @Override
     public void play(final FragmentManager fm, final PlayerController pc) {
 //        super.play(fm, pc);
-        SelectOpponentDialogFragment sodf = new SelectOpponentDialogFragment();
-        sodf.setPlayerController(pc);
-        sodf.setAfterSelecttOpponentCallback(new AfterSelectOpponentCallback() {
-            @Override
-            public void callback(int i) {
+        if(!isPlayed()) {
+            setPlayed(true);
+            SelectOpponentDialogFragment sodf = new SelectOpponentDialogFragment();
+            sodf.setPlayerController(pc);
+            sodf.setAfterSelecttOpponentCallback(new AfterSelectOpponentCallback() {
+                @Override
+                public void callback(int i) {
 //                opponentPlayerIndex = i;
-                //openPickBattleUnitDialog(true);
+                    //openPickBattleUnitDialog(true);
 //                openAttackAreaDialog();
 //                isHumanAttacking = true;
-                BuildingDestructionController bdc = new BuildingDestructionController(pc);
-                bdc.setTargetPlayer(i);
-                BuildingDestructionDialogFragment bddf = new BuildingDestructionDialogFragment();
-                bddf.setBuildingDestructionController(bdc);
-                bddf.show(fm, "Destroy Building");
-            }
-        });
-        sodf.show(fm,"Select Opponent Dialog");
+                    BuildingDestructionController bdc = new BuildingDestructionController(pc);
+                    bdc.setTargetPlayer(i);
+                    BuildingDestructionDialogFragment bddf = new BuildingDestructionDialogFragment();
+                    bddf.setBuildingDestructionController(bdc);
+                    bddf.show(fm, "Destroy Building");
+                }
+            });
+            sodf.show(fm, "Select Opponent Dialog");
+        }
 
     }
 
     @Override
-    public void aiPlay(FragmentManager fm, PlayerController player) {
+    public void aiPlay(FragmentManager fm, PlayerController pc) {
 //        super.aiPlay(fm, player);
+        if(!isPlayed()) {
+            setPlayed(true);
+            BuildingDestructionController bdc = new BuildingDestructionController(pc);
+            int targetId = (pc.getCurrentPlayerID() + 1) % 3;
+            bdc.setTargetPlayer(targetId);
+            bdc.destroyBuilding(0);
+        }
+
     }
 }

@@ -14,9 +14,13 @@ import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.CardFactory;
 import com.anycomp.android.ageofmythology.model.card.CardType;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptBuildCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekBuildCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseBuildCard;
+import com.anycomp.android.ageofmythology.model.card.PermanentAttackCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentBuildCard;
 import com.anycomp.android.ageofmythology.model.card.RandomCard;
 
@@ -163,14 +167,17 @@ public class Player implements Observable {
         //TO DO
         private void initRandomCardDeck() {
             if(culture instanceof Egyptian) {
-                randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
+            //    randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodEgyptAttackCard(new PermanentAttackCard(culture)));
 
             }
             else if(culture instanceof Greek) {
-                randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
+               // randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodGreekAttackCard(new PermanentAttackCard(culture)));
             }
             else {
-                randomCardPool.addCard(new GodNorseBuildCard());
+                //randomCardPool.addCard(new GodNorseBuildCard());
+                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
             }
         }
         
@@ -435,11 +442,6 @@ public class Player implements Observable {
         while(it.hasNext()) {
             ((Observer)it.next()).update(this);
         }
-    }
-
-    //TO DO: change return type and return unit list.
-    public void getUnitList() {
-
     }
 
     public void setAge(Age age) { this.age = age; resourceUpdate(); }
