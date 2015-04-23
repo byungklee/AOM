@@ -17,7 +17,10 @@ public class TileSelectionController {
    // private HashMap<Integer, Tile> tileInfo;
     private ArrayList<Tile> tileSelectionDeck;
     private int maxPick;
-
+    private boolean select2more;
+    private boolean onlyPlayerPick;
+    private int selectedCounter;
+    private boolean onlyOnePlayerPlayed = false;
     public TileSelectionController(PlayerController pc, int maxPick) {
         this.pc = pc;
         this.maxPick = maxPick;
@@ -26,23 +29,45 @@ public class TileSelectionController {
         playerInfo.put("AI1", 0);
         playerInfo.put("AI2", 0);
         tileSelectionDeck = TileManager.getInstance().getTileSelectionDeck();
-
+        select2more = false;
+        onlyPlayerPick = false;
+        selectedCounter = 0;
         if(getPlayerController().getCurrentPlayer().getName().contains("AI")) {
-            aiPickTile();
+             aiPickTile();
         }
     }
+
+    public TileSelectionController(PlayerController pc, int maxPick, boolean onlyPlayerPick, boolean select2more) {
+        this.pc = pc;
+        this.maxPick = maxPick;
+        playerInfo = new HashMap<String, Integer>();
+        playerInfo.put("user", 0);
+        playerInfo.put("AI1", 0);
+        playerInfo.put("AI2", 0);
+        tileSelectionDeck = TileManager.getInstance().getTileSelectionDeck();
+        this.select2more = select2more;
+        this.onlyPlayerPick = onlyPlayerPick;
+        selectedCounter = 0;
+
+        if(getPlayerController().getCurrentPlayer().getName().contains("AI")) {
+            if(select2more) {
+                aiPickTile();
+                aiPickTile();
+                aiPickTile();
+            } else if(onlyPlayerPick) {
+                aiPickTile();
+            }
+        }
+    }
+
 
     public void execute(int pick) {
         if(tileSelectionDeck.get(pick) == null) {
             return;
         }
-
         String playerName = pc.getCurrentPlayer().getName();
-
-        // TODO Auto-generated method stub
-        //		String playerName = main.getCurrentPlayer().getName();
         System.out.println("MAX_SIZE: " + maxPick);
-        if (playerInfo.get(playerName) > maxPick -1) {
+        if (playerInfo.get(playerName) > maxPick+(select2more && pc.getTurnManager().getCurrentPlayer() == pc.getCurrentPlayerID() ? 2 : 0) - 1 || onlyOnePlayerPlayed) {
             playerInfo.put(playerName, playerInfo.get(playerName) + 1);
             if (isAllResourceTilePlaced()) {
                 return;
@@ -51,10 +76,6 @@ public class TileSelectionController {
             System.out.println("picked already over the max size ");
             return;
         }
-
-
-        // controller.getCurrentPlayer().getName();
-        // System.out.println(playerInfo.get(geo.getName()) + geo.getName());
 
         ArrayList<Tile> productionTiles = pc.getCurrentPlayer()
                 .getPlayerBoard().getProductionArea().getTiles();
@@ -68,24 +89,8 @@ public class TileSelectionController {
             System.out.println(tile);
             if (!(tile instanceof TileDecorator)
                     && tile.getTileType() == selectedTile.getTileType()) {
-                //productionTiles.set(i, selectedTile);
                 pc.getCurrentPlayer().getPlayerBoard().getProductionArea().setTileAt(i, selectedTile);
-                //(temp);
-                //TileManager.getInstance().takeTile(selectedTile.getName());
                 tManager.removeTileFromTileSelectionDeck(selectedTile);
-//                tileInfo.put(pick, null);
-                System.out.println("b4 setting it to invisible. " + pick);
-
-
-//                if(nifty.findPopupByName("TileSelectionPopup") == null) {
-//                    System.out.println("this is null....");
-//                }
-//                if(screen == null) {
-//                    System.out.println("screen is null...");
-//                }
-//                screen.findElementByName("tile"+pick).setVisible(false);
-
-                System.out.println("after setting it to invisible");
                 taken =true;
                 break;
             }
@@ -93,32 +98,30 @@ public class TileSelectionController {
         if(!taken) {
             //Show you don't have matching tile
             System.out.println("No matching tile");
-            //playerInfo.put(playerName, playerInfo.get(playerName) - 1);
             return;
         }
         playerInfo.put(playerName, playerInfo.get(playerName) + 1);
-        // controller.getPlayerController().pickTerrainTile(controller.getCurrentPlayer(),
-        // geo);
-        //
+
         // //Checking if all players got resources
         if (isAllResourceTilePlaced()) {
-//            turnOff();
             return;
         }
-        //
-        // //If the selection deck requires new deck, refresh the deck.
-        // if(TileManager.getInstance().getTileSelectionDeck().isEmpty()) {
-        // TileManager.getInstance().refreshTileSelectionDeck();
-        // }
-
-        nextPlayer();
+        if(onlyPlayerPick) {
+            onlyOnePlayerPlayed = true;
+        }
+        if(select2more) {
+            selectedCounter++;
+        }
+        if(!select2more || (select2more && selectedCounter >= 3)) {
+            nextPlayer();
+        }
     }
 
     public boolean isAllResourceTilePlaced() {
         System.out.println(playerInfo.get("user") + " " + playerInfo.get("AI1") + " " + playerInfo.get("AI2"));
         if(playerInfo.get("AI1") >= maxPick  &&
                 playerInfo.get("AI2") >= maxPick  &&
-                playerInfo.get("user") >= maxPick ) {
+                playerInfo.get("user") >= maxPick || onlyOnePlayerPlayed ) {
 
             return true;
         }
@@ -130,26 +133,29 @@ public class TileSelectionController {
 
             playerInfo.put(playerName, playerInfo.get(playerName) + 1);
             if (isAllResourceTilePlaced()) {
-      //          turnOff();
                 //turn off tile popup
                 return;
             }
             System.out.println("Nothing to choose or already picked so passing ");
-            nextPlayer();
-
+            if(onlyPlayerPick) {
+                onlyOnePlayerPlayed = true;
+            }
+            if(select2more) {
+                selectedCounter++;
+            }
+            if(!select2more || (select2more && selectedCounter >= 3) ) {
+                nextPlayer();
+            }
         }
 
     public void nextPlayer() {
-//            System.out.println("to next player ");
-
-    //    Player p = pc.getNextPlayerForTileSelection();
         if(maxPick < 6) {
             pc.getNextPlayerForTileSelectionLinear();
         } else {
             pc.getNextPlayerForTileSelection();
         }
         System.out.println("to next player " + pc.getCurrentPlayer().getName());
-        //System.out.println("CurrentPlayer = " + currentPlayer.getName());
+
         if(pc.getCurrentPlayer().getName().contains("AI")) {
             aiPickTile();
         }

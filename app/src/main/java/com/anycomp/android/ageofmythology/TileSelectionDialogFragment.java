@@ -86,6 +86,11 @@ public class TileSelectionDialogFragment extends DialogFragment {
             }
         });
 
+        if(c.isAllResourceTilePlaced()) {
+            passButton.setEnabled(false);
+            okayButton.setEnabled(true);
+        }
+
         return builder.create();
     }
 
