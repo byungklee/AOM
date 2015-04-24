@@ -38,12 +38,13 @@ public class AttackController {
 
     private int attackerSelection;
     private int defenderSelection;
+    private boolean isGod;
 
     public boolean isHumanAttacking() {
         return isHumanAttacking;
     }
 
-    public AttackController(Card card, FragmentManager fm, PlayerController pc, int numberOfUnitsAllowed) {
+    public AttackController(Card card, FragmentManager fm, PlayerController pc, int numberOfUnitsAllowed, boolean isGod) {
         mAttackCard = card;
         this.fm = fm;
         this.pc = pc;
@@ -51,7 +52,7 @@ public class AttackController {
         defenders = new ArrayList<>();
         this.numberOfUnitsAllowed = numberOfUnitsAllowed;
         setBragiEffect(0);
-
+        this.isGod=isGod;
     }
 
     public void startBattle() {
@@ -190,7 +191,8 @@ public class AttackController {
 
         int maxAllowed = p.hasBuilding(BuildingType.ARMORY) ? numberOfUnitsAllowed + 1: numberOfUnitsAllowed;
         if(!isHumanAttacking && (mAttackCard instanceof GodEgyptAttackCard || mAttackCard instanceof GodGreekAttackCard)) {
-            maxAllowed -= 2;
+            if(isGod)
+                maxAllowed -= 2;
         }
         if(counter >= maxAllowed) {
             return false;
@@ -213,7 +215,8 @@ public class AttackController {
             ArrayList<Unit> unit = p.getArmy();
             int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
             if((mAttackCard instanceof GodEgyptAttackCard || mAttackCard instanceof GodGreekAttackCard)) {
-                maxAllowedByAI -= 2;
+                if(isGod)
+                    maxAllowedByAI -= 2;
             }
             Random random = new Random();
 
@@ -228,8 +231,8 @@ public class AttackController {
             //attack picking
             Player p = (Player) pc.getCurrentPlayer();
             ArrayList<Unit> unit = p.getArmy();
-            int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
-
+            //int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
+            int maxAllowedByAI = numberOfUnitsAllowed;
             for(int i=0;i<maxAllowedByAI;i++) {
                 if(unit.size() == 0) {
                     break;

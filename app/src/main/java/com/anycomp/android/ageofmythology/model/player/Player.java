@@ -171,9 +171,9 @@ public class Player implements Observable {
         //TO DO
         private void initRandomCardDeck() {
             if(culture instanceof Egyptian) {
-            //    randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
 //                randomCardPool.addCard(new GodEgyptAttackCard(new PermanentAttackCard(culture)));
-                randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
+//                randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
 
 
             }
@@ -183,9 +183,9 @@ public class Player implements Observable {
                 randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
             }
             else {
-                //randomCardPool.addCard(new GodNorseBuildCard());
-//                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
-                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
+//                randomCardPool.addCard(new GodNorseBuildCard());
+                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
+//                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
             }
         }
         
@@ -194,6 +194,7 @@ public class Player implements Observable {
                 Card card = hand.getCardAt(i);
                 card.resetCardStatus();
                 if(card instanceof RandomCard) {
+                    //If we don't want to reset random card just comment this out.
                     randomCardPool.addCard(hand.getCardAt(i));
                 }
             }

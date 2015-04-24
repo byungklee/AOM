@@ -29,22 +29,23 @@ public class PermanentBuildCard extends PermanentActionCard {
 
     @Override
     public void aiPlay(FragmentManager fm, PlayerController pc) {
-        setPlayed(true);
-        BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
-        //bsc.
-        for(int j=0;j<getValue();j++) {
-            for (int i = 0; i < bsc.getBuildingList().size(); i++) {
-                if (bsc.verifyAvailability(i) && bsc.verifyResource(i)) {
-                    bsc.addBuilding(i);
+        if(!isPlayed()) {
+            setPlayed(true);
+            BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
+            //bsc.
+            for (int j = 0; j < getValue(); j++) {
+                for (int i = 0; i < bsc.getBuildingList().size(); i++) {
+                    if (bsc.verifyAvailability(i) && bsc.verifyResource(i)) {
+                        bsc.addBuilding(i);
+                    }
                 }
             }
+
         }
         pc.nextRound();
     }
 
 
-
-    int i=0;
     private void openBuildingPopup(FragmentManager fm, PlayerController pc) {
         BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
         bsc.playBuildCard(this);
