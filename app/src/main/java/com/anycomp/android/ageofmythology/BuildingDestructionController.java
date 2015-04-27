@@ -30,8 +30,10 @@ public class BuildingDestructionController {
     public void destroyBuilding(int index) {
         if(targetPlayerIndex == -1) {
             ((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).destroyBuilding(index);
-        } else
-            ((Player)pc.getPlayers().get(targetPlayerIndex)).getPlayerBoard().getCityArea().getTiles();
+        } else {
+            Player p = (Player) pc.getPlayers().get(targetPlayerIndex);
+            ((CityArea) p.getPlayerBoard().getCityArea()).destroyBuilding(index);
+        }
     }
     public void nextRound() {
         pc.nextRound();

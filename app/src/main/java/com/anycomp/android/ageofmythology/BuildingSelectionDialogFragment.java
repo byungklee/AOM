@@ -77,9 +77,6 @@ public class BuildingSelectionDialogFragment extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(v);
         // Create the AlertDialog object and return it
-
-
-
         final GridView gridview = (GridView) v.findViewById(R.id.gridview);
         gridview.setAdapter(new BuildingSelectionAdapter(getActivity().getApplicationContext(), c.getBuildingList()));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -122,8 +119,11 @@ public class BuildingSelectionDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        c.nextRound();
-
+        if(c.isWonderBuilt()) {
+            c.gameEnd();
+        } else {
+            c.nextRound();
+        }
     }
 
     public int getMaxAllowedPick() {

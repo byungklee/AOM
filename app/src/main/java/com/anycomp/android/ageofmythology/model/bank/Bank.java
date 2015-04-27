@@ -23,6 +23,11 @@ public class Bank {
 
     /* Each resource has a starting number */
     private Bank() {
+        reset();
+    }
+
+    /* Reset Bank */
+    public void reset() {
         wood = 25;
         favor = 25;
         food = 25;

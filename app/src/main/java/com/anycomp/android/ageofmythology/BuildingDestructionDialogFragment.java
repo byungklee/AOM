@@ -19,9 +19,15 @@ import android.widget.TextView;
 public class BuildingDestructionDialogFragment extends DialogFragment{
     BuildingDestructionController bdc;
     int counter;
+    int maxC;
     public void setBuildingDestructionController(BuildingDestructionController bdc) {
         this.bdc = bdc;
         counter = 0;
+        maxC = 1;
+    }
+
+    public void setMaxC(int i) {
+        maxC = i;
     }
 
     @Override
@@ -35,7 +41,7 @@ public class BuildingDestructionDialogFragment extends DialogFragment{
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(counter < 1) {
+                if(counter < maxC) {
                     bdc.destroyBuilding(position);
                     gridview.getChildAt(position).setAlpha(0.25f);
                     counter++;

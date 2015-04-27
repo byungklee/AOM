@@ -5,7 +5,9 @@ public abstract class TileDecorator extends Tile {
 	public TileDecorator(Tile basicTile) {
 		this.basicTile = basicTile;
 	}
-	
+	public Tile getBasicTile() {
+        return basicTile;
+    }
 	@Override
 	public TileType getTileType() {
 		return basicTile.getTileType();

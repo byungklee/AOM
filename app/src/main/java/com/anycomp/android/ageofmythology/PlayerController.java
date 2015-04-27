@@ -27,11 +27,13 @@ public class PlayerController {
     private TurnManager turnManager;
     private FragmentManager fm;
     private VictoryCardDeck victoryCardDeck;
+    private WinnerInterface winnerInterface;
 
 
-    public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap, FragmentManager fm) {
+    public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap, FragmentManager fm, WinnerInterface wi) {
 		// TODO Auto-generated constructor stub
 		//players = new Player[numberOfPlayers];
+        this.winnerInterface = wi;
 		//Making a Human Player
 		if(cultureMap == null) {
 			System.out.println("cultureMap is null");
@@ -129,14 +131,20 @@ public class PlayerController {
 
     public void nextRound() {
         //currentPlayer = (currentPlayer+1)%players.size();
+
+
         setCurrentPlayer(turnManager.nextRoundPlayer());
-        System.out.println("next " + turnManager.getRound() + " " + turnManager.getCounter());
-        if(turnManager.getRound() == 1 && turnManager.getCounter() == 0) {
-            
+        if(turnManager.getTurn() == 11) {
+            gameEnd();
         } else {
-            if(players.get(currentPlayer).getName().contains("AI")) {
-                //AI work
-                aiWork();
+            System.out.println("next " + turnManager.getRound() + " " + turnManager.getCounter());
+            if (turnManager.getRound() == 1 && turnManager.getCounter() == 0) {
+
+            } else {
+                if (players.get(currentPlayer).getName().contains("AI")) {
+                    //AI work
+                    aiWork();
+                }
             }
         }
         //return players.get(currentPlayer);
@@ -292,6 +300,7 @@ public class PlayerController {
     }
 
     public void gameEnd() {
+        System.out.println("Player Controller: GameEnd has called");
         VictoryCardDeck vcd = getVictoryCardDeck();
 ///army buidling battle wonder
         Iterator it = vcd.getVictoryCards().iterator();
@@ -307,6 +316,8 @@ public class PlayerController {
         list.add(p1);
         list.add(p2);
         list.add(p3);
+
+        //Sort based on army size
         Collections.sort(list, new Comparator<Player>() {
             @Override
             public int compare(Player lhs, Player rhs) {
@@ -316,6 +327,8 @@ public class PlayerController {
                 return 1;
             }
         });
+
+        //if only one has the highest army size, take all cubes from biggest army size.
         if(list.get(0).getArmy().size() != list.get(1).getArmy().size()) {
             list.get(0).takeVictoryFromCard(army.getCubeSize());
             army.getVictoryCubes().clear();
@@ -335,6 +348,22 @@ public class PlayerController {
                 ((CityArea)list.get(1).getPlayerBoard().getCityArea()).getNumberOfBuilding()) {
             list.get(0).takeVictoryFromCard(building.getCubeSize());
             building.getVictoryCubes().clear();
+        }
+
+        Collections.sort(list, new Comparator<Player>() {
+            @Override
+            public int compare(Player lhs, Player rhs) {
+                if(lhs.getVictoryCube().getValue() < rhs.getVictoryCube().getValue()) {
+                    return 1;
+                }
+                return -1;
+            }
+        });
+
+        if(list.get(0).getVictoryCube().getValue() > list.get(1).getVictoryCube().getValue()) {
+            winnerInterface.winner(list.get(0));
+        } else {
+            winnerInterface.winner(null);
         }
 
 

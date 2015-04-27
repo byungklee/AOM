@@ -8,6 +8,7 @@ import com.anycomp.android.ageofmythology.model.building.Building;
 import com.anycomp.android.ageofmythology.model.building.BuildingFactory;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.building.HouseBuilding;
+import com.anycomp.android.ageofmythology.model.building.TheWonderBuilding;
 import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class BuildingSelectionController {
     private PlayerController pc;
     private ArrayList<Building> buildingList;
+    private boolean isWonderBuilt= false;
 
     private static BuildingSelectionController instance;
     public static BuildingSelectionController getInstance(PlayerController pc) {
@@ -125,6 +127,14 @@ public class BuildingSelectionController {
             pc.getCurrentPlayer().spendGold(pickedBuilding.getGoldCost());
             pc.getCurrentPlayer().spendFavor(pickedBuilding.getFavorCost());
         }
+
+        if(pickedBuilding instanceof TheWonderBuilding) {
+            isWonderBuilt = true;
+        }
+    }
+
+    public boolean isWonderBuilt() {
+        return isWonderBuilt;
     }
 
     public void nextRound() {
@@ -132,6 +142,6 @@ public class BuildingSelectionController {
     }
 
     public void gameEnd() {
-
+        pc.gameEnd();
     }
 }

@@ -62,6 +62,12 @@ public abstract class  Area implements Observable {
 		tiles.set(index, tile);
 		notifyObservers();
 	}
+
+    public void removeTileAt(int index, Tile tile) {
+        tiles.set(index, tile);
+        notifyObservers();
+    }
+
 	public void printTile() {
 		for(Tile tile:tiles) {
 			//if(tile instanceof TileDecorator)

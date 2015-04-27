@@ -14,7 +14,6 @@
         android:title="Egypt"
         android:orderInCategory="100"
         app:showAsAction="always"/>
-
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           android:orderInCategory="100"
@@ -42,6 +41,26 @@
     <item android:id="@+id/next_round"
         android:title="Next Round"
         android:orderInCategory="106"
+        app:showAsAction="never"/>
+    <item android:id="@+id/end_game"
+        android:title="End Game(For Test)"
+        android:orderInCategory="107"
+        app:showAsAction="never"/>
+    <item android:id="@+id/give3resources"
+        android:title="Give 3 Resources(For Test)"
+        android:orderInCategory="108"
+        app:showAsAction="never"/>
+    <item android:id="@+id/take_resource"
+        android:title="Take 5 Resources(For Test)"
+        android:orderInCategory="109"
+        app:showAsAction="never"/>
+    <item android:id="@+id/destroy_building"
+        android:title="Destroy building(For Test)"
+        android:orderInCategory="110"
+        app:showAsAction="never"/>
+    <item android:id="@+id/take_tiles"
+        android:title="Take Tiles(For Test)"
+        android:orderInCategory="111"
         app:showAsAction="never"/>
 
 </menu>

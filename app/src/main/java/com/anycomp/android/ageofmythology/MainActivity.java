@@ -1,8 +1,10 @@
 package com.anycomp.android.ageofmythology;
 
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.culture.Egyptian;
 import com.anycomp.android.ageofmythology.model.culture.Greek;
@@ -20,8 +23,9 @@ import com.anycomp.android.ageofmythology.model.culture.Norse;
 import com.anycomp.android.ageofmythology.model.player.Player;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class MainActivity extends ActionBarActivity implements TileSelectionDialogFragment.OnTileClickListener {
+public class MainActivity extends ActionBarActivity implements TileSelectionDialogFragment.OnTileClickListener, WinnerInterface {
 
     public static final String TAG = "MainActivity";
     private MainPlayingFragment mpf;
@@ -69,9 +73,41 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             mPlayerController.nextRound();
         } else if(id == R.id.unit_list) {
             openUnitListDialog();
+        } else if(id == R.id.end_game) {
+            mPlayerController.gameEnd();
+        } else if(id == R.id.give3resources) {
+            give3resources();
+        } else if(id == R.id.take_resource) {
+            TakeResourceDialogFragment t = new TakeResourceDialogFragment();
+            t.setOffender(mPlayerController.getHumanPlayer());
+            t.setDefender((Player) mPlayerController.getPlayers().get(1));
+            t.setPC(mPlayerController);
+            t.show(getFragmentManager(), "takeresource");
+        } else if(id == R.id.destroy_building) {
+            BuildingDestructionController bc = new BuildingDestructionController(mPlayerController);
+            bc.setTargetPlayer(1);
+            BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
+            bd.setBuildingDestructionController(bc);
+            bd.show(getFragmentManager(),"test");
+        } else if(id == R.id.take_tiles) {
+            TakeResourceTileDialogFragment trtf = new TakeResourceTileDialogFragment();
+            trtf.setTargetPlayer(1);
+            trtf.setAttacker(0);
+            trtf.setPC(mPlayerController);
+            trtf.show(getFragmentManager(),"test2");
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void give3resources() {
+        List<Player> list = mPlayerController.getPlayers();
+        for(Player p:list) {
+            p.takeFood(3);
+            p.takeWood(3);
+            p.takeFavor(3);
+            p.takeGold(3);
+        }
     }
 
     public void startGame(View view) {
@@ -102,9 +138,11 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         cultureMap.put("Egypt", new Egyptian());
         Button b = (Button) view;
         Log.d(TAG, "start " + b.getText().toString());
-        mPlayerController = new PlayerController(3,"user", b.getText().toString(),cultureMap, getFragmentManager());
+        Bank.getInstance().reset();
+        mPlayerController = new PlayerController(3,"user", b.getText().toString(),cultureMap, getFragmentManager(), this);
         mPlayerController.getTurnManager().setVictoryCallback(startPlayerCallback);
         mpf = MainPlayingFragment.newInstance(b.getText().toString(), mPlayerController.getHumanPlayer());
+
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.container, mpf);
         transaction.addToBackStack("main_playing");
@@ -205,4 +243,20 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
     }
 
 
+    @Override
+    public void winner(Player player) {
+        //game end popup;
+        WinnerDialogFragment wdf = new WinnerDialogFragment();
+        wdf.setPlayer(player);
+        wdf.setPlayerController(mPlayerController);
+        wdf.setCallback(new Callback() {
+            @Override
+            public void callback() {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.add(R.id.container, new MainFragment(), "main").commit();
+            }
+        });
+
+        wdf.show(getFragmentManager(), "WinnerDialog");
+    }
 }

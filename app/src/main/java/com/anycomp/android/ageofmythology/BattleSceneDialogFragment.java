@@ -153,7 +153,10 @@ public class BattleSceneDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 ac.retreat(0);
              //   BattleSceneDialogFragment.this.dismiss();
+                ac.winnerTakeVictoryCube();
+                ac.moveAllTheUnitBack();
                 gameEndDialog();
+                //ac.takeTrophy();
 
             }
         });
@@ -163,9 +166,9 @@ public class BattleSceneDialogFragment extends DialogFragment {
     }
 
     public void updateTextViewsForBattle() {
-        attackerText.setText("Possible Roll: "+ac.getAttackerPossibleDice());
+        attackerText.setText("Dice: "+ac.getAttackerPossibleDice());
         attackerScore.setText(""+ac.getAttackerScore());
-        defenderText.setText("Possible Roll: "+ac.getDefenderPossibleDice());
+        defenderText.setText("Dice: "+ac.getDefenderPossibleDice());
         defenderScore.setText(""+ac.getDefenderScore());
     }
 
@@ -187,6 +190,13 @@ public class BattleSceneDialogFragment extends DialogFragment {
         builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
+                if(ac.isAttackerWin) {
+                    if(ac.isHumanAttacking()) {
+                        ac.takeTrophy();
+                    } else {
+                        ac.takeResources();
+                    }
+                }
                 BattleSceneDialogFragment.this.dismiss();
             }
         });
@@ -204,10 +214,8 @@ public class BattleSceneDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        ac.winnerTakeVictoryCube();
-        ac.moveAllTheUnitBack();
-        ac.takeTrophy();
-        pc.nextRound();
+
+        //pc.nextRound();
     }
 
     @Override

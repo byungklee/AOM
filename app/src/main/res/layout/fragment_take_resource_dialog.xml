@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/favor_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_favor"/>
+        <ImageView
+            android:id="@+id/food_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_food"/>
+        <ImageView
+            android:id="@+id/gold_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_gold"/>
+        <ImageView
+            android:id="@+id/wood_cube"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/resource_wood"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opponent_resource" />
+        <NumberPicker
+            android:id="@+id/favor_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            </NumberPicker>
+        <NumberPicker
+            android:id="@+id/food_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </NumberPicker>
+        <NumberPicker
+            android:id="@+id/gold_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </NumberPicker>
+        <NumberPicker
+            android:id="@+id/wood_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </NumberPicker>
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/opponent_resource" />-->
+        <!--<Spinner-->
+            <!--android:id="@+id/favor_spinner"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="5dp">-->
+        <!--</Spinner>-->
+        <!--<Spinner-->
+            <!--android:id="@+id/food_spinner"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="5dp">-->
+        <!--</Spinner>-->
+        <!--<Spinner-->
+            <!--android:id="@+id/gold_spinner"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="5dp">-->
+        <!--</Spinner>-->
+        <!--<Spinner-->
+            <!--android:id="@+id/wood_spinner"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="5dp">-->
+        <!--</Spinner>-->
+    </LinearLayout>
+</LinearLayout>

@@ -113,7 +113,9 @@ public class AttackController {
                 }
                 moveAllTheUnitBack();
                 winnerTakeVictoryCube();
-                takeResourceTile();
+                if(isAttackerWin)
+                    takeResources();
+
                 pc.nextRound();
             }
         }
@@ -445,28 +447,91 @@ public class AttackController {
 
     public void takeTrophy() {
         //if(attackArea)
-        if(attackArea == AreaType.HOLDING) {
-            takeResources();
-        } else if(attackArea == AreaType.PRODUCTION) {
-            takeResourceTile();
-        } else {
-            destroyBuilding();
+        if(isAttackerWin) {
+            if (attackArea == AreaType.HOLDING) {
+                takeResources();
+            } else if (attackArea == AreaType.PRODUCTION) {
+                takeResourceTile();
+            } else {
+                destroyBuilding();
+            }
         }
     }
 
     public void takeResources() {
-        //TO DO:
         System.out.println("To do: take  5 resource");
+        if(isHumanAttacking) {
+            TakeResourceDialogFragment t = new TakeResourceDialogFragment();
+            t.setDefender((Player)pc.getPlayers().get(opponentPlayerIndex));
+            t.setOffender((Player) pc.getPlayers().get(attackPlayerIndex));
+            t.setPC(pc);
+            t.show(fm, "TakeResource");
+        } else {
+            Player def = (Player)pc.getPlayers().get(opponentPlayerIndex);
+            Player att = (Player)pc.getPlayers().get(attackPlayerIndex);
+            int taken = 0;
+            int maxCanTake=5;
+            if(def.getFavorCube().getValue() > 0) {
+                int temp = def.getFavorCube().getValue();
+                int takeValue = Math.min(temp,maxCanTake-taken);
+                def.spendFavor(takeValue);
+                att.takeFavor(takeValue);
+                taken += takeValue;
+            }
+            if(taken < 5) {
+                if (def.getFoodCube().getValue() > 0) {
+                    int temp = def.getFoodCube().getValue();
+                    int takeValue = Math.min(temp, maxCanTake - taken);
+                    def.spendFood(takeValue);
+                    att.takeFood(takeValue);
+                    taken += takeValue;
+                }
+            }
+            if(taken < 5) {
+                if (def.getWoodCube().getValue() > 0) {
+                    int temp = def.getWoodCube().getValue();
+                    int takeValue = Math.min(temp, maxCanTake - taken);
+                    def.spendWood(takeValue);
+                    att.takeWood(takeValue);
+                    taken += takeValue;
+                }
+            }
+            if(taken < 5) {
+                if (def.getGoldCube().getValue() > 0) {
+                    int temp = def.getGoldCube().getValue();
+                    int takeValue = Math.min(temp, maxCanTake - taken);
+                    def.spendGold(takeValue);
+                    att.takeGold(takeValue);
+                    //taken += takeValue;
+                }
+            }
+
+            pc.nextRound();
+        }
     }
 
     public void takeResourceTile() {
         //TO DO:
         System.out.println("To do: take resource tile");
+//        pc.nextRound();
+        TakeResourceTileDialogFragment trtdf = new TakeResourceTileDialogFragment();
+        trtdf.setPC(pc);
+        trtdf.setAttacker(attackPlayerIndex);
+        trtdf.setTargetPlayer(opponentPlayerIndex);
+        trtdf.setMaxC(1);
+        trtdf.show(fm, "Take Resource Tiles");
     }
 
     public void destroyBuilding() {
         //TO DO:
         System.out.println("To do: destroy building");
+        BuildingDestructionController bc = new BuildingDestructionController(pc);
+        bc.setTargetPlayer(opponentPlayerIndex);
+        BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
+        bd.setBuildingDestructionController(bc);
+        bd.show(fm,"DestroyBuilding");
+
+        //pc.nextRound();
     }
 
     public AreaType getAttackArea() {
