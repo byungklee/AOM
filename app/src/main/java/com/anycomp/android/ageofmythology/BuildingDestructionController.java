@@ -13,8 +13,10 @@ import java.util.ArrayList;
 public class BuildingDestructionController {
     PlayerController pc;
     int targetPlayerIndex = -1;
-    public BuildingDestructionController(PlayerController pc) {
+    boolean isGodBuild = false;
+    public BuildingDestructionController(PlayerController pc, boolean isGodBuild) {
         this.pc = pc;
+        this.isGodBuild = isGodBuild;
     }
 
     public void setTargetPlayer(int i) {
@@ -34,6 +36,9 @@ public class BuildingDestructionController {
             Player p = (Player) pc.getPlayers().get(targetPlayerIndex);
             ((CityArea) p.getPlayerBoard().getCityArea()).destroyBuilding(index);
         }
+    }
+    public boolean isGodBuild() {
+        return isGodBuild;
     }
     public void nextRound() {
         pc.nextRound();

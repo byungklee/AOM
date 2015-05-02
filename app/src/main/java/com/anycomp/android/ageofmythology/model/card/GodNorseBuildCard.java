@@ -8,6 +8,7 @@ import com.anycomp.android.ageofmythology.BuildingDestructionController;
 import com.anycomp.android.ageofmythology.BuildingDestructionDialogFragment;
 import com.anycomp.android.ageofmythology.BuildingSelectionController;
 import com.anycomp.android.ageofmythology.BuildingSelectionDialogFragment;
+import com.anycomp.android.ageofmythology.Callback;
 import com.anycomp.android.ageofmythology.PlayerController;
 import com.anycomp.android.ageofmythology.R;
 import com.anycomp.android.ageofmythology.SelectOpponentDialogFragment;
@@ -45,24 +46,20 @@ public class GodNorseBuildCard extends RandomBuildCard implements God {
         if(!isPlayed()) {
             setPlayed(true);
             if (payFavor()) {
-                BuildingDestructionController bdc = new BuildingDestructionController(pc);
+                BuildingDestructionController bdc = new BuildingDestructionController(pc, true);
                 int targetId = (pc.getCurrentPlayerID() + 1) % 3;
                 bdc.setTargetPlayer(targetId);
                 bdc.destroyBuilding(0);
-            } else {
-                    BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
-                    //bsc.
-                    for (int j = 0; j < getValue(); j++) {
-                        for (int i = 0; i < bsc.getBuildingList().size(); i++) {
-                            if (bsc.verifyAvailability(i) && bsc.verifyResource(i)) {
-                                bsc.addBuilding(i);
-                            }
-                        }
-                    }
-
-
             }
-
+            BuildingSelectionController bsc = BuildingSelectionController.getInstance(pc);
+            //bsc.
+            for (int j = 0; j < getValue(); j++) {
+                for (int i = 0; i < bsc.getBuildingList().size(); i++) {
+                    if (bsc.verifyAvailability(i) && bsc.verifyResource(i)) {
+                        bsc.addBuilding(i);
+                    }
+                }
+            }
         }
         pc.nextRound();
 
@@ -79,10 +76,16 @@ public class GodNorseBuildCard extends RandomBuildCard implements God {
                 //openPickBattleUnitDialog(true);
 //                openAttackAreaDialog();
 //                isHumanAttacking = true;
-                BuildingDestructionController bdc = new BuildingDestructionController(pc);
+                BuildingDestructionController bdc = new BuildingDestructionController(pc,true);
                 bdc.setTargetPlayer(i);
                 BuildingDestructionDialogFragment bddf = new BuildingDestructionDialogFragment();
                 bddf.setBuildingDestructionController(bdc);
+                bddf.setCallback(new Callback() {
+                    @Override
+                    public void callback() {
+                        playNormal();
+                    }
+                });
                 bddf.show(fm, "Destroy Building");
             }
         });

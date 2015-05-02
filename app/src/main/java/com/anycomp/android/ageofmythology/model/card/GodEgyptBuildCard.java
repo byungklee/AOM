@@ -8,6 +8,7 @@ import com.anycomp.android.ageofmythology.BuildingDestructionController;
 import com.anycomp.android.ageofmythology.BuildingDestructionDialogFragment;
 import com.anycomp.android.ageofmythology.BuildingSelectionController;
 import com.anycomp.android.ageofmythology.BuildingSelectionDialogFragment;
+import com.anycomp.android.ageofmythology.Callback;
 import com.anycomp.android.ageofmythology.PlayerController;
 import com.anycomp.android.ageofmythology.R;
 
@@ -69,9 +70,15 @@ public class GodEgyptBuildCard extends RandomBuildCard implements God {
 
     @Override
     public void playGod() {
-            BuildingDestructionController bsc = new BuildingDestructionController(pc);
+            BuildingDestructionController bsc = new BuildingDestructionController(pc,true);
             BuildingDestructionDialogFragment bddf = new BuildingDestructionDialogFragment();
             bddf.setBuildingDestructionController(bsc);
+            bddf.setCallback(new Callback() {
+                @Override
+                public void callback() {
+                    playNormal();
+                }
+            });
             bddf.show(fm, "Building destruction Dialog");
     }
 

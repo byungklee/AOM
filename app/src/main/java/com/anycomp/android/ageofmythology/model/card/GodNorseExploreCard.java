@@ -56,7 +56,7 @@ public class GodNorseExploreCard extends RandomExploreCard implements God {
             pc.setIsForward(true);
             TileManager.getInstance().setNumberOfCardsToRefresh(getValue());
             TileSelectionDialogFragment tsd = new TileSelectionDialogFragment();
-            tsd.setTileSelectionController(new TileSelectionController(pc, 1, true, false));
+            tsd.setTileSelectionController(new TileSelectionController(pc, 3, true, false));
             tsd.show(fm, "Tile Selection Dialog");
 
     }

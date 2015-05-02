@@ -1,20 +1,13 @@
 package com.anycomp.android.ageofmythology;
 
-
-import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.os.Bundle;
-
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.culture.Egyptian;
@@ -84,7 +77,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             t.setPC(mPlayerController);
             t.show(getFragmentManager(), "takeresource");
         } else if(id == R.id.destroy_building) {
-            BuildingDestructionController bc = new BuildingDestructionController(mPlayerController);
+            BuildingDestructionController bc = new BuildingDestructionController(mPlayerController, false);
             bc.setTargetPlayer(1);
             BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
             bd.setBuildingDestructionController(bc);

@@ -20,6 +20,7 @@ public class BuildingDestructionDialogFragment extends DialogFragment{
     BuildingDestructionController bdc;
     int counter;
     int maxC;
+    Callback callback;
     public void setBuildingDestructionController(BuildingDestructionController bdc) {
         this.bdc = bdc;
         counter = 0;
@@ -28,6 +29,9 @@ public class BuildingDestructionDialogFragment extends DialogFragment{
 
     public void setMaxC(int i) {
         maxC = i;
+    }
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 
     @Override
@@ -65,6 +69,11 @@ public class BuildingDestructionDialogFragment extends DialogFragment{
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        bdc.nextRound();
+        if(bdc.isGodBuild()) {
+            callback.callback();
+        } else {
+            bdc.nextRound();
+        }
+        //bdc.nextRound();
     }
 }

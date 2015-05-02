@@ -525,7 +525,7 @@ public class AttackController {
     public void destroyBuilding() {
         //TO DO:
         System.out.println("To do: destroy building");
-        BuildingDestructionController bc = new BuildingDestructionController(pc);
+        BuildingDestructionController bc = new BuildingDestructionController(pc,false);
         bc.setTargetPlayer(opponentPlayerIndex);
         BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
         bd.setBuildingDestructionController(bc);
