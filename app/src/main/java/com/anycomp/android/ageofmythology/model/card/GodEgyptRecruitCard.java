@@ -29,7 +29,7 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
 
     private static final String TAG = "GodEgyptRecruit";
 
-    public GodEgyptRecruitCard(PermanentTradeCard card) {
+    public GodEgyptRecruitCard(RandomRecruitCard card) {
         setName("GodEgyptRecruit");
         this.card=card;
         setImagePath(R.drawable.card_rand_egypt_recruit_osiris);
@@ -77,27 +77,21 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
     @Override
     public void playGod() {
         Age currentAge = pc.getCurrentPlayer().getAge();
-        if (currentAge instanceof ArchaicAge) {
-            // play normal
-            playNormal();
+        Unit hero = null;
+        if (currentAge instanceof ClassicalAge) {
+            hero = new Priest();
+        } else if (currentAge instanceof HeroicAge) {
+            hero = new Pharaoh();
+        } else if (currentAge instanceof MythicAge) {
+            hero = new SonOfOsiris();
         }
-        else if (pc.getCurrentPlayer().getFavorCube().getValue() >= 2) {
-            Unit hero = null;
-            if (currentAge instanceof ClassicalAge) {
-                hero = new Priest();
-            } else if (currentAge instanceof HeroicAge) {
-                hero = new Pharaoh();
-            } else if (currentAge instanceof MythicAge) {
-                hero = new SonOfOsiris();
-            }
 
-            if (hero != null) {
-                pc.getCurrentPlayer().getArmy().add(hero);
-                Log.i(TAG, "Added " + hero.getName() + " to player's army.");
-            }
-            else {
-                Log.i(TAG, "Unable to add hero.");
-            }
+        if (hero != null) {
+            pc.getCurrentPlayer().getArmy().add(hero);
+            Log.i(TAG, "Added " + hero.getName() + " to player's army.");
+        }
+        else {
+            Log.i(TAG, "Unable to add hero.");
         }
     }
 
@@ -108,6 +102,16 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
 
     @Override
     public boolean payFavor() {
-        return false;
+        return pay();
+    }
+
+    @Override
+    public boolean checkAge() {
+        return !(pc.getCurrentPlayer().getAge() instanceof ArchaicAge);
+    }
+
+    @Override
+    public String toString() {
+        return TAG;
     }
 }

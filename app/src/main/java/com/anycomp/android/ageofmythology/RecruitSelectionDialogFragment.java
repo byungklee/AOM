@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.anycomp.android.ageofmythology.model.unit.Unit;
+
+import java.util.ArrayList;
+
 /**
  * Created by mike on 4/3/15.
  */
@@ -18,19 +22,30 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
     public static final String TAG = "Recruit Selection Dialog";
     private PlayerController pc;
     private RecruitSelectionController controller;
+    private ArrayList<Unit> adapterContent;
+    private int count;
 
     public void setController(RecruitSelectionController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Sets the number of units that can be chosen in this dialog.
+     * @param count
+     */
+    public void setCount(int count) { this.count = count; }
+
     public void setPlayerController(PlayerController pc) {
         this.pc = pc;
     }
 
+    public void setAdapterContent(ArrayList<Unit> adapterContent) { this.adapterContent = adapterContent; }
+
     public static RecruitSelectionDialogFragment newInstance(RecruitSelectionController rsc) {
         RecruitSelectionDialogFragment rsdf = new RecruitSelectionDialogFragment();
         rsdf.setController(rsc);
-
+        rsdf.setAdapterContent(null);
+        rsdf.setCount(1);
         return rsdf;
     }
 
@@ -53,7 +68,10 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
         final GridView gridview = (GridView) v.findViewById(R.id.gridview);
 
         String cultureName = pc.getHumanPlayer().getCulture().getName();
-        gridview.setAdapter(new RecruitSelectionAdapter(getActivity(), controller.getRecruitListByCulture(cultureName)));
+
+        // this is the default adapter content if the programmer doesn't specify another
+        if (adapterContent == null) adapterContent = controller.getRecruitListByCulture(cultureName);
+        gridview.setAdapter(new RecruitSelectionAdapter(getActivity(),this.adapterContent));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,7 +79,8 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
                 // adds the recruit to the player's army if they have sufficient resources
                 // otherwise, it returns false and displays the alert message.
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                if (!controller.addRecruit(position)) {
+                Unit selected = adapterContent.get(position);
+                if (!controller.addRecruit(selected)) {
 
                     builder.setMessage("Not available for you.")
                         .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
@@ -75,7 +94,8 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
                     builder.setMessage("Purchased.")
                             .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-
+                                    RecruitSelectionDialogFragment.this.count--;
+                                    if (count == 0) RecruitSelectionDialogFragment.this.dismiss();
                                 }
                             });
                     builder.create().show();

@@ -27,11 +27,21 @@ public class AskGodPowerUseDialogFragment extends DialogFragment {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(card.payFavor()) {
+                String message = "";
+                boolean status = true;
+                if (!(status = (status && card.payFavor()))) {
+                    message += "You don't have enough favor. ";
+                }
+                if (!(status = (status && card.checkAge()))) {
+                    message += "You aren't the right age. ";
+                }
+
+                if (status) {
                     card.playGod();
-                } else {
+                }
+                else {
                     AlertDialog.Builder builder2 = new AlertDialog.Builder(getActivity());
-                    builder2.setMessage("You don't have enough favor, so playing normal.");
+                    builder2.setMessage(message);
                     builder2.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
