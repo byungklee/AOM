@@ -66,7 +66,7 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
         if(!isPlayed()) {
             setPlayed(true);
             //For ai, if you can pay, they play god otherwise normal.
-            if(payFavor()) {
+            if(payFavor() && checkAge()) {
                 playGod();
             } else {
                 playNormal();

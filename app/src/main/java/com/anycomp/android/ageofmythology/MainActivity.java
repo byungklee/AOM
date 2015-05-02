@@ -25,6 +25,7 @@ import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.RandomRecruitCard;
@@ -128,7 +129,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             if (c instanceof Egyptian) {
                 recruitGodCard = new GodEgyptRecruitCard(new RandomRecruitCard());
             } else if (c instanceof Greek) {
-//                recruitGodCard = new GodGreekRecruitCard(new PermanentRecruitCard(new Greek()));
+                recruitGodCard = new GodGreekRecruitCard(new RandomRecruitCard());
             } else if (c instanceof Norse) {
                 recruitGodCard = new GodNorseRecruitCard(new RandomRecruitCard());
             }
