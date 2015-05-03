@@ -9,6 +9,9 @@ import com.anycomp.android.ageofmythology.PlayerController;
 import com.anycomp.android.ageofmythology.RecruitSelectionController;
 import com.anycomp.android.ageofmythology.RecruitSelectionDialogFragment;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
+import com.anycomp.android.ageofmythology.model.culture.Egyptian;
+import com.anycomp.android.ageofmythology.model.culture.Norse;
+import com.anycomp.android.ageofmythology.model.player.Player;
 
 public class PermanentRecruitCard extends PermanentActionCard {
 
@@ -43,8 +46,11 @@ public class PermanentRecruitCard extends PermanentActionCard {
 
     @Override
     public void aiPlay(FragmentManager fm, PlayerController player) {
-
-
+        RecruitSelectionController rsc = RecruitSelectionController.getInstance(player);
+        Player p = player.getCurrentPlayer();
+        //Ai always to try to get 5th and 6th in the list.
+        rsc.addRecruit(rsc.getRecruitListByCulture(p.getCulture().getName()).get(5));
+        rsc.addRecruit(rsc.getRecruitListByCulture(p.getCulture().getName()).get(6));
         player.nextRound();
     }
 

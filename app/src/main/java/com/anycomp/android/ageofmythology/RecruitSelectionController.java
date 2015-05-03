@@ -116,6 +116,7 @@ public class RecruitSelectionController {
         norseRecruitList.add(new NidHogg());
         norseRecruitList.add(new Dwarf());
         norseRecruitList.add(new FrostGiant());
+
         norseRecruitList.add(new Jarl());
         norseRecruitList.add(new Huskarl());
         norseRecruitList.add(new ThrowingAxeman());
@@ -149,11 +150,13 @@ public class RecruitSelectionController {
         egyptRecruitList.add(new Mummy());
         egyptRecruitList.add(new Anubite());
         egyptRecruitList.add(new Sphinx());
+
         egyptRecruitList.add(new ScorpionMan());
         egyptRecruitList.add(new Spearman());
-        egyptRecruitList.add(new Elephant());
         egyptRecruitList.add(new ChariotArcher());
+        egyptRecruitList.add(new Elephant());
         egyptRecruitList.add(new Priest());
+
         egyptRecruitList.add(new SonOfOsiris());
         egyptRecruitList.add(new Pharaoh());
     }

@@ -96,7 +96,7 @@ public class GodEgyptTradeCard extends RandomTradeCard implements God {
             }
             // then play normal regardless
             new PermanentTradeCard(this).aiPlay(fm, pc);
-           
+
         }
     }
 
