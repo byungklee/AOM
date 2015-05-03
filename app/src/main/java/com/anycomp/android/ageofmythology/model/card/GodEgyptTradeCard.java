@@ -17,14 +17,14 @@ import com.anycomp.android.ageofmythology.model.resource.ResourceType;
 /**
  * Created by mike on 5/1/15.
  */
-public class GodGreekTradeCard extends RandomTradeCard implements God {
+public class GodEgyptTradeCard extends RandomTradeCard implements God {
 
-    private static final String TAG = "GodGreekTrade";
+    private static final String TAG = "GodEgyptTrade";
 
-    public GodGreekTradeCard(RandomTradeCard card) {
+    public GodEgyptTradeCard(RandomTradeCard card) {
         setName(TAG);
         this.card=card;
-        setImagePath(R.drawable.card_rand_greek_trade_hermes);
+        setImagePath(R.drawable.card_rand_egypt_trade6);
         setValue(0);
         favorCost = 1;  // must!! it is declared in RandomCard.java
     }

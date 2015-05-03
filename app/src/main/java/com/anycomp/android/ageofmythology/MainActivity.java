@@ -25,9 +25,11 @@ import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptTradeCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekTradeCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseTradeCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.RandomRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.RandomTradeCard;
@@ -147,11 +149,11 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
 
             Card tradeGodCard = null;
             if (c instanceof Egyptian) {
-//                tradeGodCard = new GodEgyptTradeCard(new RandomRecruitCard());
+                tradeGodCard = new GodEgyptTradeCard(new RandomTradeCard());
             } else if (c instanceof Greek) {
                 tradeGodCard = new GodGreekTradeCard(new RandomTradeCard());
             } else if (c instanceof Norse) {
-//                tradeGodCard = new GodNorseTradeCard(new RandomRecruitCard());
+                tradeGodCard = new GodNorseTradeCard(new RandomTradeCard());
             }
 
             CardDeck cd = p.getHand();
