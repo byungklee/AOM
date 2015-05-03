@@ -73,6 +73,13 @@ public abstract class Unit {
         this.woodCost = woodCost;
     }
 
+    public void setCost(int favorCost, int foodCost, int goldCost, int woodCost) {
+        this.favorCost = favorCost;
+        this.foodCost = foodCost;
+        this.goldCost = goldCost;
+        this.woodCost = woodCost;
+    }
+
     public String toString() {
         String str = "";
         str += name + ":\n";

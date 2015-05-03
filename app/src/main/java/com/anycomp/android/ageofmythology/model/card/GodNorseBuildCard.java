@@ -104,4 +104,9 @@ public class GodNorseBuildCard extends RandomBuildCard implements God {
     public boolean payFavor() {
         return pay();
     }
+
+    @Override
+    public boolean checkAge() {
+        return true;
+    }
 }

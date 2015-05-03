@@ -8,7 +8,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.anycomp.android.ageofmythology.model.age.Age;
+import com.anycomp.android.ageofmythology.model.age.ArchaicAge;
+import com.anycomp.android.ageofmythology.model.age.ClassicalAge;
+import com.anycomp.android.ageofmythology.model.age.HeroicAge;
+import com.anycomp.android.ageofmythology.model.age.MythicAge;
+
 import com.anycomp.android.ageofmythology.model.bank.Bank;
+import com.anycomp.android.ageofmythology.model.card.Card;
+import com.anycomp.android.ageofmythology.model.card.CardDeck;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptTradeCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekTradeCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseTradeCard;
+import com.anycomp.android.ageofmythology.model.card.RandomRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.RandomTradeCard;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.culture.Egyptian;
 import com.anycomp.android.ageofmythology.model.culture.Greek;
@@ -88,6 +105,55 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             trtf.setAttacker(0);
             trtf.setPC(mPlayerController);
             trtf.show(getFragmentManager(),"test2");
+        } else if (id == R.id.advance_age) {
+            Player p = mPlayerController.getCurrentPlayer();
+            Age age = p.getAge();
+            if (age instanceof ArchaicAge) {
+                p.setAge(new ClassicalAge());
+            } else if (age instanceof ClassicalAge) {
+                p.setAge(new HeroicAge());
+            } else if (age instanceof HeroicAge) {
+                p.setAge(new MythicAge());
+            } else if (age instanceof MythicAge) {
+                p.setAge(new ArchaicAge());
+            }
+            Log.i(TAG, "Set player's age to " + p.getAge());
+        } else if(id == R.id.recruit_god_card) {
+            Player p = mPlayerController.getCurrentPlayer();
+            Culture c = p.getCulture();
+
+            Card recruitGodCard = null;
+            if (c instanceof Egyptian) {
+                recruitGodCard = new GodEgyptRecruitCard(new RandomRecruitCard());
+            } else if (c instanceof Greek) {
+                recruitGodCard = new GodGreekRecruitCard(new RandomRecruitCard());
+            } else if (c instanceof Norse) {
+                recruitGodCard = new GodNorseRecruitCard(new RandomRecruitCard());
+            }
+
+            CardDeck cd = p.getHand();
+            cd.addCard(recruitGodCard);
+            p.setHand(cd);
+
+            Log.i(TAG, "Added " + recruitGodCard + " to player's hand");
+        } else if (id == R.id.trade_god_card) {
+            Player p = mPlayerController.getCurrentPlayer();
+            Culture c = p.getCulture();
+
+            Card tradeGodCard = null;
+            if (c instanceof Egyptian) {
+                tradeGodCard = new GodEgyptTradeCard(new RandomTradeCard());
+            } else if (c instanceof Greek) {
+                tradeGodCard = new GodGreekTradeCard(new RandomTradeCard());
+            } else if (c instanceof Norse) {
+                tradeGodCard = new GodNorseTradeCard(new RandomTradeCard());
+            }
+
+            CardDeck cd = p.getHand();
+            cd.addCard(tradeGodCard);
+            p.setHand(cd);
+
+            Log.i(TAG, "Added " + tradeGodCard + " to player's hand");
         }
 
         return super.onOptionsItemSelected(item);

@@ -7,4 +7,5 @@ public interface God {
     void playGod();
     void playNormal();
     boolean payFavor();
+    boolean checkAge();
 }

@@ -210,14 +210,12 @@ public class RecruitSelectionController {
 //
     /**
      * Adds the selected recruit to the player's army.
-     * @param index The index of the selected recruit in the GridView Layout.
+     * @param chosen The Unit that was selected in the GridView Layout.
      * @return boolean indicating success.
      */
-    public boolean addRecruit(int index) {
+    public boolean addRecruit(Unit chosen) {
 
         Player player = pc.getCurrentPlayer();
-
-        Unit chosen = cultureUnitMap.get(player.getCulture().getName()).get(index);
 
         // add the unit to the player's army
         if(counter >= card.getValue()) {

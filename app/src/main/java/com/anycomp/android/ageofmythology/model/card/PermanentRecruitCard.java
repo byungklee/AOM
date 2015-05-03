@@ -21,6 +21,17 @@ public class PermanentRecruitCard extends PermanentActionCard {
         setValue(2);
     }
 
+    /**
+     * Use this constructor to create a custom version of this card (for use with God random card when the God option is unavailable)
+     * @param randomRecruitCard The God card to be used as a normal card.
+     */
+    public PermanentRecruitCard(RandomRecruitCard randomRecruitCard) {
+        setName(randomRecruitCard.getName());
+        setCulture(randomRecruitCard.getCulture());
+        setImagePath(randomRecruitCard.getImagePath());
+        setValue(randomRecruitCard.getValue());
+    }
+
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
         Log.i(TAG, "called play()");

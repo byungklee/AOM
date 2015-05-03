@@ -70,4 +70,9 @@ public class GodGreekAttackCard extends RandomAttackCard implements God {
     public boolean payFavor() {
         return pay();
     }
+
+    @Override
+    public boolean checkAge() {
+        return true;
+    }
 }
