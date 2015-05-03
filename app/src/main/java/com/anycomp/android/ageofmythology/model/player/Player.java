@@ -183,8 +183,8 @@ public class Player implements Observable {
                 randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
             }
             else {
-//                randomCardPool.addCard(new GodNorseBuildCard());
-                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
+                randomCardPool.addCard(new GodNorseBuildCard());
+//                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
 //                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
             }
         }
