@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.card.Card;
+import com.anycomp.android.ageofmythology.model.card.God;
 import com.anycomp.android.ageofmythology.model.card.PermanentTradeCard;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.resource.ResourceType;
@@ -51,7 +52,7 @@ public class TradeSelectionController {
 
         int transactionFee = 0;
         // check to see if the player has a market
-        if (!player.hasBuilding(BuildingType.MARKET)) {
+        if (!player.hasBuilding(BuildingType.MARKET) || !(card instanceof God)) {
             // if not, set transaction fee
             transactionFee = 2;
         }

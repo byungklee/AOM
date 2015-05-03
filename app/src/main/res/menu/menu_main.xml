@@ -70,5 +70,9 @@
         android:title="Take Recruit God Card (For Test)"
         android:orderInCategory="113"
         app:showAsAction="never" />
+    <item android:id="@+id/trade_god_card"
+        android:title="Take Trade God Card (For Test)"
+        android:orderInCategory="114"
+        app:showAsAction="never" />
 
 </menu>

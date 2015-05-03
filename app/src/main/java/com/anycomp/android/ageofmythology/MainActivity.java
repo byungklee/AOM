@@ -26,9 +26,11 @@ import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.card.CardDeck;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekTradeCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.RandomRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.RandomTradeCard;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.culture.Egyptian;
 import com.anycomp.android.ageofmythology.model.culture.Greek;
@@ -122,7 +124,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             }
             Log.i(TAG, "Set player's age to " + p.getAge());
         } else if(id == R.id.recruit_god_card) {
-            Player p = mPlayerController.getHumanPlayer();
+            Player p = mPlayerController.getCurrentPlayer();
             Culture c = p.getCulture();
 
             Card recruitGodCard = null;
@@ -139,6 +141,24 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             p.setHand(cd);
 
             Log.i(TAG, "Added " + recruitGodCard + " to player's hand");
+        } else if (id == R.id.trade_god_card) {
+            Player p = mPlayerController.getCurrentPlayer();
+            Culture c = p.getCulture();
+
+            Card tradeGodCard = null;
+            if (c instanceof Egyptian) {
+//                tradeGodCard = new GodEgyptTradeCard(new RandomRecruitCard());
+            } else if (c instanceof Greek) {
+                tradeGodCard = new GodGreekTradeCard(new RandomTradeCard());
+            } else if (c instanceof Norse) {
+//                tradeGodCard = new GodNorseTradeCard(new RandomRecruitCard());
+            }
+
+            CardDeck cd = p.getHand();
+            cd.addCard(tradeGodCard);
+            p.setHand(cd);
+
+            Log.i(TAG, "Added " + tradeGodCard + " to player's hand");
         }
 
         return super.onOptionsItemSelected(item);

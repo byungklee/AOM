@@ -14,9 +14,16 @@ public class PermanentTradeCard extends PermanentActionCard {
     public static final String TAG = "PermanentTradeCard";
 
     public PermanentTradeCard(Culture culture) {
-         setName("Trade");
+        setName("Trade");
         setCulture(culture);
         setImagePath(culture.getPermanentTradeCardImage());
+    }
+
+    public PermanentTradeCard(RandomTradeCard card) {
+        setName(card.getName());
+        setCulture(card.getCulture());
+        setImagePath(card.getImagePath());
+        setValue(card.getValue());
     }
 
     @Override
