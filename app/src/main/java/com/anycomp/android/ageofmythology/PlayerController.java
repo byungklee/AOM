@@ -122,6 +122,7 @@ public class PlayerController {
                     getCurrentPlayer().pickCard(cardOrder.get(i));
                 }
             }
+        System.out.println("Round = " + turnManager.getRound());
             System.out.println(getCurrentPlayer().getName() + " plays " + getCurrentPlayer().getHand().getCardAt(turnManager.getRound() -1).getName() );
             getCurrentPlayer().getHand().getCardAt(turnManager.getRound() -1).aiPlay(fm, this);
         //play card
@@ -130,18 +131,16 @@ public class PlayerController {
     }
 
     public void nextRound() {
-        //currentPlayer = (currentPlayer+1)%players.size();
-
-
+        System.out.println("Before: crruetPlayer " + turnManager.getCurrentPlayer());
         setCurrentPlayer(turnManager.nextRoundPlayer());
         if(turnManager.getTurn() == 11) {
             gameEnd();
         } else {
-            System.out.println("next " + turnManager.getRound() + " " + turnManager.getCounter());
+            System.out.println("next... round:" + turnManager.getRound() + " counter:" + turnManager.getCounter() + " currentPlayer: " + currentPlayer);
             if (turnManager.getRound() == 1 && turnManager.getCounter() == 0) {
 
             } else {
-                if (players.get(currentPlayer).getName().contains("AI")) {
+                if (players.get(getTurnManager().getCurrentPlayer()).getName().contains("AI")) {
                     //AI work
                     aiWork();
                 }
@@ -265,9 +264,9 @@ public class PlayerController {
             Player p = (Player) it.next();
             int maxAllowed = 5;
             if(p.hasBuilding(BuildingType.STOREHOUSE)) {
+                System.out.println(p.getName() + " has storehouse.");
                 maxAllowed = 8;
             }
-            System.out.println(p.getName() + " has storehouse.");
             int i;
             if(p.getFoodCube().getValue() > maxAllowed) {
                 i = p.getFoodCube().getValue() - maxAllowed;
@@ -365,14 +364,6 @@ public class PlayerController {
         } else {
             winnerInterface.winner(null);
         }
-
-
-
-
-//        VictoryCard vc = (VictoryCard) it.next();
-  ///      int numberOfVictoryCard = vc.getVictoryCubes().size();
-
-
 
     }
 

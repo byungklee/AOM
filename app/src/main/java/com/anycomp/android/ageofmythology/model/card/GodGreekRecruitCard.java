@@ -70,6 +70,8 @@ public class GodGreekRecruitCard extends RandomRecruitCard implements God {
             else {
                 new PermanentRecruitCard(this).aiPlay(fm, pc);
             }
+            pc.nextRound();
+
         }
     }
 

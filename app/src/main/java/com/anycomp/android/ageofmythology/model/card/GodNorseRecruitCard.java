@@ -94,6 +94,9 @@ public class GodNorseRecruitCard extends RandomRecruitCard implements God {
             else {
                 new PermanentRecruitCard(this).aiPlay(fm, pc);
             }
+
+            pc.nextRound();
+
         }
     }
 

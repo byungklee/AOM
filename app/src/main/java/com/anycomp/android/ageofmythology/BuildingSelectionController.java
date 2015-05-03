@@ -27,6 +27,8 @@ public class BuildingSelectionController {
         if(instance == null) {
             instance = new BuildingSelectionController(pc);
         }
+        instance.setPlayerController(pc);
+
         return instance;
     }
 
@@ -34,6 +36,10 @@ public class BuildingSelectionController {
         this.pc = pc;
         buildingList = new ArrayList<>();
         initBuildingList();
+    }
+
+    public void setPlayerController(PlayerController pc) {
+        this.pc = pc;
     }
 
     private Card card;
@@ -71,7 +77,7 @@ public class BuildingSelectionController {
                 }
             }
         }
-        System.out.println("Verifying Available Fail");
+        //System.out.println("Verifying Available Fail");
         return false;
     }
 
@@ -100,7 +106,7 @@ public class BuildingSelectionController {
         //pickedBuilding.getCost();
 
         //special effect?
-        System.out.println("Verifying resource Fail");
+        //System.out.println("Verifying resource Fail");
 
         return false;
     }

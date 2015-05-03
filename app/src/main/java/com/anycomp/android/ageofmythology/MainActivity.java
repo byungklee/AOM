@@ -80,6 +80,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         } else if(id == R.id.victory_card)  {
             openVictoryCardPopup(false);
         } else if(id == R.id.next_round) {
+            System.out.println("Next_Round by Menu");
             mPlayerController.nextRound();
         } else if(id == R.id.unit_list) {
             openUnitListDialog();
@@ -154,6 +155,12 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             p.setHand(cd);
 
             Log.i(TAG, "Added " + tradeGodCard + " to player's hand");
+        } else if (id == R.id.test1) {
+            TurnManager tm = mPlayerController.getTurnManager();
+            System.out.println("Turn,Round,currnetPlayer: " + tm.getTurn() + " " + tm.getRound() + " " + tm.getCurrentPlayer());
+        } else if(id== R.id.bank) {
+            BankInfoDialogFragment bank = new BankInfoDialogFragment();
+            bank.show(getFragmentManager(), "Bank");
         }
 
         return super.onOptionsItemSelected(item);
@@ -175,6 +182,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         Bundle args = new Bundle();
         //
         newFragment.setArguments(args);
+        Bank.getInstance().reset();
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
@@ -191,6 +199,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
     private PlayerController mPlayerController;
 
     public void selectCulture(View view) {
+        System.out.println("New game is being generated.");
         cultureMap = new HashMap<>();
         cultureMap.put("Norse", new Norse());
         cultureMap.put("Greek", new Greek());
@@ -317,5 +326,19 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         });
 
         wdf.show(getFragmentManager(), "WinnerDialog");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("MainActivity onStop");
+        mPlayerController = null;
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GatherController.getInstance(mPlayerController);
     }
 }

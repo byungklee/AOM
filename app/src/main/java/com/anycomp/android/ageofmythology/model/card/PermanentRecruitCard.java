@@ -43,6 +43,8 @@ public class PermanentRecruitCard extends PermanentActionCard {
 
     @Override
     public void aiPlay(FragmentManager fm, PlayerController player) {
+
+
         player.nextRound();
     }
 
@@ -50,6 +52,7 @@ public class PermanentRecruitCard extends PermanentActionCard {
         RecruitSelectionController rsc = RecruitSelectionController.getInstance(pc);
         rsc.setRecruitCard(this);
         RecruitSelectionDialogFragment rsdf = RecruitSelectionDialogFragment.newInstance(rsc);
+        rsdf.setCount(getValue());
         rsdf.setPlayerController(pc);
         rsdf.show(fm, TAG);
     }

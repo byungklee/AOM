@@ -505,8 +505,6 @@ public class AttackController {
                     //taken += takeValue;
                 }
             }
-
-            pc.nextRound();
         }
     }
 
@@ -531,7 +529,7 @@ public class AttackController {
         bd.setBuildingDestructionController(bc);
         bd.show(fm,"DestroyBuilding");
 
-        //pc.nextRound();
+
     }
 
     public AreaType getAttackArea() {

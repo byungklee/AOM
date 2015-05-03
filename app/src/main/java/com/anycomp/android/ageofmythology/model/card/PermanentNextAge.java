@@ -19,7 +19,9 @@ public class PermanentNextAge extends PermanentActionCard {
 
     @Override
     public void play(FragmentManager fm, PlayerController pc) {
+
         if(!isPlayed()) {
+            System.out.println(pc.getCurrentPlayerID() + " plays Next age");
             setPlayed(true);
             NextAgeController nac = NextAgeController.getInstance(pc);
             nac.playNextAgeCard(this);

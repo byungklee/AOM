@@ -152,7 +152,7 @@ public class ProfitResourceDialogFragment extends DialogFragment {
     @Override
     public void dismiss() {
         super.dismiss();
-        pc.nextRound();
+//        pc.nextRound();
 
     }
 }

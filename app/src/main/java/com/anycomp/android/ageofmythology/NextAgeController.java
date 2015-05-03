@@ -28,7 +28,11 @@ public class NextAgeController {
         if(instance == null) {
             instance = new NextAgeController(pc);
         }
+        instance.setPlayerController(pc);
         return instance;
+    }
+    public void setPlayerController(PlayerController pc) {
+        this.pc = pc;
     }
 
     private NextAgeController(PlayerController pc) {
@@ -36,7 +40,9 @@ public class NextAgeController {
         age = pc.getCurrentPlayer().getAge();
     }
 
-    public void playNextAgeCard(Card card) { this.card = card; }
+    public void playNextAgeCard(Card card) {
+        this.card = card;
+    }
 
     public Age getAge() { return age; }
 
@@ -94,6 +100,7 @@ public class NextAgeController {
             player.spendFavor(6);
             player.spendGold(6);
         } else {
+            System.out.println("Wasn't able to go to next age");
             return false;
         }
 

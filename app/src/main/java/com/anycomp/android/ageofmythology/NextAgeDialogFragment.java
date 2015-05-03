@@ -1,5 +1,7 @@
 package com.anycomp.android.ageofmythology;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
@@ -29,12 +31,28 @@ public class NextAgeDialogFragment extends DialogFragment {
         this.nac = nac;
     }
 
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        if (nac.check()) {
+//            makeToast();
+//        }
+//    }
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         if (nac.check()) {
             makeToast();
         }
+        //return super.onCreateDialog(savedInstanceState);
+
+        return new AlertDialog.Builder(getActivity()).setNeutralButton("Okay", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).create();
     }
 
     @Override
@@ -42,6 +60,8 @@ public class NextAgeDialogFragment extends DialogFragment {
         super.onDismiss(dialog);
         nac.nextRound();
     }
+
+
 
     public void makeToast() {
         Context context = getActivity().getApplicationContext();

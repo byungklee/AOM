@@ -17,17 +17,25 @@ import com.anycomp.android.ageofmythology.model.card.CardType;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptBuildCard;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptExploreCard;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptTradeCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekBuildCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekExploreCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekTradeCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseBuildCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseExploreCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseTradeCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentAttackCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentBuildCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentExploreCard;
 import com.anycomp.android.ageofmythology.model.card.RandomCard;
 
+import com.anycomp.android.ageofmythology.model.card.RandomRecruitCard;
+import com.anycomp.android.ageofmythology.model.card.RandomTradeCard;
 import com.anycomp.android.ageofmythology.model.culture.Culture;
 import com.anycomp.android.ageofmythology.model.culture.Egyptian;
 import com.anycomp.android.ageofmythology.model.culture.Greek;
@@ -171,21 +179,28 @@ public class Player implements Observable {
         //TO DO
         private void initRandomCardDeck() {
             if(culture instanceof Egyptian) {
-                randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
+                //randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
 //                randomCardPool.addCard(new GodEgyptAttackCard(new PermanentAttackCard(culture)));
 //                randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
+//                randomCardPool.addCard(new GodEgyptRecruitCard(new RandomRecruitCard()));
 
+                randomCardPool.addCard(new GodEgyptTradeCard(new RandomTradeCard()));
 
             }
             else if(culture instanceof Greek) {
                // randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
 //                randomCardPool.addCard(new GodGreekAttackCard(new PermanentAttackCard(culture)));
-                randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
+                //randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
+//                randomCardPool.addCard(new GodGreekRecruitCard(new RandomRecruitCard()));
+                randomCardPool.addCard(new GodGreekTradeCard(new RandomTradeCard()));
             }
             else {
-                randomCardPool.addCard(new GodNorseBuildCard());
+               // randomCardPool.addCard(new GodNorseBuildCard());
 //                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
 //                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
+//                randomCardPool.addCard(new GodNorseRecruitCard(new RandomRecruitCard()));
+                randomCardPool.addCard(new GodNorseTradeCard(new RandomTradeCard()));
+
             }
         }
         

@@ -21,6 +21,7 @@ public class TileSelectionController {
     private boolean onlyPlayerPick;
     private int selectedCounter;
     private boolean onlyOnePlayerPlayed = false;
+    private int currentPlayerIndex;
     public TileSelectionController(PlayerController pc, int maxPick) {
         this.pc = pc;
         this.maxPick = maxPick;
@@ -35,6 +36,7 @@ public class TileSelectionController {
         if(getPlayerController().getCurrentPlayer().getName().contains("AI")) {
              aiPickTile();
         }
+        this.currentPlayerIndex = pc.getCurrentPlayerID();
     }
 
     public TileSelectionController(PlayerController pc, int maxPick, boolean onlyPlayerPick, boolean select2more) {
@@ -58,6 +60,8 @@ public class TileSelectionController {
                 aiPickTile();
             }
         }
+        this.currentPlayerIndex = pc.getCurrentPlayerID();
+
     }
 
 
@@ -86,7 +90,7 @@ public class TileSelectionController {
         boolean taken = false;
         for (int i = 0; i < productionTiles.size(); i++) {
             Tile tile = productionTiles.get(i);
-            System.out.println(tile);
+           // System.out.println(tile);
             if (!(tile instanceof TileDecorator)
                     && tile.getTileType() == selectedTile.getTileType()) {
                 pc.getCurrentPlayer().getPlayerBoard().getProductionArea().setTileAt(i, selectedTile);
@@ -193,6 +197,7 @@ public class TileSelectionController {
     }
 
     public void nextRound() {
+        pc.setCurrentPlayer(currentPlayerIndex);
         pc.nextRound();
     }
 

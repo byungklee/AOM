@@ -83,6 +83,7 @@ public class RecruitSelectionController {
         if(instance == null) {
             instance = new RecruitSelectionController(pc);
         }
+        instance.setPlayerController(pc);
         return instance;
     }
 
@@ -98,6 +99,9 @@ public class RecruitSelectionController {
                 return -1;
         }
     };
+    public void setPlayerController(PlayerController pc) {
+        this.pc = pc;
+    }
 
     public void initRecruitList() {
         initGreekRecruitList();
@@ -221,7 +225,8 @@ public class RecruitSelectionController {
         if(counter >= card.getValue()) {
             return false;
         }
-
+        if(chosen == null)
+            System.out.println("Unit chosen is null " + pc.getCurrentPlayerID());
         // check that the player has sufficient resources
         if ( chosen != null &&
              player.getFavorCube().getValue() >= chosen.getFavorCost() &&

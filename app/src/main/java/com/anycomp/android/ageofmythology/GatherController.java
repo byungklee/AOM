@@ -25,6 +25,7 @@ public class GatherController {
         if(instance == null) {
             instance = new GatherController(pc);
         }
+        instance.setPlayerController(pc);
         return instance;
     }
 
@@ -46,6 +47,7 @@ public class GatherController {
     }
 
     public PlayerController getPlayerController() { return pc; }
+    public void setPlayerController(PlayerController pc) { this.pc = pc; }
 
     public ArrayList<Object> getList() { return list; }
 

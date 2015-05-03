@@ -75,4 +75,9 @@
         android:orderInCategory="114"
         app:showAsAction="never" />
 
+    <item android:id="@+id/test1"
+        android:title="(For Test)"
+        android:orderInCategory="115"
+        app:showAsAction="never" />
+
 </menu>
