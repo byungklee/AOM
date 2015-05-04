@@ -30,19 +30,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5db2ebe-2157-449f-9ebc-53cb117a3a75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/age-of-mythology-android.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_food_tile_elimination_dialog.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tile_elimination_dialog.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_21_0_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid15035.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid20534.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid2540.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid25764.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid2579.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid30712.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid30749.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid3836.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid3880.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid5132.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid8439.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Age Of Mythology.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -158,8 +157,8 @@
       <file leaf-file-name="TakeResourceTileAdapter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TakeResourceTileAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54755783" vertical-offset="267" max-vertical-offset="840">
-              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.12339332" vertical-offset="267" max-vertical-offset="840">
+              <caret line="21" column="12" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1210,6 +1209,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="age-of-mythology-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="age-of-mythology-android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="AndroidView">
@@ -1447,7 +1464,11 @@
       <created>1430780413574</created>
       <updated>1430780413574</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="work in progress trade card dialog&#10;">
+      <created>1430780471488</created>
+      <updated>1430780471488</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1918,8 +1939,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/anycomp/android/ageofmythology/TakeResourceTileAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54755783" vertical-offset="267" max-vertical-offset="840">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.12339332" vertical-offset="267" max-vertical-offset="840">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
