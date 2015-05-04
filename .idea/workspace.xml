@@ -30,17 +30,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5db2ebe-2157-449f-9ebc-53cb117a3a75" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid15035.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid20534.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid2540.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid25764.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid2579.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid30712.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid30749.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid3836.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid3880.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid5132.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/hs_err_pid8439.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Age Of Mythology.iws" />
@@ -1468,7 +1457,11 @@
       <created>1430780471488</created>
       <updated>1430780471488</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="work in progress trade card dialog&#10;">
+      <created>1430780522488</created>
+      <updated>1430780522488</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
