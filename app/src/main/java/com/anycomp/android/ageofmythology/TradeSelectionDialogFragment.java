@@ -60,7 +60,8 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         final Spinner woodSpinner = (Spinner) v.findViewById(R.id.bank_wood_spinner);
         final Spinner playerResourceSpinner = (Spinner) v.findViewById(R.id.player_resource_spinner);
         final Spinner playerNumberSpinner = (Spinner) v.findViewById(R.id.player_number_spinner);
-        final Spinner transactionCostTypeSpinner = (Spinner) v.findViewById(R.id.transaction_cost_type);
+        final Spinner transactionCostTypeSpinner1 = (Spinner) v.findViewById(R.id.transaction_cost_type_primary);
+        final Spinner transactionCostTypeSpinner2 = (Spinner) v.findViewById(R.id.transaction_cost_type_secondary);
 
         Bank bank = controller.getBank();
 
@@ -85,9 +86,12 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         playerNumberSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
                                        R.layout.support_simple_spinner_dropdown_item,
                                        buildStringArray(5)));
-        transactionCostTypeSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
-                                              R.layout.support_simple_spinner_dropdown_item,
-                                              new String[] {"Favor", "Food", "Gold", "Wood"}));
+        transactionCostTypeSpinner1.setAdapter(new ArrayAdapter<String>(getActivity(),
+                R.layout.support_simple_spinner_dropdown_item,
+                new String[]{"Favor", "Food", "Gold", "Wood"}));
+        transactionCostTypeSpinner2.setAdapter(new ArrayAdapter<String>(getActivity(),
+                R.layout.support_simple_spinner_dropdown_item,
+                new String[]{"Favor", "Food", "Gold", "Wood"}));
 
         builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
@@ -117,25 +121,42 @@ public class TradeSelectionDialogFragment extends DialogFragment {
                         break;
                 }
 
-                ResourceType costType = null;
-                switch(transactionCostTypeSpinner.getSelectedItemPosition()) {
+                ResourceType costType1 = null;
+                ResourceType costType2 = null;
+                switch(transactionCostTypeSpinner1.getSelectedItemPosition()) {
                     case 0:
-                        costType = ResourceType.FAVOR;
+                        costType1 = ResourceType.FAVOR;
                         break;
                     case 1:
-                        costType = ResourceType.FOOD;
+                        costType1 = ResourceType.FOOD;
                         break;
                     case 2:
-                        costType = ResourceType.GOLD;
+                        costType1 = ResourceType.GOLD;
                         break;
                     case 3:
-                        costType = ResourceType.WOOD;
+                        costType1 = ResourceType.WOOD;
+                        break;
+                    default:
+                        break;
+                }
+                switch(transactionCostTypeSpinner2.getSelectedItemPosition()) {
+                    case 0:
+                        costType2 = ResourceType.FAVOR;
+                        break;
+                    case 1:
+                        costType2 = ResourceType.FOOD;
+                        break;
+                    case 2:
+                        costType2 = ResourceType.GOLD;
+                        break;
+                    case 3:
+                        costType2 = ResourceType.WOOD;
                         break;
                     default:
                         break;
                 }
 
-                controller.makeTrade(requestFavor, requestFood, requestGold, requestWood, paymentType, amount, costType);
+                controller.makeTrade(requestFavor, requestFood, requestGold, requestWood, paymentType, amount, costType1, costType2);
             }
         });
 
