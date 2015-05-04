@@ -11,7 +11,6 @@ age-of-mythology-android.iml
 .gradle/2.2.1/taskArtifacts/taskArtifacts.bin
 .idea/libraries/support_annotations_21_0_3.xml
 .idea/libraries/support_v4_21_0_3.xml
-.idea/workspace.xml
 app/app.iml
 app/build.gradle
 local.properties
