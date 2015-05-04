@@ -41,7 +41,7 @@ public class TradeSelectionController {
         this.card = card;
     }
 
-    public void makeTrade(int requestFavor, int requestFood, int requestGold, int requestWood, ResourceType tradeType, int amount, ResourceType costType) {
+    public void makeTrade(int requestFavor, int requestFood, int requestGold, int requestWood, ResourceType tradeType, int amount, ResourceType costType1, ResourceType costType2) {
         Player player = pc.getCurrentPlayer();
 
         // check that the amounts are equivalent
@@ -63,47 +63,47 @@ public class TradeSelectionController {
                 (availableGold - requestGold) +
                 (availableWood - requestWood) - transactionFee >= 0 ) {
             // take player's resource and deposit it into bank
-            switch (costType) {
-                case FAVOR:
-                    if (availableFavor >= transactionFee) {
-                        player.getFavorCube().setValue(availableFavor - transactionFee);
-                    }
-                    else {
-                        Log.i("TradeController", "Not enough resources to pay.");
-                        return;
-                    }
-                    break;
-                case FOOD:
-                    if (availableFood >= transactionFee) {
-                        player.getFoodCube().setValue(availableFood - transactionFee);
-                    }
-                    else {
-                        Log.i("TradeController", "Not enough resources to pay.");
-                        return;
-                    }
-                    break;
-                case GOLD:
-                    if (availableGold >= transactionFee) {
-                        player.getGoldCube().setValue(availableGold - transactionFee);
-                    }
-                    else {
-                        Log.i("TradeController", "Not enough resources to pay.");
-                        return;
-                    }
-                    break;
-                case WOOD:
-                    if (availableWood >= transactionFee) {
-                        player.getWoodCube().setValue(availableWood - transactionFee);
-                    }
-                    else {
-                        Log.i("TradeController", "Not enough resources to pay.");
-                        return;
-                    }
-                    break;
-                default:
-                    break;
+            for (int i=0; i<transactionFee; i++) {
+                ResourceType costType = costType1;
+                if (i==1) costType = costType2;
+                switch (costType) {
+                    case FAVOR:
+                        if (availableFavor >= 1) {
+                            player.getFavorCube().setValue(availableFavor - 1);
+                        } else {
+                            Log.i("TradeController", "Not enough resources to pay.");
+                            return;
+                        }
+                        break;
+                    case FOOD:
+                        if (availableFood >= 1) {
+                            player.getFoodCube().setValue(availableFood - 1);
+                        } else {
+                            Log.i("TradeController", "Not enough resources to pay.");
+                            return;
+                        }
+                        break;
+                    case GOLD:
+                        if (availableGold >= 1) {
+                            player.getGoldCube().setValue(availableGold - 1);
+                        } else {
+                            Log.i("TradeController", "Not enough resources to pay.");
+                            return;
+                        }
+                        break;
+                    case WOOD:
+                        if (availableWood >= 1) {
+                            player.getWoodCube().setValue(availableWood - 1);
+                        } else {
+                            Log.i("TradeController", "Not enough resources to pay.");
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                bank.deposit(costType, 1);
             }
-            bank.deposit(costType, transactionFee);
 
             // check to make sure the player still has enough to trade the amount requested
             switch (tradeType) {

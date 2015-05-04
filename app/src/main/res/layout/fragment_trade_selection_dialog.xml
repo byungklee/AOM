@@ -103,7 +103,13 @@
             android:layout_height="wrap_content"
             android:text="@string/transaction_cost"/>
         <Spinner
-            android:id="@+id/transaction_cost_type"
+            android:id="@+id/transaction_cost_type_primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </Spinner>
+        <Spinner
+            android:id="@+id/transaction_cost_type_secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp">
