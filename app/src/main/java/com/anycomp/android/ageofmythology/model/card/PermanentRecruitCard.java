@@ -49,6 +49,7 @@ public class PermanentRecruitCard extends PermanentActionCard {
         RecruitSelectionController rsc = RecruitSelectionController.getInstance(player);
         Player p = player.getCurrentPlayer();
         //Ai always to try to get 5th and 6th in the list.
+        rsc.setRecruitCard(this);
         rsc.addRecruit(rsc.getRecruitListByCulture(p.getCulture().getName()).get(5));
         rsc.addRecruit(rsc.getRecruitListByCulture(p.getCulture().getName()).get(6));
         player.nextRound();

@@ -52,7 +52,7 @@ public class TradeSelectionController {
 
         int transactionFee = 0;
         // check to see if the player has a market
-        if (!player.hasBuilding(BuildingType.MARKET) || !(card instanceof God)) {
+        if (!player.hasBuilding(BuildingType.MARKET) && !(card instanceof God)) {
             // if not, set transaction fee
             transactionFee = 2;
         }
@@ -69,7 +69,7 @@ public class TradeSelectionController {
                 switch (costType) {
                     case FAVOR:
                         if (availableFavor >= 1) {
-                            player.getFavorCube().setValue(availableFavor - 1);
+                            player.getFavorCube().setValue(--availableFavor);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;
@@ -77,7 +77,7 @@ public class TradeSelectionController {
                         break;
                     case FOOD:
                         if (availableFood >= 1) {
-                            player.getFoodCube().setValue(availableFood - 1);
+                            player.getFoodCube().setValue(--availableFood);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;
@@ -85,7 +85,7 @@ public class TradeSelectionController {
                         break;
                     case GOLD:
                         if (availableGold >= 1) {
-                            player.getGoldCube().setValue(availableGold - 1);
+                            player.getGoldCube().setValue(--availableGold);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;
@@ -93,7 +93,7 @@ public class TradeSelectionController {
                         break;
                     case WOOD:
                         if (availableWood >= 1) {
-                            player.getWoodCube().setValue(availableWood - 1);
+                            player.getWoodCube().setValue(--availableWood);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;

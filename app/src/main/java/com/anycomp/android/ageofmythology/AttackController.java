@@ -116,7 +116,6 @@ public class AttackController {
                 if(isAttackerWin)
                     takeResources();
 
-                pc.nextRound();
             }
         }
     }
@@ -505,7 +504,10 @@ public class AttackController {
                     //taken += takeValue;
                 }
             }
+            pc.nextRound();
         }
+
+
     }
 
     public void takeResourceTile() {
