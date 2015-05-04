@@ -1,28 +1,27 @@
 package com.anycomp.android.ageofmythology;
 
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Toast;
 
 /**
- * Created by bert on 4/8/15.
+ * Created by bert on 5/3/15.
  */
-public class NextAgeDialogFragment extends DialogFragment {
+public class GodNextAgeDialogFragment extends DialogFragment {
     private NextAgeController nac;
 
-    public static NextAgeDialogFragment newInstance(
+    public static GodNextAgeDialogFragment newInstance(
             NextAgeController c) {
-        NextAgeDialogFragment fragment =
-                new NextAgeDialogFragment();
+        GodNextAgeDialogFragment fragment =
+                new GodNextAgeDialogFragment();
 
         fragment.setController(c);
         return fragment;
     }
 
-    public NextAgeDialogFragment() {}
+    public GodNextAgeDialogFragment() {}
 
     /* Set the controller */
     private void setController(NextAgeController nac) {
@@ -32,7 +31,7 @@ public class NextAgeDialogFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (nac.check()) {
+        if (nac.godCheck()) {
             makeToast();
         } else {
             denyToast();
@@ -42,7 +41,7 @@ public class NextAgeDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        nac.nextRound();
+        //nac.nextRound();
     }
 
     public void makeToast() {

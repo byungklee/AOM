@@ -34,9 +34,16 @@ public class TurnManager {
         index = (index+1)%3;
         if(counter == 2) {
             if(round > 2) {
-                pc.spoilage();
-                nextTurn();
-                victoryCallback.callback();
+                // Check if somebody gets another action
+                if (pc.getFourth() != -1) {
+                    pc.setCurrentPlayer(pc.getFourth());
+                    index = pc.getFourth();
+                    pc.setFourth(-1);
+                } else {
+                    pc.spoilage();
+                    nextTurn();
+                    victoryCallback.callback();
+                }
             } else {
                 System.out.println("next round");
                 index = index%3;

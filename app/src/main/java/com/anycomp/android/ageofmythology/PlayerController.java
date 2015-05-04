@@ -28,6 +28,7 @@ public class PlayerController {
     private FragmentManager fm;
     private VictoryCardDeck victoryCardDeck;
     private WinnerInterface winnerInterface;
+    private int fourth; // Signals a player who gets a fourth action
 
 
     public PlayerController(int numberOfPlayers, String name, String userChosen, HashMap cultureMap, FragmentManager fm, WinnerInterface wi) {
@@ -69,6 +70,7 @@ public class PlayerController {
 
         this.fm = fm;
         victoryCardDeck = new VictoryCardDeck();
+        fourth = -1;
 	}
 
     public VictoryCardDeck getVictoryCardDeck() {
@@ -376,4 +378,7 @@ public class PlayerController {
 
     }
 
+    public void setFourth(int fourth) { this.fourth = fourth; }
+
+    public int getFourth() { return fourth; }
 }
