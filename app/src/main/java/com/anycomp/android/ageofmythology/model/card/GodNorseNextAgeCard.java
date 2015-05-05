@@ -83,6 +83,11 @@ public class GodNorseNextAgeCard extends RandomNextAgeCard implements God {
     @Override
     public boolean payFavor() { return pay(); }
 
+    @Override
+    public boolean checkAge() {
+        return false;
+    }
+
     public void otherActivity() {
         Player player = pc.getCurrentPlayer();
 

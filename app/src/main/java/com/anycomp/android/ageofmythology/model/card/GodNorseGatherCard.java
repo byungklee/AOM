@@ -101,4 +101,9 @@ public class GodNorseGatherCard extends RandomGatherCard implements God {
 
     @Override
     public boolean payFavor() { return pay(); }
+
+    @Override
+    public boolean checkAge() {
+        return false;
+    }
 }
