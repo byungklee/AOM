@@ -179,26 +179,26 @@ public class Player implements Observable {
         //TO DO
         private void initRandomCardDeck() {
             if(culture instanceof Egyptian) {
-                //randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
-//                randomCardPool.addCard(new GodEgyptAttackCard(new PermanentAttackCard(culture)));
-//                randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
-//                randomCardPool.addCard(new GodEgyptRecruitCard(new RandomRecruitCard()));
-
+                randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodEgyptAttackCard(new PermanentAttackCard(culture)));
+                randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
+                randomCardPool.addCard(new GodEgyptRecruitCard(new RandomRecruitCard()));
                 randomCardPool.addCard(new GodEgyptTradeCard(new RandomTradeCard()));
+                //randomCardPool.addCard()
 
             }
             else if(culture instanceof Greek) {
-               // randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
-//                randomCardPool.addCard(new GodGreekAttackCard(new PermanentAttackCard(culture)));
-                //randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
-//                randomCardPool.addCard(new GodGreekRecruitCard(new RandomRecruitCard()));
+               randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodGreekAttackCard(new PermanentAttackCard(culture)));
+                randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
+                randomCardPool.addCard(new GodGreekRecruitCard(new RandomRecruitCard()));
                 randomCardPool.addCard(new GodGreekTradeCard(new RandomTradeCard()));
             }
             else {
-               // randomCardPool.addCard(new GodNorseBuildCard());
-//                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
-//                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
-//                randomCardPool.addCard(new GodNorseRecruitCard(new RandomRecruitCard()));
+               randomCardPool.addCard(new GodNorseBuildCard());
+                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
+                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
+                randomCardPool.addCard(new GodNorseRecruitCard(new RandomRecruitCard()));
                 randomCardPool.addCard(new GodNorseTradeCard(new RandomTradeCard()));
 
             }
@@ -227,7 +227,7 @@ public class Player implements Observable {
 
             //this if statement is for random card
             if(index == 7) {
-                if(randomCardPool.size() == 0) {
+                if(randomCardPool.size() == 0 || getHand().size() >= age.getMaxCardAvailable() ) {
                     return false;
                 }
                 randomCardPool.shuffle();

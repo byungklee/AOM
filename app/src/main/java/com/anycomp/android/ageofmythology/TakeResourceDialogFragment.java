@@ -57,28 +57,28 @@ public class TakeResourceDialogFragment extends DialogFragment {
         favor.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
+                //hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
                 refresh();
             }
         });
         wood.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
+                //hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
                 refresh();
             }
         });
         gold.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
+                //hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
                 refresh();
             }
         });
         wood.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
+                //hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
                 refresh();
             }
         });
@@ -124,11 +124,11 @@ public class TakeResourceDialogFragment extends DialogFragment {
     }
 
     public void refresh() {
-        favor.setMaxValue(Math.max(favor.getValue(), maxFavor - hasTakenSoFar ));
-        food.setMaxValue(Math.max(food.getValue(), maxFood - hasTakenSoFar));
-        gold.setMaxValue(Math.max(gold.getValue(), maxGold -hasTakenSoFar));
-        wood.setMaxValue(Math.max(wood.getValue(), maxWood - hasTakenSoFar));
-
+        hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
+        favor.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + favor.getValue(), maxFavor));
+        food.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + food.getValue(), maxFood));
+        gold.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + gold.getValue(), maxGold));
+        wood.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + wood.getValue(), maxWood));
     }
 
     @Override

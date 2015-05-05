@@ -26,7 +26,23 @@
                 android:textColor="#ffffe52f"
                 />
             <TextView
+                android:id="@+id/favor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#ffffe52f"
+                />
+            <TextView
                 android:id="@+id/food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#ffffe52f"
+                />
+            <TextView
+                android:id="@+id/gold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -42,22 +58,7 @@
                 android:textStyle="bold"
                 android:textColor="#ffffe52f"
                 />
-            <TextView
-                android:id="@+id/gold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#ffffe52f"
-                />
-            <TextView
-                android:id="@+id/favor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#ffffe52f"
-                />
+
             <TextView
                 android:id="@+id/victory"
                 android:layout_width="match_parent"
