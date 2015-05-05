@@ -1,69 +1,48 @@
 package com.anycomp.android.ageofmythology;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Toast;
 
 /**
- * Created by bert on 4/8/15.
+ * Created by bert on 5/3/15.
  */
-public class NextAgeDialogFragment extends DialogFragment {
+public class GodNextAgeDialogFragment extends DialogFragment {
     private NextAgeController nac;
 
-    public static NextAgeDialogFragment newInstance(
+    public static GodNextAgeDialogFragment newInstance(
             NextAgeController c) {
-        NextAgeDialogFragment fragment =
-                new NextAgeDialogFragment();
+        GodNextAgeDialogFragment fragment =
+                new GodNextAgeDialogFragment();
 
         fragment.setController(c);
         return fragment;
     }
 
-    public NextAgeDialogFragment() {}
+    public GodNextAgeDialogFragment() {}
 
     /* Set the controller */
     private void setController(NextAgeController nac) {
         this.nac = nac;
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (nac.check()) {
-//            makeToast();
-//        }
-//    }
-
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-        if (nac.check()) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (nac.godCheck()) {
             makeToast();
         } else {
             denyToast();
         }
-        //return super.onCreateDialog(savedInstanceState);
-
-        return new AlertDialog.Builder(getActivity()).setNeutralButton("Okay", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).create();
     }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        nac.nextRound();
+        //nac.nextRound();
     }
-
-
 
     public void makeToast() {
         Context context = getActivity().getApplicationContext();
