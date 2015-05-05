@@ -66,11 +66,9 @@ public class GodGreekRecruitCard extends RandomRecruitCard implements God {
                 pc.getCurrentPlayer().getArmy().add(new Toxotes());
                 pc.getCurrentPlayer().getArmy().add(new Toxotes());
             }
-            // If ai cannot afford to play god, then play normal
-            else {
-                new PermanentRecruitCard(this).aiPlay(fm, pc);
-            }
-            pc.nextRound();
+
+            // Just play normal whether or not ai can afford god power
+            new PermanentRecruitCard(this).aiPlay(fm, pc);
 
         }
     }
@@ -109,6 +107,7 @@ public class GodGreekRecruitCard extends RandomRecruitCard implements God {
 //                Log.i(TAG, "units were null for some reason...");
 //            }
         }
+        playNormal();
     }
 
     @Override

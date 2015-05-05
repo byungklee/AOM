@@ -83,9 +83,61 @@ public class TradeSelectionDialogFragment extends DialogFragment {
         playerResourceSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
                                          R.layout.support_simple_spinner_dropdown_item,
                                          new String[] {"Favor", "Food", "Gold", "Wood"}));
+        playerResourceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int resourceCount;
+                switch (playerResourceSpinner.getSelectedItemPosition()) {
+                    case 0:
+                        // favor
+                        resourceCount = controller.getPlayer().getFavorCube().getValue();
+                        break;
+                    case 1:
+                        resourceCount = controller.getPlayer().getFoodCube().getValue();
+                        break;
+                    case 2:
+                        resourceCount = controller.getPlayer().getGoldCube().getValue();
+                        break;
+                    case 3:
+                        resourceCount = controller.getPlayer().getWoodCube().getValue();
+                        break;
+                    default:
+                        resourceCount = 0;
+
+                }
+                playerNumberSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
+                        R.layout.support_simple_spinner_dropdown_item,
+                        buildStringArray(resourceCount)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        int resourceCount;
+        switch (playerResourceSpinner.getSelectedItemPosition()) {
+            case 0:
+                // favor
+                resourceCount = controller.getPlayer().getFavorCube().getValue();
+                break;
+            case 1:
+                resourceCount = controller.getPlayer().getFoodCube().getValue();
+                break;
+            case 2:
+                resourceCount = controller.getPlayer().getGoldCube().getValue();
+                break;
+            case 3:
+                resourceCount = controller.getPlayer().getWoodCube().getValue();
+                break;
+            default:
+                resourceCount = 0;
+
+        }
         playerNumberSpinner.setAdapter(new ArrayAdapter<String>(getActivity(),
                                        R.layout.support_simple_spinner_dropdown_item,
-                                       buildStringArray(5)));
+                                       buildStringArray(resourceCount)));
         transactionCostTypeSpinner1.setAdapter(new ArrayAdapter<String>(getActivity(),
                 R.layout.support_simple_spinner_dropdown_item,
                 new String[]{"Favor", "Food", "Gold", "Wood"}));

@@ -2,6 +2,7 @@ package com.anycomp.android.ageofmythology.model.card;
 
 import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -68,10 +69,10 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
             //For ai, if you can pay, they play god otherwise normal.
             if(checkAge() && payFavor()) {
                 playGod();
-            } else {
-                playNormal();
             }
-            pc.nextRound();
+
+            new PermanentRecruitCard(this).aiPlay(fm, pc);
+
         }
     }
 
@@ -94,6 +95,8 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
         else {
             Log.i(TAG, "Unable to add hero.");
         }
+
+        playNormal();
     }
 
     @Override
