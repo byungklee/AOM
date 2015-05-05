@@ -161,6 +161,11 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
         } else if(id== R.id.bank) {
             BankInfoDialogFragment bank = new BankInfoDialogFragment();
             bank.show(getFragmentManager(), "Bank");
+        } else if(id == R.id.test2) {
+            GodGatherDialogFragment ggdf = new GodGatherDialogFragment();
+            GatherController gc = GatherController.getInstance(mPlayerController);
+            ggdf.show(getFragmentManager(),"hi");
+
         }
 
         return super.onOptionsItemSelected(item);

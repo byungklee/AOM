@@ -60,7 +60,7 @@ public class RecruitSelectionController {
     private ArrayList<Unit> norseRecruitList;
     private ArrayList<Unit> egyptRecruitList;
     private ArrayList<Unit> greekRecruitList;
-    private int counter = 0;
+    protected int counter = 0;
 
     private static RecruitSelectionController instance;
 
@@ -84,6 +84,7 @@ public class RecruitSelectionController {
             instance = new RecruitSelectionController(pc);
         }
         instance.setPlayerController(pc);
+        instance.counter = 0;
         return instance;
     }
 
@@ -225,6 +226,8 @@ public class RecruitSelectionController {
         Player player = pc.getCurrentPlayer();
 
         // add the unit to the player's army
+        System.out.println("Unit chosen checker" + counter + " "  + card.getValue());
+
         if(counter >= card.getValue()) {
             return false;
         }

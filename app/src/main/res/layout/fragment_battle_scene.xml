@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/attacker_card"
-            android:text="@string/sample"/>
+            />
 
         <ImageView
             android:id="@+id/attacker_card"
@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/attacker_card"
             android:layout_centerHorizontal="@+id/attacker_card"
-            android:text="@string/sample"/>
+            android:textSize="24sp"
+            />
 
 
         <TextView
@@ -50,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/defender_card"
             android:layout_alignParentRight="true"
-            android:text="@string/sample"/>
+            />
         <ImageView
             android:id="@+id/defender_card"
             android:layout_width="300dp"
@@ -68,7 +69,8 @@
             android:layout_below="@id/defender_card"
             android:layout_centerHorizontal="@+id/defender_card"
             android:layout_alignParentRight="true"
-            android:text="@string/sample"/>
+            android:textSize="24sp"
+            />
 
         <Button
             android:id="@+id/battle_button"

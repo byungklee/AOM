@@ -115,6 +115,9 @@ public class AttackController {
                 winnerTakeVictoryCube();
                 if(isAttackerWin)
                     takeResources();
+                else {
+                    pc.nextRound();
+                }
 
             }
         }
@@ -230,7 +233,7 @@ public class AttackController {
 
         } else {
             //attack picking
-            Player p = (Player) pc.getCurrentPlayer();
+            Player p = pc.getCurrentPlayer();
             ArrayList<Unit> unit = p.getArmy();
             //int maxAllowedByAI = p.hasBuilding(BuildingType.ARMORY) == true ? numberOfUnitsAllowed + 1 : numberOfUnitsAllowed;
             int maxAllowedByAI = numberOfUnitsAllowed;
@@ -285,8 +288,6 @@ public class AttackController {
         Unit du = defenders.get(defenderSelection);
         int negateBuildingEffect = au.isDoesNegateWallAndTower() ? 2:0;
         //calculate
-//        int additionalAttackerDice = au.getAdditionalDice(du);
-//        int additionalDefenderDice = du.getAdditionalDice(au);
         setAttackerPossibleDice(au.getAdditionalDice(du) + au.getDice()-negateBuildingEffect + getBragiEffect());
         setDefenderPossibleDice(du.getAdditionalDice(au) + du.getDice());
     }
@@ -530,8 +531,6 @@ public class AttackController {
         BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
         bd.setBuildingDestructionController(bc);
         bd.show(fm,"DestroyBuilding");
-
-
     }
 
     public AreaType getAttackArea() {

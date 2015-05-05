@@ -16,7 +16,7 @@ import com.anycomp.android.ageofmythology.model.player.Player;
  */
 public class TakeResourceDialogFragment extends DialogFragment {
 
-    //private int maxResourceCanTake = 5;
+    private int maxResourceCanTake = 5;
     private int hasTakenSoFar = 0;
 
     private Player defender; // Loser
@@ -108,18 +108,18 @@ public class TakeResourceDialogFragment extends DialogFragment {
     }
 
     public void init() {
-        maxFavor = defender.getFavorCube().getValue();
-        maxFood = defender.getFoodCube().getValue();
-        maxGold = defender.getGoldCube().getValue();
-        maxWood = defender.getWoodCube().getValue();
+        maxFavor = Math.min(maxResourceCanTake, defender.getFavorCube().getValue());
+        maxFood = Math.min(maxResourceCanTake, defender.getFoodCube().getValue());
+        maxGold = Math.min(maxResourceCanTake, defender.getGoldCube().getValue());
+        maxWood = Math.min(maxResourceCanTake, defender.getWoodCube().getValue());
 
-        favor.setMaxValue(defender.getFavorCube().getValue());
+        favor.setMaxValue(maxFavor);
         favor.setMinValue(0);
-        food.setMaxValue(defender.getFoodCube().getValue());
+        food.setMaxValue(maxFood);
         food.setMinValue(0);
-        gold.setMaxValue(defender.getGoldCube().getValue());
+        gold.setMaxValue(maxGold);
         gold.setMinValue(0);
-        wood.setMaxValue(defender.getWoodCube().getValue());
+        wood.setMaxValue(maxWood);
         wood.setMinValue(0);
     }
 
@@ -132,9 +132,9 @@ public class TakeResourceDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         pc.nextRound();
-
     }
+
 }

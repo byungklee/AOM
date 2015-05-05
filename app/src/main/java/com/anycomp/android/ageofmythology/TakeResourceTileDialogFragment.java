@@ -127,8 +127,9 @@ public class TakeResourceTileDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         pc.nextRound();
     }
+
 }

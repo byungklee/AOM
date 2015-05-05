@@ -20,7 +20,7 @@ public class GodGreekBuildCard extends RandomBuildCard implements God {
         setName("GodGreekBuild");
         this.card=card;
         setImagePath(R.drawable.card_rand_greek_build_hera);
-        card.setValue(3);
+        setValue(3);
         favorCost = 1;
     }
 

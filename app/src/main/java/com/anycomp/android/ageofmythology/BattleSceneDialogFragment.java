@@ -69,8 +69,8 @@ public class BattleSceneDialogFragment extends DialogFragment {
         nextButton.setEnabled(false);
 
 
-        BattleUnitAdapter attackersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getAttackers());
-        BattleUnitAdapter defendersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getDefenders());
+        final BattleUnitAdapter attackersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getAttackers());
+        final BattleUnitAdapter defendersAdapter = new BattleUnitAdapter(getActivity().getApplicationContext(), ac.getDefenders());
 
 
 
@@ -135,7 +135,7 @@ public class BattleSceneDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                if(ac.nextBattle()) {
-                clearTextAndImageViews();
+                    clearTextAndImageViews();
                } else {
                     //game end
                    gameEndDialog();
@@ -144,6 +144,8 @@ public class BattleSceneDialogFragment extends DialogFragment {
                 nextButton.setEnabled(false);
                 attackers.setEnabled(true);
                 defenders.setEnabled(true);
+                attackersAdapter.notifyDataSetChanged();
+                defendersAdapter.notifyDataSetChanged();
 
             }
         });
@@ -190,13 +192,18 @@ public class BattleSceneDialogFragment extends DialogFragment {
         builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
+                ac.winnerTakeVictoryCube();
+                ac.moveAllTheUnitBack();
                 if(ac.isAttackerWin) {
                     if(ac.isHumanAttacking()) {
                         ac.takeTrophy();
                     } else {
                         ac.takeResources();
                     }
+                } else {
+                    pc.nextRound();
                 }
+
                 BattleSceneDialogFragment.this.dismiss();
             }
         });

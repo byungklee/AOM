@@ -76,7 +76,11 @@
         app:showAsAction="never" />
 
     <item android:id="@+id/test1"
-        android:title="(For Test)"
+        android:title="1(For Test)"
+        android:orderInCategory="115"
+        app:showAsAction="never" />
+    <item android:id="@+id/test2"
+        android:title="2(For Test)"
         android:orderInCategory="115"
         app:showAsAction="never" />
 
