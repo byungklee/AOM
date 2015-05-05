@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Greek"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Norse"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginLeft="125dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Egyptian"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="250dp" />
+
+    <GridView
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/greek_gridView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <GridView
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/norse_gridView"
+        android:layout_alignTop="@+id/greek_gridView"
+        android:layout_toEndOf="@+id/greek_gridView" />
+
+    <GridView
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/egyptian_gridView"
+        android:layout_alignTop="@+id/norse_gridView"
+        android:layout_alignStart="@+id/textView4" />
+</RelativeLayout>

@@ -27,10 +27,17 @@ public class PermanentGatherCard extends PermanentActionCard  {
     }
 
     @Override
-    public void aiPlay(FragmentManager fm, PlayerController player) {
+    public void aiPlay(FragmentManager fm, PlayerController pc) {
+        GatherController gc = GatherController.getInstance(pc);
+        int current = gc.getPlayerController()
+                .getCurrentPlayerID();
 
-        player.nextRound();
+        gc.gather(true);
+        gc.getPlayerController().setCurrentPlayer((++current) % 3);
+        gc.gather(false);
+        gc.getPlayerController().setCurrentPlayer((++current) % 3);
+        gc.gather(false);
+        gc.getPlayerController().setCurrentPlayer((++current) % 3);
+        gc.nextRound();
     }
-
-
 }

@@ -4,6 +4,7 @@ package com.anycomp.android.ageofmythology.model.card;
 import android.app.FragmentManager;
 import android.content.Context;
 
+import com.anycomp.android.ageofmythology.GodNextAgeDialogFragment;
 import com.anycomp.android.ageofmythology.NextAgeController;
 import com.anycomp.android.ageofmythology.NextAgeDialogFragment;
 import com.anycomp.android.ageofmythology.PlayerController;
@@ -31,8 +32,21 @@ public class PermanentNextAge extends PermanentActionCard {
     }
 
     @Override
-    public void aiPlay(FragmentManager fm, PlayerController player) {
-        player.nextRound();
+    public void aiPlay(FragmentManager fm, PlayerController pc) {
+        NextAgeController nac = NextAgeController.getInstance(pc);
+
+        nac.check();
+        nac.nextRound();
     }
 
+    public static void godPlay(FragmentManager fm, PlayerController pc) {
+        NextAgeController nac = NextAgeController.getInstance(pc);
+
+        if (pc.getCurrentPlayer().getName().equals("user")) {
+            GodNextAgeDialogFragment gnadf = GodNextAgeDialogFragment.newInstance(nac);
+            gnadf.show(fm, "Next Age");
+        } else {
+            nac.godCheck();
+        }
+    }
 }
