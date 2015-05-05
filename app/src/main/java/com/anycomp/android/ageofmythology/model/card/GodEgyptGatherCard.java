@@ -66,11 +66,11 @@ public class GodEgyptGatherCard extends RandomGatherCard implements God {
                 .getCurrentPlayerID();
 
         gc.setPick(8); // FOOD correlates to 8 in gc.list
-        gc.gather();
+        gc.gather(true);
         gc.getPlayerController().setCurrentPlayer((++current) % 3);
-        gc.gather();
+        gc.gather(false);
         gc.getPlayerController().setCurrentPlayer((++current) % 3);
-        gc.gather();
+        gc.gather(false);
         gc.getPlayerController().setCurrentPlayer((++current) % 3);
         pc.nextRound();
     }

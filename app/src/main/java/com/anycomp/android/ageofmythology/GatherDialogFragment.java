@@ -68,11 +68,11 @@ public class GatherDialogFragment extends DialogFragment {
                 int current = gc.getPlayerController()
                         .getCurrentPlayerID();
 
-                gc.gather();
+                gc.gather(true);
                 gc.getPlayerController().setCurrentPlayer((++current) % 3);
-                gc.gather();
+                gc.gather(false);
                 gc.getPlayerController().setCurrentPlayer((++current) % 3);
-                gc.gather();
+                gc.gather(false);
                 gc.getPlayerController().setCurrentPlayer((++current) % 3);
             }
         });

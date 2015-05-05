@@ -80,9 +80,21 @@ public class GodGreekGatherCard extends RandomGatherCard implements God {
     @Override
     public void playNormal() {
         GatherController gc = GatherController.getInstance(pc);
+        int current = pc.getCurrentPlayerID();
 
-        GodGatherDialogFragment gdf = GodGatherDialogFragment.newInstance(gc);
-        gdf.show(fm, "Gather Dialog");
+        if (pc.getCurrentPlayer().getName().equals("user")) {
+            GodGatherDialogFragment gdf = GodGatherDialogFragment.newInstance(gc);
+            gdf.show(fm, "Gather Dialog");
+        } else {
+            gc.setPick(0);
+            gc.gather(true);
+            gc.getPlayerController().setCurrentPlayer((++current) % 3);
+            gc.gather(false);
+            gc.getPlayerController().setCurrentPlayer((++current) % 3);
+            gc.gather(false);
+            gc.getPlayerController().setCurrentPlayer((++current) % 3);
+        }
+
         pc.nextRound();
     }
 

@@ -2,6 +2,8 @@ package com.anycomp.android.ageofmythology;
 
 import com.anycomp.android.ageofmythology.model.bank.Bank;
 import com.anycomp.android.ageofmythology.model.building.Building;
+import com.anycomp.android.ageofmythology.model.building.BuildingType;
+import com.anycomp.android.ageofmythology.model.building.GoldMintBuilding;
 import com.anycomp.android.ageofmythology.model.card.Card;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.resource.ResourceType;
@@ -57,7 +59,7 @@ public class GatherController {
         pc.nextRound();
     }
 
-    public void gather() {
+    public void gather(boolean played_card) {
         ResourceType resource = null;
         TileType terrain = null;
         TileType[] tts = TileType.values();
@@ -66,6 +68,8 @@ public class GatherController {
         ArrayList<Tile> tiles = player.getPlayerBoard().getProductionArea()
                 .getTiles();
         int numTiles = tiles.size();
+        //ArrayList<Tile> cityTiles = player.getPlayerBoard().getCityArea().getTiles();
+        //int citySize = cityTiles.size();
 
         if (pick < tts.length - 1)
             terrain = (TileType) list.get(pick);
@@ -101,6 +105,25 @@ public class GatherController {
                         break;
                 }
             }
+        }
+
+        // Check if if the player played the gather card
+        if (played_card) {
+            // Check for a Monument
+            if (player.hasBuilding(BuildingType.MONUMENT))
+                player.takeFavor(2);
+
+            // Check for a Gold Mint
+            if (player.hasBuilding(BuildingType.GOLD_MINT))
+                player.takeGold(2);
+
+            // Check for a Granary
+            if (player.hasBuilding(BuildingType.GRANARY))
+                player.takeFood(2);
+
+            // Check for a Wood Workshop
+            if (player.hasBuilding(BuildingType.WOOD_WORKSHOP))
+                player.takeWood(2);
         }
     }
 }
