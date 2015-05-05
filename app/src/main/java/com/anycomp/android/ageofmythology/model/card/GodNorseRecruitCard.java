@@ -89,11 +89,10 @@ public class GodNorseRecruitCard extends RandomRecruitCard implements God {
                             break;
                     }
                 }
+
             }
-            // If ai cannot afford to play god, then play normal
-            else {
-                new PermanentRecruitCard(this).aiPlay(fm, pc);
-            }
+            // Just play normal whether ai can afford god power or not
+            new PermanentRecruitCard(this).aiPlay(fm, pc);
         }
     }
 
@@ -121,18 +120,8 @@ public class GodNorseRecruitCard extends RandomRecruitCard implements God {
             rsdf.setAdapterContent(mortals);
             rsdf.show(fm, TAG);
 
-//            if (mortal1 != null) {
-//                pc.getCurrentPlayer().getArmy().add(mortal1);
-//                Log.i(TAG, "Added " + mortal1.getName() + " to player's army.");
-//            }
-//            if (mortal2 != null) {
-//                pc.getCurrentPlayer().getArmy().add(mortal2);
-//                Log.i(TAG, "Added " + mortal2.getName() + " to player's army.");
-//            }
-//            else {
-//                Log.i(TAG, "units were null for some reason...");
-//            }
         }
+        playNormal();
     }
 
     @Override

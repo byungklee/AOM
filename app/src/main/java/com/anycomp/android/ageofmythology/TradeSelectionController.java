@@ -160,6 +160,7 @@ public class TradeSelectionController {
 
     }
 
+    public Player getPlayer() { return pc.getCurrentPlayer(); }
     public Bank getBank() { return bank; }
     public void nextRound() { pc.nextRound(); }
 
