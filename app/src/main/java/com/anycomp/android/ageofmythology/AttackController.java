@@ -113,8 +113,14 @@ public class AttackController {
                 }
                 moveAllTheUnitBack();
                 winnerTakeVictoryCube();
-                if(isAttackerWin)
+                if(isAttackerWin) {
+                    if(pc.getCurrentPlayer().hasBuilding(BuildingType.SIEGE_ENGINE_WORKSHOP)) {
+                        BuildingDestructionController bdc = new BuildingDestructionController(pc, true, 1);
+                        bdc.setTargetPlayer(opponentPlayerIndex);
+                        bdc.destroyBuilding(0);
+                    }
                     takeResources();
+                }
                 else {
                     pc.nextRound();
                 }
@@ -453,7 +459,10 @@ public class AttackController {
             } else if (attackArea == AreaType.PRODUCTION) {
                 takeResourceTile();
             } else {
-                destroyBuilding();
+                if(pc.getCurrentPlayer().hasBuilding(BuildingType.SIEGE_ENGINE_WORKSHOP)) {
+                    destroyBuilding(2);
+                } else
+                    destroyBuilding(1);
             }
         }
     }
@@ -465,6 +474,7 @@ public class AttackController {
             t.setDefender((Player)pc.getPlayers().get(opponentPlayerIndex));
             t.setOffender((Player) pc.getPlayers().get(attackPlayerIndex));
             t.setPC(pc);
+            t.setAttackController(this);
             t.show(fm, "TakeResource");
         } else {
             Player def = (Player)pc.getPlayers().get(opponentPlayerIndex);
@@ -521,12 +531,14 @@ public class AttackController {
         trtdf.setTargetPlayer(opponentPlayerIndex);
         trtdf.setMaxC(1);
         trtdf.show(fm, "Take Resource Tiles");
+        trtdf.setAttackController(this);
     }
 
-    public void destroyBuilding() {
+    public void destroyBuilding(int numberOfBuilding) {
         //TO DO:
         System.out.println("To do: destroy building");
-        BuildingDestructionController bc = new BuildingDestructionController(pc,false);
+//        int defaultValue = 1;
+        BuildingDestructionController bc = new BuildingDestructionController(pc,false,numberOfBuilding);
         bc.setTargetPlayer(opponentPlayerIndex);
         BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
         bd.setBuildingDestructionController(bc);

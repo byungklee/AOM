@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.anycomp.android.ageofmythology.model.area.ProductionArea;
+import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.tile.Tile;
 import com.anycomp.android.ageofmythology.model.tile.TileDecorator;
@@ -29,6 +30,7 @@ public class TakeResourceTileDialogFragment extends DialogFragment {
     int maxC = 2;
     int targetIndex;
     int attackerIndex;
+    AttackController atc;
     void setPC(PlayerController pc) {
         this.pc = pc;
     }
@@ -40,6 +42,9 @@ public class TakeResourceTileDialogFragment extends DialogFragment {
     }
     void setMaxC(int i) {
         maxC = i;
+    }
+    void setAttackController(AttackController ac) {
+        this.atc = ac;
     }
 
     boolean canTake(Tile t) {
@@ -129,7 +134,10 @@ public class TakeResourceTileDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        pc.nextRound();
+        if(pc.getCurrentPlayer().hasBuilding(BuildingType.SIEGE_ENGINE_WORKSHOP)) {
+           atc.destroyBuilding(1);
+        } else
+            pc.nextRound();
     }
 
 }

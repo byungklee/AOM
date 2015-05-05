@@ -70,7 +70,7 @@ public class GodEgyptBuildCard extends RandomBuildCard implements God {
 
     @Override
     public void playGod() {
-            BuildingDestructionController bsc = new BuildingDestructionController(pc,true);
+            BuildingDestructionController bsc = new BuildingDestructionController(pc,true, 1);
             BuildingDestructionDialogFragment bddf = new BuildingDestructionDialogFragment();
             bddf.setBuildingDestructionController(bsc);
             bddf.setCallback(new Callback() {

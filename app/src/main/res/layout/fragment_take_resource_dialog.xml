@@ -47,19 +47,16 @@
             android:id="@+id/favor_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
-            </NumberPicker>
+        </NumberPicker>
         <NumberPicker
             android:id="@+id/food_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
         </NumberPicker>
         <NumberPicker
             android:id="@+id/gold_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
         </NumberPicker>
         <NumberPicker
             android:id="@+id/wood_picker"

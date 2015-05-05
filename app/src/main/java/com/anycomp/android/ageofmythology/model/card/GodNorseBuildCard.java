@@ -46,7 +46,7 @@ public class GodNorseBuildCard extends RandomBuildCard implements God {
         if(!isPlayed()) {
             setPlayed(true);
             if (payFavor()) {
-                BuildingDestructionController bdc = new BuildingDestructionController(pc, true);
+                BuildingDestructionController bdc = new BuildingDestructionController(pc, true, 1);
                 int targetId = (pc.getCurrentPlayerID() + 1) % 3;
                 bdc.setTargetPlayer(targetId);
                 bdc.destroyBuilding(0);
@@ -76,7 +76,7 @@ public class GodNorseBuildCard extends RandomBuildCard implements God {
                 //openPickBattleUnitDialog(true);
 //                openAttackAreaDialog();
 //                isHumanAttacking = true;
-                BuildingDestructionController bdc = new BuildingDestructionController(pc,true);
+                BuildingDestructionController bdc = new BuildingDestructionController(pc,true,1);
                 bdc.setTargetPlayer(i);
                 BuildingDestructionDialogFragment bddf = new BuildingDestructionDialogFragment();
                 bddf.setBuildingDestructionController(bdc);

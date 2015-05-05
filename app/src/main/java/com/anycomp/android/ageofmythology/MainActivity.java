@@ -95,7 +95,7 @@ public class MainActivity extends ActionBarActivity implements TileSelectionDial
             t.setPC(mPlayerController);
             t.show(getFragmentManager(), "takeresource");
         } else if(id == R.id.destroy_building) {
-            BuildingDestructionController bc = new BuildingDestructionController(mPlayerController, false);
+            BuildingDestructionController bc = new BuildingDestructionController(mPlayerController, false, 2);
             bc.setTargetPlayer(1);
             BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
             bd.setBuildingDestructionController(bc);

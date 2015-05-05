@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
 
+import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.player.Player;
 
 /**
@@ -61,7 +62,7 @@ public class TakeResourceDialogFragment extends DialogFragment {
                 refresh();
             }
         });
-        wood.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        food.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 //hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
@@ -124,17 +125,35 @@ public class TakeResourceDialogFragment extends DialogFragment {
     }
 
     public void refresh() {
-        hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
-        favor.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + favor.getValue(), maxFavor));
-        food.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + food.getValue(), maxFood));
-        gold.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + gold.getValue(), maxGold));
-        wood.setMaxValue(Math.min(maxResourceCanTake - hasTakenSoFar + wood.getValue(), maxWood));
+        int hasTakenSoFar = favor.getValue() + food.getValue() + gold.getValue() + wood.getValue();
+//        int maxFavor1 = Math.max(favor.getValue(), maxFavor - hasTakenSoFar);
+//        int maxFood1 = Math.max(food.getValue(), maxFood-hasTakenSoFar);
+//        int maxGold1 = Math.max(gold.getValue(), maxGold-hasTakenSoFar);
+//        int maxWood1 = Math.max(wood.getValue(), maxWood-hasTakenSoFar);
+        System.out.println((5 - hasTakenSoFar + favor.getValue()) + " " + maxFavor);
+        System.out.println((5 - hasTakenSoFar + food.getValue()) + " " + maxFood);
+        System.out.println((5 - hasTakenSoFar + gold.getValue()) + " " +  maxGold);
+        System.out.println((5 - hasTakenSoFar + wood.getValue()) + " " + maxWood);
+        System.out.println(" ");
+        favor.setMaxValue(Math.min(5 - hasTakenSoFar + favor.getValue() ,maxFavor));
+        food.setMaxValue(Math.min(5 - hasTakenSoFar + food.getValue(),maxFood));
+        gold.setMaxValue(Math.min(5 - hasTakenSoFar + gold.getValue(),maxGold));
+        wood.setMaxValue(Math.min(5 - hasTakenSoFar + wood.getValue(),maxWood));
+
+    }
+
+    AttackController a;
+    public void setAttackController(AttackController a) {
+        this.a = a;
     }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        pc.nextRound();
+        if(pc.getCurrentPlayer().hasBuilding(BuildingType.SIEGE_ENGINE_WORKSHOP)) {
+            a.destroyBuilding(1);
+        } else
+            pc.nextRound();
     }
 
 }

@@ -13,10 +13,13 @@ import java.util.ArrayList;
 public class BuildingDestructionController {
     PlayerController pc;
     int targetPlayerIndex = -1;
+    int currCount = 0;
     boolean isGodBuild = false;
-    public BuildingDestructionController(PlayerController pc, boolean isGodBuild) {
+    int maxTotal;
+    public BuildingDestructionController(PlayerController pc, boolean isGodBuild, int maxTotal) {
         this.pc = pc;
         this.isGodBuild = isGodBuild;
+        this.maxTotal = maxTotal;
     }
 
     public void setTargetPlayer(int i) {
@@ -33,11 +36,14 @@ public class BuildingDestructionController {
         if(((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).getNumberOfBuilding() ==0) {
             return;
         }
-        if(targetPlayerIndex == -1) {
-            ((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).destroyBuilding(index);
-        } else {
-            Player p = (Player) pc.getPlayers().get(targetPlayerIndex);
-            ((CityArea) p.getPlayerBoard().getCityArea()).destroyBuilding(index);
+        if(maxTotal > currCount) {
+            if (targetPlayerIndex == -1) {
+                ((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).destroyBuilding(index);
+            } else {
+                Player p = (Player) pc.getPlayers().get(targetPlayerIndex);
+                ((CityArea) p.getPlayerBoard().getCityArea()).destroyBuilding(index);
+            }
+            currCount++;
         }
     }
     public boolean isGodBuild() {
