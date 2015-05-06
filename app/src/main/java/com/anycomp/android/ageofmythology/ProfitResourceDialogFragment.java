@@ -94,10 +94,10 @@ public class ProfitResourceDialogFragment extends DialogFragment {
                 int goldQ = gold.getValue();
                 int woodQ = wood.getValue();
 
-                b.withdraw(ResourceType.FAVOR, favorQ);
-                b.withdraw(ResourceType.FOOD, foodQ);
-                b.withdraw(ResourceType.GOLD, goldQ);
-                b.withdraw(ResourceType.WOOD, woodQ);
+//                b.withdraw(ResourceType.FAVOR, favorQ);
+//                b.withdraw(ResourceType.FOOD, foodQ);
+//                b.withdraw(ResourceType.GOLD, goldQ);
+//                b.withdraw(ResourceType.WOOD, woodQ);
 
                 p.takeFood(foodQ);
                 p.takeFavor(favorQ);

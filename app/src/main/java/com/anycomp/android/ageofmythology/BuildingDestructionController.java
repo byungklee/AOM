@@ -1,6 +1,7 @@
 package com.anycomp.android.ageofmythology;
 
 import com.anycomp.android.ageofmythology.model.area.CityArea;
+import com.anycomp.android.ageofmythology.model.building.Building;
 import com.anycomp.android.ageofmythology.model.player.Player;
 import com.anycomp.android.ageofmythology.model.tile.BuildingTile;
 import com.anycomp.android.ageofmythology.model.tile.Tile;
@@ -50,6 +51,7 @@ public class BuildingDestructionController {
             }
             currCount++;
         }
+        pc.getCurrentPlayer().resourceUpdate();
     }
     public boolean isGodBuild() {
         return isGodBuild;

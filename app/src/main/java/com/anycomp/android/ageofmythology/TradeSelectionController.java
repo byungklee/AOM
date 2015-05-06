@@ -69,7 +69,9 @@ public class TradeSelectionController {
                 switch (costType) {
                     case FAVOR:
                         if (availableFavor >= 1) {
-                            player.getFavorCube().setValue(--availableFavor);
+                         //   player.getFavorCube().setValue(--availableFavor);
+                            availableFavor--;
+                            player.spendFavor(1);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;
@@ -77,7 +79,9 @@ public class TradeSelectionController {
                         break;
                     case FOOD:
                         if (availableFood >= 1) {
-                            player.getFoodCube().setValue(--availableFood);
+                            //player.getFoodCube().setValue(--availableFood);
+                            availableFood--;
+                            player.spendFood(1);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;
@@ -85,7 +89,9 @@ public class TradeSelectionController {
                         break;
                     case GOLD:
                         if (availableGold >= 1) {
-                            player.getGoldCube().setValue(--availableGold);
+                            //player.getGoldCube().setValue(--availableGold);
+                            availableGold--;
+                            player.spendGold(1);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;
@@ -93,7 +99,9 @@ public class TradeSelectionController {
                         break;
                     case WOOD:
                         if (availableWood >= 1) {
-                            player.getWoodCube().setValue(--availableWood);
+                          //  player.getWoodCube().setValue(--availableWood);
+                            availableWood--;
+                            player.spendWood(1);
                         } else {
                             Log.i("TradeController", "Not enough resources to pay.");
                             return;
@@ -102,14 +110,15 @@ public class TradeSelectionController {
                     default:
                         break;
                 }
-                bank.deposit(costType, 1);
+                //bank.deposit(costType, 1);
             }
 
             // check to make sure the player still has enough to trade the amount requested
             switch (tradeType) {
                 case FAVOR:
                     if (player.getFavorCube().getValue() >= amount) {
-                        player.getFavorCube().setValue(player.getFavorCube().getValue() - amount);
+                       // player.getFavorCube().setValue(player.getFavorCube().getValue() - amount);
+                        player.spendFavor(amount);
                     }
                     else {
                         Log.i("TradeController", "Not enough resources to continue with trade.");
@@ -118,7 +127,8 @@ public class TradeSelectionController {
                     break;
                 case FOOD:
                     if (player.getFoodCube().getValue() >= amount) {
-                        player.getFoodCube().setValue(player.getFoodCube().getValue() - amount);
+                        //player.getFoodCube().setValue(player.getFoodCube().getValue() - amount);
+                        player.spendFood(amount);
                     }
                     else {
                         Log.i("TradeController", "Not enough resources to continue with trade.");
@@ -127,7 +137,8 @@ public class TradeSelectionController {
                     break;
                 case GOLD:
                     if (player.getGoldCube().getValue() >= amount) {
-                        player.getGoldCube().setValue(player.getGoldCube().getValue() - amount);
+                        //player.getGoldCube().setValue(player.getGoldCube().getValue() - amount);
+                        player.spendGold(amount);
                     }
                     else {
                         Log.i("TradeController", "Not enough resources to continue with trade.");
@@ -136,7 +147,8 @@ public class TradeSelectionController {
                     break;
                 case WOOD:
                     if (player.getWoodCube().getValue() >= amount) {
-                        player.getWoodCube().setValue(player.getWoodCube().getValue() - amount);
+                      //  player.getWoodCube().setValue(player.getWoodCube().getValue() - amount);
+                        player.spendWood(amount);
                     }
                     else {
                         Log.i("TradeController", "Not enough resources to continue with trade.");
@@ -146,11 +158,12 @@ public class TradeSelectionController {
                 default:
                     break;
             }
-            bank.deposit(tradeType, amount);
-            player.takeFavor(bank.withdraw(ResourceType.FAVOR, requestFavor));
-            player.takeFood(bank.withdraw(ResourceType.FOOD, requestFood));
-            player.takeGold(bank.withdraw(ResourceType.GOLD, requestGold));
-            player.takeWood(bank.withdraw(ResourceType.WOOD, requestWood));
+            //bank.deposit(tradeType, amount);
+
+            player.takeFavor(requestFavor);
+            player.takeFood(requestFood);
+            player.takeGold(requestGold);
+            player.takeWood(requestWood);
 
             player.resourceUpdate();
         }

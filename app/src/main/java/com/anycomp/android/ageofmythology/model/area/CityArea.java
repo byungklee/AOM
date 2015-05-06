@@ -63,6 +63,7 @@ public class CityArea extends Area {
         BuildingTile bt = (BuildingTile) getTiles().get(index);
         if(bt.getBuilding().getBuildingType() == BuildingType.HOUSE) {
             decrementNumberOfHouse();
+
         }
         bt.setBuilding(null);
 

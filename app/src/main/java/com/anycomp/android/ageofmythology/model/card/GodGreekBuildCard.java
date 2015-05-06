@@ -8,6 +8,8 @@ import com.anycomp.android.ageofmythology.BuildingSelectionDialogFragment;
 import com.anycomp.android.ageofmythology.PlayerController;
 import com.anycomp.android.ageofmythology.R;
 import com.anycomp.android.ageofmythology.model.area.CityArea;
+import com.anycomp.android.ageofmythology.model.area.HoldingArea;
+import com.anycomp.android.ageofmythology.model.building.Building;
 import com.anycomp.android.ageofmythology.model.building.BuildingFactory;
 import com.anycomp.android.ageofmythology.model.building.BuildingType;
 import com.anycomp.android.ageofmythology.model.building.HouseBuilding;
@@ -39,8 +41,15 @@ public class GodGreekBuildCard extends RandomBuildCard implements God {
 
     private void addHouse(PlayerController pc) {
         CityArea cityArea = (CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea();
-        if(cityArea.getNumberOfHouse() < 9)
-            ((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).addBuilding(BuildingFactory.newInstance(BuildingType.HOUSE));
+        if(cityArea.getNumberOfHouse() < 9) {
+            //((HoldingArea) pc.getCurrentPlayer().getPlayerBoard().getHoldingArea()).incrementNumberOfVillagers();
+
+            CityArea ca = (CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea();
+            ((HoldingArea) pc.getCurrentPlayer().getPlayerBoard().getHoldingArea()).incrementNumberOfVillagers();
+            ca.addBuilding(BuildingFactory.newInstance(BuildingType.HOUSE));
+            ca.notifyObservers();
+            pc.getCurrentPlayer().resourceUpdate();
+        }
     }
 
     @Override

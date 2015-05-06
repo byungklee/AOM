@@ -3,12 +3,6 @@
 .idea/.DS_Store
 .idea/inspectionProfiles/
 age-of-mythology-android.iml
-.gradle/2.2.1/taskArtifacts/cache.properties
-.gradle/2.2.1/taskArtifacts/cache.properties.lock
-.gradle/2.2.1/taskArtifacts/fileHashes.bin
-.gradle/2.2.1/taskArtifacts/fileSnapshots.bin
-.gradle/2.2.1/taskArtifacts/outputFileStates.bin
-.gradle/2.2.1/taskArtifacts/taskArtifacts.bin
 .idea/libraries/support_annotations_21_0_3.xml
 .idea/libraries/support_v4_21_0_3.xml
 app/app.iml

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anycomp.android.ageofmythology.model.area.CityArea;
 import com.anycomp.android.ageofmythology.model.area.HoldingArea;
 import com.anycomp.android.ageofmythology.model.player.Player;
 
@@ -112,7 +113,7 @@ public class MainPlayingFragment extends Fragment implements Observer {
         gold.setText("Gold: " + mPlayer.getGoldCube().getValue());
         favor.setText("Favor: " + mPlayer.getFavorCube().getValue());
         victory.setText("Victory: " + mPlayer.getVictoryCube().getValue());
-        villagers.setText("Villager: " + ((HoldingArea) mPlayer.getPlayerBoard().getHoldingArea()).getNumberOfVillagers());
+        villagers.setText("Villager: " + ((CityArea) mPlayer.getPlayerBoard().getCityArea()).getNumberOfHouse());
     }
 
     @Override
