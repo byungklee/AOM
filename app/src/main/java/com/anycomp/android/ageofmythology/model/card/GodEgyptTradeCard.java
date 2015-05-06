@@ -67,25 +67,25 @@ public class GodEgyptTradeCard extends RandomTradeCard implements God {
                     switch (rand) {
                         case 0:
                             if (bank.getFavor()>0) {
-                                bank.withdraw(ResourceType.FAVOR, 1);
+                                //bank.withdraw(ResourceType.FAVOR, 1);
                                 ai.takeFavor(1);
                                 break;
                             }
                         case 1:
                             if (bank.getFood()>0) {
-                                bank.withdraw(ResourceType.FOOD, 1);
+                              //  bank.withdraw(ResourceType.FOOD, 1);
                                 ai.takeFood(1);
                                 break;
                             }
                         case 2:
                             if (bank.getGold()>0) {
-                                bank.withdraw(ResourceType.GOLD, 1);
+                               // bank.withdraw(ResourceType.GOLD, 1);
                                 ai.takeGold(1);
                                 break;
                             }
                         case 3:
                             if (bank.getWood()>0) {
-                                bank.withdraw(ResourceType.WOOD, 1);
+                                //bank.withdraw(ResourceType.WOOD, 1);
                                 ai.takeWood(1);
                                 break;
                             }
