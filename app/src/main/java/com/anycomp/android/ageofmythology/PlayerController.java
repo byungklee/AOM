@@ -134,8 +134,10 @@ public class PlayerController {
 
     public void nextRound() {
         System.out.println("Before: crruetPlayer " + turnManager.getCurrentPlayer());
+
         setCurrentPlayer(turnManager.nextRoundPlayer());
-        if(turnManager.getTurn() == 11) {
+        if(turnManager.getTurn() == 11 ||
+                (turnManager.getRound() == 1 && turnManager.getCounter() == 0 && Bank.getInstance().getVictoryCubeCount() <= 0)) {
             gameEnd();
         } else {
             System.out.println("next... round:" + turnManager.getRound() + " counter:" + turnManager.getCounter() + " currentPlayer: " + currentPlayer);
