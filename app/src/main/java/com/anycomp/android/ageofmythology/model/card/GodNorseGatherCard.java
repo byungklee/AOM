@@ -94,9 +94,10 @@ public class GodNorseGatherCard extends RandomGatherCard implements God {
             gc.getPlayerController().setCurrentPlayer((++current) % 3);
             gc.gather(false);
             gc.getPlayerController().setCurrentPlayer((++current) % 3);
+            pc.nextRound();
         }
 
-        pc.nextRound();
+
     }
 
     @Override
@@ -104,6 +105,6 @@ public class GodNorseGatherCard extends RandomGatherCard implements God {
 
     @Override
     public boolean checkAge() {
-        return false;
+        return true;
     }
 }

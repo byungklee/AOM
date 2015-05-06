@@ -139,6 +139,6 @@ public class GodEgyptGatherCard extends RandomGatherCard implements God {
 
     @Override
     public boolean checkAge() {
-        return false;
+        return true;
     }
 }

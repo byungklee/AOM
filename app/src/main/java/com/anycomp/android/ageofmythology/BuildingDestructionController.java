@@ -33,13 +33,18 @@ public class BuildingDestructionController {
     }
 
     public void destroyBuilding(int index) {
-        if(((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).getNumberOfBuilding() ==0) {
-            return;
-        }
+        System.out.println("maxTotal " + maxTotal + " currCount "  + currCount );
         if(maxTotal > currCount) {
             if (targetPlayerIndex == -1) {
+                if(((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).getNumberOfBuilding() ==0) {
+                    return;
+                }
                 ((CityArea) pc.getCurrentPlayer().getPlayerBoard().getCityArea()).destroyBuilding(index);
             } else {
+                if(((CityArea)((Player)pc.getPlayers().get(targetPlayerIndex)).getPlayerBoard().getCityArea()).getNumberOfBuilding() ==0) {
+                    return;
+                }
+                System.out.println("DESTORY BUILDING");
                 Player p = (Player) pc.getPlayers().get(targetPlayerIndex);
                 ((CityArea) p.getPlayerBoard().getCityArea()).destroyBuilding(index);
             }

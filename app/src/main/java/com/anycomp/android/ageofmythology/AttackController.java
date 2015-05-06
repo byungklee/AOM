@@ -292,10 +292,10 @@ public class AttackController {
         //load unit
         Unit au = attackers.get(attackerSelection);
         Unit du = defenders.get(defenderSelection);
-        int negateBuildingEffect = au.isDoesNegateWallAndTower() ? 2:0;
+        int negateBuildingEffect = au.isDoesNegateWallAndTower() && buildingEffect != 0 ? 2:0;
         //calculate
-        setAttackerPossibleDice(au.getAdditionalDice(du) + au.getDice()-negateBuildingEffect + getBragiEffect());
-        setDefenderPossibleDice(du.getAdditionalDice(au) + du.getDice());
+        setAttackerPossibleDice(au.getAdditionalDice(du) + au.getDice() + getBragiEffect());
+        setDefenderPossibleDice(du.getAdditionalDice(au) + du.getDice() + buildingEffect - negateBuildingEffect);
     }
 
     public boolean roll() {
@@ -461,8 +461,9 @@ public class AttackController {
             } else {
                 if(pc.getCurrentPlayer().hasBuilding(BuildingType.SIEGE_ENGINE_WORKSHOP)) {
                     destroyBuilding(2);
-                } else
+                } else {
                     destroyBuilding(1);
+                }
             }
         }
     }
@@ -536,12 +537,13 @@ public class AttackController {
 
     public void destroyBuilding(int numberOfBuilding) {
         //TO DO:
-        System.out.println("To do: destroy building");
+        System.out.println("To do: destroy building " + numberOfBuilding);
 //        int defaultValue = 1;
         BuildingDestructionController bc = new BuildingDestructionController(pc,false,numberOfBuilding);
         bc.setTargetPlayer(opponentPlayerIndex);
         BuildingDestructionDialogFragment bd = new BuildingDestructionDialogFragment();
         bd.setBuildingDestructionController(bc);
+        bd.setMaxC(numberOfBuilding);
         bd.show(fm,"DestroyBuilding");
     }
 

@@ -77,7 +77,7 @@ public class GodNorseNextAgeCard extends RandomNextAgeCard implements God {
     @Override
     public void playNormal() {
         PermanentNextAge.godPlay(fm, pc);
-        pc.nextRound();
+//        pc.nextRound();
     }
 
     @Override
@@ -85,7 +85,7 @@ public class GodNorseNextAgeCard extends RandomNextAgeCard implements God {
 
     @Override
     public boolean checkAge() {
-        return false;
+        return true;
     }
 
     public void otherActivity() {

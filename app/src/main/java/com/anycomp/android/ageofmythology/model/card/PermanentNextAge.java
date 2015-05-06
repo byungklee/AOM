@@ -47,6 +47,7 @@ public class PermanentNextAge extends PermanentActionCard {
             gnadf.show(fm, "Next Age");
         } else {
             nac.godCheck();
+            nac.nextRound();
         }
     }
 }

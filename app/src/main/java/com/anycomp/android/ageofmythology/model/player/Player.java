@@ -17,21 +17,29 @@ import com.anycomp.android.ageofmythology.model.card.CardType;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptBuildCard;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptExploreCard;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptGatherCard;
+import com.anycomp.android.ageofmythology.model.card.GodEgyptNextAgeCard;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.GodEgyptTradeCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekBuildCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekExploreCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekGatherCard;
+import com.anycomp.android.ageofmythology.model.card.GodGreekNextAgeCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.GodGreekTradeCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseAttackCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseBuildCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseExploreCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseGatherCard;
+import com.anycomp.android.ageofmythology.model.card.GodNorseNextAgeCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseRecruitCard;
 import com.anycomp.android.ageofmythology.model.card.GodNorseTradeCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentAttackCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentBuildCard;
 import com.anycomp.android.ageofmythology.model.card.PermanentExploreCard;
+import com.anycomp.android.ageofmythology.model.card.PermanentGatherCard;
+import com.anycomp.android.ageofmythology.model.card.PermanentNextAge;
 import com.anycomp.android.ageofmythology.model.card.RandomCard;
 
 import com.anycomp.android.ageofmythology.model.card.RandomRecruitCard;
@@ -184,22 +192,28 @@ public class Player implements Observable {
                 randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
                 randomCardPool.addCard(new GodEgyptRecruitCard(new RandomRecruitCard()));
                 randomCardPool.addCard(new GodEgyptTradeCard(new RandomTradeCard()));
-                //randomCardPool.addCard()
-
+                randomCardPool.addCard(new GodEgyptGatherCard(new PermanentGatherCard(culture)));
+                randomCardPool.addCard(new GodEgyptNextAgeCard(new PermanentNextAge(culture)));
             }
             else if(culture instanceof Greek) {
-               randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
                 randomCardPool.addCard(new GodGreekAttackCard(new PermanentAttackCard(culture)));
                 randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
                 randomCardPool.addCard(new GodGreekRecruitCard(new RandomRecruitCard()));
                 randomCardPool.addCard(new GodGreekTradeCard(new RandomTradeCard()));
+                randomCardPool.addCard(new GodGreekGatherCard(new PermanentGatherCard(culture)));
+                randomCardPool.addCard(new GodGreekNextAgeCard(new PermanentNextAge(culture)));
             }
             else {
-               randomCardPool.addCard(new GodNorseBuildCard());
+                randomCardPool.addCard(new GodNorseBuildCard()) ;
                 randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
                 randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
                 randomCardPool.addCard(new GodNorseRecruitCard(new RandomRecruitCard()));
                 randomCardPool.addCard(new GodNorseTradeCard(new RandomTradeCard()));
+                randomCardPool.addCard(new GodNorseGatherCard(new PermanentGatherCard(culture)));
+                randomCardPool.addCard(new GodNorseNextAgeCard(new PermanentNextAge(culture)));
+
+
 
             }
         }

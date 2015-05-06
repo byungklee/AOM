@@ -41,7 +41,7 @@ public class GodNextAgeDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        //nac.nextRound();
+        nac.nextRound();
     }
 
     public void makeToast() {
