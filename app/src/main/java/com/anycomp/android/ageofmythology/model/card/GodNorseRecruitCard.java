@@ -108,12 +108,25 @@ public class GodNorseRecruitCard extends RandomRecruitCard implements God {
 
             // only display the mortal units you can choose from
             ArrayList<Unit> mortals = new ArrayList<>();
-            for (Unit unit : rsc.getRecruitListByCulture("Norse")) {
-                if (unit instanceof Mortal) {
-                    unit.setCost(0, 0, 0, 0);
-                    mortals.add(unit);
-                }
-            }
+//            for (Unit unit : rsc.getRecruitListByCulture("Norse")) {
+//                if (unit instanceof Mortal) {
+//
+//                    unit.setCost(0, 0, 0, 0);       //this affects the value in the original list.
+//
+//                    mortals.add(unit);
+//                }
+//            }
+
+            //Quick Fix. It is better to copy object from using for loop above.
+            Unit unit1 = new Jarl();
+            unit1.setCost(0,0,0,0);
+            Unit unit2 = new Huskarl();
+            unit2.setCost(0,0,0,0);
+            Unit unit3 = new ThrowingAxeman();
+            unit3.setCost(0,0,0,0);
+            mortals.add(unit1);
+            mortals.add(unit2);
+            mortals.add(unit3);
 
             // display only the mortal type units
 
@@ -122,7 +135,7 @@ public class GodNorseRecruitCard extends RandomRecruitCard implements God {
             rsdf.show(fm, TAG);
 
         }
-        playNormal();
+     //   playNormal();
     }
 
     @Override

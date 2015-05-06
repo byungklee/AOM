@@ -70,7 +70,6 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
             if(checkAge() && payFavor()) {
                 playGod();
             }
-
             new PermanentRecruitCard(this).aiPlay(fm, pc);
 
         }
@@ -96,7 +95,11 @@ public class GodEgyptRecruitCard extends RandomRecruitCard implements God {
             Log.i(TAG, "Unable to add hero.");
         }
 
-        playNormal();
+        if(pc.getCurrentPlayer().getName().equals("user")) {
+            playNormal();
+        }
+
+        //playNormal();
     }
 
     @Override

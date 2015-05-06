@@ -162,60 +162,10 @@ public class RecruitSelectionController {
         egyptRecruitList.add(new Pharaoh());
     }
 
-
-    /**
-     * Initialize the recruit list based on player's culture so that the proper units are
-     * added to the list.
-     */
-//    private static void initRecruitList(Culture culture) {
-//        // Initialize the lists
-//        mortalRecruitList = new ArrayList<>();
-//        mythicRecruitList = new ArrayList<>();
-//        heroicRecruitList = new ArrayList<>();
-//
-//        // TODO: add appropriate units here (mythic and heroic)
-//
-//        // Add units to the lists based on the current player's culture
-//        if (culture instanceof Egyptian) {
-//            // MORTAL
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.SPEARMAN));
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.ELEPHANT));
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.CHARIOT_ARCHER));
-//
-//            //MYTHIC
-//            // nothing here yet
-//
-//            //HEROIC
-//            // nothing here yet
-//        }
-//        else if (culture instanceof Greek) {
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.TOXOTE));
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.HOPLITE));
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.HIPPOKON));
-//
-//            //MYTHIC
-//            // nothing here yet
-//
-//            //HEROIC
-//            // nothing here yet
-//        }
-//        else if (culture instanceof Norse) {
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.JARL));
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.HUSKARL));
-//            mortalRecruitList.add(new MortalUnit(MortalUnitType.THROWING_AXEMAN));
-//
-//            //MYTHIC
-//            // nothing here yet
-//
-//            //HEROIC
-//            // nothing here yet
-//        }
-//    }
-//
     public void setRecruitCard(Card card) {
         this.card = card;
     }
-//
+
     /**
      * Adds the selected recruit to the player's army.
      * @param chosen The Unit that was selected in the GridView Layout.
@@ -263,5 +213,9 @@ public class RecruitSelectionController {
 
     public ArrayList<Unit> getRecruitListByCulture(String culture) {
         return cultureUnitMap.get(culture);
+    }
+
+    public Card getCard() {
+        return card;
     }
 }

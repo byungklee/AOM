@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.anycomp.android.ageofmythology.model.card.Card;
+import com.anycomp.android.ageofmythology.model.card.God;
 import com.anycomp.android.ageofmythology.model.unit.Unit;
 
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
         rsdf.setController(rsc);
         rsdf.setAdapterContent(null);
         rsdf.setCount(1);
+
         return rsdf;
     }
 
@@ -116,6 +119,9 @@ public class RecruitSelectionDialogFragment extends DialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
-        pc.nextRound();
+        if(controller.getCard() instanceof God) {
+            ((God) controller.getCard()).playNormal();
+        } else
+            pc.nextRound();
     }
 }

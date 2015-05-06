@@ -107,7 +107,7 @@ public class GodGreekRecruitCard extends RandomRecruitCard implements God {
 //                Log.i(TAG, "units were null for some reason...");
 //            }
         }
-        playNormal();
+        //playNormal();
     }
 
     @Override
