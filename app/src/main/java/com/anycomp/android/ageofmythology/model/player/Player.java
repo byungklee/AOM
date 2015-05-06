@@ -187,34 +187,31 @@ public class Player implements Observable {
         //TO DO
         private void initRandomCardDeck() {
             if(culture instanceof Egyptian) {
-//                randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
-//                randomCardPool.addCard(new GodEgyptAttackCard(new PermanentAttackCard(culture)));
-//                randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
+                randomCardPool.addCard(new GodEgyptBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodEgyptAttackCard(new PermanentAttackCard(culture)));
+                randomCardPool.addCard(new GodEgyptExploreCard(new PermanentExploreCard(culture)));
                 randomCardPool.addCard(new GodEgyptRecruitCard(new RandomRecruitCard()));
-//                randomCardPool.addCard(new GodEgyptTradeCard(new RandomTradeCard()));
-//                randomCardPool.addCard(new GodEgyptGatherCard(new PermanentGatherCard(culture)));
-//                randomCardPool.addCard(new GodEgyptNextAgeCard(new PermanentNextAge(culture)));
+                randomCardPool.addCard(new GodEgyptTradeCard(new RandomTradeCard()));
+                randomCardPool.addCard(new GodEgyptGatherCard(new PermanentGatherCard(culture)));
+                randomCardPool.addCard(new GodEgyptNextAgeCard(new PermanentNextAge(culture)));
             }
             else if(culture instanceof Greek) {
-//                randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
-//                randomCardPool.addCard(new GodGreekAttackCard(new PermanentAttackCard(culture)));
-//                randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
+                randomCardPool.addCard(new GodGreekBuildCard(new PermanentBuildCard(culture)));
+                randomCardPool.addCard(new GodGreekAttackCard(new PermanentAttackCard(culture)));
+                randomCardPool.addCard(new GodGreekExploreCard(new PermanentExploreCard(culture)));
                 randomCardPool.addCard(new GodGreekRecruitCard(new RandomRecruitCard()));
-//                randomCardPool.addCard(new GodGreekTradeCard(new RandomTradeCard()));
-//                randomCardPool.addCard(new GodGreekGatherCard(new PermanentGatherCard(culture)));
-//                randomCardPool.addCard(new GodGreekNextAgeCard(new PermanentNextAge(culture)));
+                randomCardPool.addCard(new GodGreekTradeCard(new RandomTradeCard()));
+                randomCardPool.addCard(new GodGreekGatherCard(new PermanentGatherCard(culture)));
+                randomCardPool.addCard(new GodGreekNextAgeCard(new PermanentNextAge(culture)));
             }
             else {
-//                randomCardPool.addCard(new GodNorseBuildCard()) ;
-//                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
-//                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
+                randomCardPool.addCard(new GodNorseBuildCard()) ;
+                randomCardPool.addCard(new GodNorseAttackCard(new PermanentAttackCard(culture)));
+                randomCardPool.addCard(new GodNorseExploreCard(new PermanentExploreCard(culture)));
                 randomCardPool.addCard(new GodNorseRecruitCard(new RandomRecruitCard()));
-//                randomCardPool.addCard(new GodNorseTradeCard(new RandomTradeCard()));
-//                randomCardPool.addCard(new GodNorseGatherCard(new PermanentGatherCard(culture)));
-//                randomCardPool.addCard(new GodNorseNextAgeCard(new PermanentNextAge(culture)));
-
-
-
+                randomCardPool.addCard(new GodNorseTradeCard(new RandomTradeCard()));
+                randomCardPool.addCard(new GodNorseGatherCard(new PermanentGatherCard(culture)));
+                randomCardPool.addCard(new GodNorseNextAgeCard(new PermanentNextAge(culture)));
             }
         }
         
