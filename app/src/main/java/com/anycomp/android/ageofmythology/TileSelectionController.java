@@ -67,6 +67,7 @@ public class TileSelectionController {
 
     public void execute(int pick) {
         if(tileSelectionDeck.get(pick) == null) {
+            System.out.println("Your selection in tile is null "  + tileSelectionDeck.size());
             return;
         }
         String playerName = pc.getCurrentPlayer().getName();
@@ -90,7 +91,7 @@ public class TileSelectionController {
         boolean taken = false;
         for (int i = 0; i < productionTiles.size(); i++) {
             Tile tile = productionTiles.get(i);
-           // System.out.println(tile);
+            //System.out.println("tileLeft " + tile.getTileType() + "  tileRight " + selectedTile.getTileType() );
             if (!(tile instanceof TileDecorator)
                     && tile.getTileType() == selectedTile.getTileType()) {
                 pc.getCurrentPlayer().getPlayerBoard().getProductionArea().setTileAt(i, selectedTile);

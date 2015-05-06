@@ -22,7 +22,7 @@ public class FoodResourceTile extends ResourceProductionTile {
 		case SWAMP:
 			this.setResourceNumber(1);
             this.setImagePath(R.drawable.swamp1favor);
-
+            break;
 		case HILL:
 			this.setResourceNumber(1);
             this.setImagePath(R.drawable.hills1food);

@@ -286,7 +286,7 @@ public class Player implements Observable {
     }
 
     public void takeGold(int amount) {
-        Bank.getInstance().withdraw(ResourceType.GOLD, amount);
+        amount = Bank.getInstance().withdraw(ResourceType.GOLD, amount);
         goldCube.setValue(goldCube.getValue()+amount);
         resourceUpdate();
     }
@@ -302,7 +302,7 @@ public class Player implements Observable {
     }
 
     public void takeFavor(int amount) {
-        Bank.getInstance().withdraw(ResourceType.FAVOR, amount);
+        amount = Bank.getInstance().withdraw(ResourceType.FAVOR, amount);
         favorCube.setValue(favorCube.getValue()+amount);
         resourceUpdate();
     }
@@ -317,7 +317,7 @@ public class Player implements Observable {
     }
 
     public void takeWood(int amount) {
-        Bank.getInstance().withdraw(ResourceType.WOOD, amount);
+        amount =  Bank.getInstance().withdraw(ResourceType.WOOD, amount);
         woodCube.setValue(woodCube.getValue()+amount);
         resourceUpdate();
     }
@@ -336,7 +336,7 @@ public class Player implements Observable {
     }
 
     public void takeFood(int amount) {
-        Bank.getInstance().withdraw(ResourceType.FOOD, amount);
+        amount =  Bank.getInstance().withdraw(ResourceType.FOOD, amount);
         foodCube.setValue(foodCube.getValue()+amount);
         resourceUpdate();
     }
@@ -355,7 +355,7 @@ public class Player implements Observable {
     }
 
     public void takeVictory(int amount) {
-        Bank.getInstance().withdrawVictory(amount);
+        amount =  Bank.getInstance().withdrawVictory(amount);
         victoryCube.setValue(victoryCube.getValue()+amount);
         resourceUpdate();
     }
